@@ -34,7 +34,7 @@ def playlistdownloader(downloadsPath):
     spotifyUsername.send_keys(USERNAME)
     spotifyPassword.send_keys(PASSWORD)
     action.move_to_element(spotifyLoginButton).click(spotifyLoginButton).perform()
-    time.sleep(5)
+    time.sleep(2.5)
     # TAB to appropriate button and press enter (this exports all users playlists)
     i = 8
     while i > 0:

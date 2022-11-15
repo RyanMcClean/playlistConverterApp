@@ -11,33 +11,33 @@ def musicCopy(musicLoc, musicMoveLoc):
         for artists in os.listdir(musicLoc):
             try:
                 # try to move files, if directory exists then move on
-                shutil.copytree(musicLoc + "\\" + artists, musicMoveLoc + artists)
+                shutil.copytree(musicLoc + "/" + artists, musicMoveLoc + artists)
             except:
-                for albums in os.listdir(musicLoc + "\\" + artists):
+                for albums in os.listdir(musicLoc + "/" + artists):
                     try:
                         # try to move album, if dir exists move on
-                        shutil.copytree(musicLoc + "\\" + artists + "\\" + albums,
+                        shutil.copytree(musicLoc + "/" + artists + "/" + albums,
                                               musicMoveLoc + artists + "/" + albums)
                     except:
-                        for songs in os.listdir(musicLoc + "\\" + artists + "\\" + albums):
-                            if os.path.isfile(musicLoc + "\\" + artists + "\\" + albums + "\\" + songs):
+                        for songs in os.listdir(musicLoc + "/" + artists + "/" + albums):
+                            if os.path.isfile(musicLoc + "/" + artists + "/" + albums + "/" + songs):
                                 try:
                                     # try to move songs (if they are files and not directories) if song exists move on
-                                    shutil.copytree(musicLoc + "\\" + artists + "\\" + albums + "\\" + songs,
+                                    shutil.copytree(musicLoc + "/" + artists + "/" + albums + "/" + songs,
                                                           musicMoveLoc + artists + "/" + albums + "/" + songs)
                                 except:
                                     pass
                             else:
                                 try:
                                     # if song was a directory then try to move it, if it exists then move on
-                                    shutil.copytree(musicLoc + "\\" + artists + "\\" + albums + "\\" + songs,
+                                    shutil.copytree(musicLoc + "/" + artists + "/" + albums + "/" + songs,
                                                           musicMoveLoc + artists + "/" + albums + "/" + songs)
                                 except:
-                                    for song in os.listdir(musicLoc + "\\" + artists + "\\" + albums + "\\" + songs):
+                                    for song in os.listdir(musicLoc + "/" + artists + "/" + albums + "/" + songs):
                                         try:
                                             # try to move the final files, if they already exist then give up
                                             shutil.copytree(
-                                                musicLoc + "\\" + artists + "\\" + albums + "\\" + songs + "\\" + song,
+                                                musicLoc + "/" + artists + "/" + albums + "/" + songs + "/" + song,
                                                 musicMoveLoc + artists + "/" + albums + "/" + songs + "/" + song)
                                         except:
                                             pass
@@ -46,34 +46,34 @@ def musicCopy(musicLoc, musicMoveLoc):
             for artists in os.listdir(musicLoc):
                 try:
                     # try to move files, if directory exists then move on
-                    shutil.copytree(musicLoc + "\\" + artists, musicRAIDLoc + artists)
+                    shutil.copytree(musicLoc + "/" + artists, musicRAIDLoc + artists)
                 except:
-                    for albums in os.listdir(musicLoc + "\\" + artists):
+                    for albums in os.listdir(musicLoc + "/" + artists):
                         try:
                             # try to move album, if dir exists move on
-                            shutil.copytree(musicLoc + "\\" + artists + "\\" + albums,
+                            shutil.copytree(musicLoc + "/" + artists + "/" + albums,
                                                   musicRAIDLoc + artists + "/" + albums)
                         except:
-                            for songs in os.listdir(musicLoc + "\\" + artists + "\\" + albums):
-                                if os.path.isfile(musicLoc + "\\" + artists + "\\" + albums + "\\" + songs):
+                            for songs in os.listdir(musicLoc + "/" + artists + "/" + albums):
+                                if os.path.isfile(musicLoc + "/" + artists + "/" + albums + "/" + songs):
                                     try:
                                         # try to move songs (if they are files and not directories) if song exists move on
-                                        shutil.copytree(musicLoc + "\\" + artists + "\\" + albums + "\\" + songs,
+                                        shutil.copytree(musicLoc + "/" + artists + "/" + albums + "/" + songs,
                                                               musicRAIDLoc + artists + "/" + albums + "/" + songs)
                                     except:
                                         pass
                                 else:
                                     try:
                                         # if song was a directory then try to move it, if it exists then move on
-                                        shutil.copytree(musicLoc + "\\" + artists + "\\" + albums + "\\" + songs,
+                                        shutil.copytree(musicLoc + "/" + artists + "/" + albums + "/" + songs,
                                                               musicRAIDLoc + artists + "/" + albums + "/" + songs)
                                     except:
                                         for song in os.listdir(
-                                                musicLoc + "\\" + artists + "\\" + albums + "\\" + songs):
+                                                musicLoc + "/" + artists + "/" + albums + "/" + songs):
                                             try:
                                                 # try to move the final files, if they already exist then give up
                                                 shutil.copytree(
-                                                    musicLoc + "\\" + artists + "\\" + albums + "\\" + songs + "\\" + song,
+                                                    musicLoc + "/" + artists + "/" + albums + "/" + songs + "/" + song,
                                                     musicRAIDLoc + artists + "/" + albums + "/" + songs + "/" + song)
                                             except:
                                                 pass
