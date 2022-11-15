@@ -37,7 +37,7 @@ def playlistdownloader(downloadsPath):
     time.sleep(2.5)
     # TAB to appropriate button and press enter (this exports all users playlists)
     i = 8
-    print("\n\nWaiting for extraction of playlists and download")
+    print("\n\nWaiting for extraction of playlists and subsequent zip file download")
     while i > 0:
         action.send_keys(Keys.TAB).perform()
         i -= 1
