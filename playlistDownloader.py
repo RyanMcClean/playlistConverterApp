@@ -48,7 +48,7 @@ def playlistdownloader(downloadsPath):
     fileExists = False
     while not fileExists:
         fileExists = os.path.exists(downloadsPath + zippedFile)
-        time.sleep(15)
+        time.sleep(10)
     print("Playlists downloaded\n\n")
     # Close window
     time.sleep(2)
