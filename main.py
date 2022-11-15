@@ -39,7 +39,7 @@ if __name__ == "__main__":
         for i in fileList:
             loopCounter += 1
             print("%2d" % ((loopCounter/len(os.listdir(downloadsPath + namePlaylistsDir)))*100) + "%")
-            print(" Converting " + i)
+            print("Converting " + i)
             playlist = CSV_Extraction(downloadsPath + namePlaylistsDir, pathToMusic, i)
             counter += playlistFileCreation(pathToFinalPlaylist, playlist)
             os.system('cls' if os.name == 'nt' else 'clear')
