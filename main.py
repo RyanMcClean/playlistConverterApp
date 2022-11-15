@@ -9,8 +9,8 @@ from unZipper import unzipper
 
 downloadsPath = "/home/ryan_urq/Downloads/"
 namePlaylistsDir = "spotify_playlists/"
-pathToMusic = "//Openmediavault/nas/Music/"
-pathToFinalPlaylist = "//Openmediavault/nas/Playlists/"
+pathToMusic = "/export/nas/Musio"
+pathToFinalPlaylist = "/export/nas/Playlists/"
 pathToOriginalMusic = "/mnt/windows-share/Users/ryan1/Music/Soggfy/"
 playlist = []
 
