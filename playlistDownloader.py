@@ -51,5 +51,5 @@ def playlistdownloader(downloadsPath):
         time.sleep(15)
     print("Playlists downloaded\n\n")
     # Close window
-    time.sleep(200)
+    time.sleep(2)
     driver.close()
