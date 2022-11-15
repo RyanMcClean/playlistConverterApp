@@ -7,8 +7,8 @@ from musicMover import musicCopy
 from playlistDownloader import playlistdownloader
 from unZipper import unzipper
 
-downloadsPath = "C:\\Users\\ryan1\\Downloads\\"
-namePlaylistsDir = "spotify_playlists\\"
+downloadsPath = "/home/ryan_urq/Downloads/"
+namePlaylistsDir = "spotify_playlists/"
 pathToMusic = "//Openmediavault/nas/Music/"
 pathToFinalPlaylist = "//Openmediavault/nas/Playlists/"
 pathToOriginalMusic = "\\\\RYAN_URQ_LAPTOP\\c\\Users\\ryan1\\Music\\Soggfy"
