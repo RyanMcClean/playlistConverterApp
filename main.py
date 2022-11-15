@@ -28,13 +28,16 @@ if __name__ == "__main__":
     unzipper(downloadsPath, downloadsPath + namePlaylistsDir)
 
     fileList = selection(downloadsPath + namePlaylistsDir)
+    counter = 0
 
     if isinstance(fileList, str):
         playlist = CSV_Extraction(downloadsPath + namePlaylistsDir, pathToMusic, fileList)
-        playlistFileCreation(pathToFinalPlaylist, playlist)
+        counter += playlistFileCreation(pathToFinalPlaylist, playlist)
 
     else:
         for i in fileList:
             print("converting " + i)
             playlist = CSV_Extraction(downloadsPath + namePlaylistsDir, pathToMusic, i)
-            playlistFileCreation(pathToFinalPlaylist, playlist)
+            counter += playlistFileCreation(pathToFinalPlaylist, playlist)
+
+    print(counter + " total missing songs from library")
