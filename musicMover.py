@@ -6,7 +6,7 @@ import time
 def musicCopy(musicLoc, musicMoveLoc):
     os.system("sudo mount.cifs //ryan_urq_laptop/c/ /mnt/windows-share/ -o user=ryan_urq,pass=44Glenavna,ip=192.168.50.78")
     print("In background:\nChecking for laptop, then transferring music files")
-    musicRAIDLoc = "//Openmediavault/raid/PlexMedia/Music/"
+    musicRAIDLoc = "/export/raid/PlexMedia/Music/"
     if os.path.exists(musicLoc):
         for artists in os.listdir(musicLoc):
             try:
