@@ -4,7 +4,8 @@ import time
 
 
 def musicCopy(musicLoc, musicMoveLoc):
-    os.system("sudo mount.cifs //ryan_urq_laptop/c/ /mnt/windows-share/ -o user=ryan_urq,pass=44Glenavna,ip=192.168.50.78")
+    if not os.path.exist("/mnt/windows-share/Users"):
+        os.system("sudo mount.cifs //ryan_urq_laptop/c/ /mnt/windows-share/ -o user=ryan_urq,pass=44Glenavna,ip=192.168.50.78")
     print("In background:\nChecking for laptop, then transferring music files")
     musicRAIDLoc = "/export/RAID/PlexMedia/Music"
     if os.path.exists(musicLoc):
