@@ -29,6 +29,7 @@ if __name__ == "__main__":
 
     fileList = selection(downloadsPath + namePlaylistsDir)
     counter = 0
+    loopCounter = 0
 
     if isinstance(fileList, str):
         playlist = CSV_Extraction(downloadsPath + namePlaylistsDir, pathToMusic, fileList)
@@ -36,8 +37,10 @@ if __name__ == "__main__":
 
     else:
         for i in fileList:
-            print("converting " + i)
+            loopCounter += 1
+            print(loopCounter + ". converting " + i)
             playlist = CSV_Extraction(downloadsPath + namePlaylistsDir, pathToMusic, i)
             counter += playlistFileCreation(pathToFinalPlaylist, playlist)
+            os.system('cls' if os.name == 'nt' else 'clear')
 
     print(str(counter) + " total missing songs from library")
