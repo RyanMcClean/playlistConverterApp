@@ -11,7 +11,7 @@ downloadsPath = "/home/ryan_urq/Downloads/"
 namePlaylistsDir = "spotify_playlists/"
 pathToMusic = "//Openmediavault/nas/Music/"
 pathToFinalPlaylist = "//Openmediavault/nas/Playlists/"
-pathToOriginalMusic = "\\\\RYAN_URQ_LAPTOP\\c\\Users\\ryan1\\Music\\Soggfy"
+pathToOriginalMusic = "/mnt/windows-share/Users/ryan1/Music/Soggfy/"
 playlist = []
 
 if __name__ == "__main__":

@@ -7,6 +7,7 @@ from zipfile import ZipFile
 
 def unzipper(zipFileLocation, unZipFileLocation):
     print("Unzipping file\n")
+    zipFileLocationCopy = zipFileLocation
     # This section makes the directory in which all the csv files will be placed
     for root, dirs, files in os.walk(zipFileLocation):
         for file in files:
@@ -19,7 +20,7 @@ def unzipper(zipFileLocation, unZipFileLocation):
         zObject.extractall(unZipFileLocation)
     # This checks the directory that the CSV files were unzipped to exists
     check = ""
-    for root, dirs, files in os.walk("C:\\Users\\ryan1\\Downloads\\"):
+    for root, dirs, files in os.walk(zipFileLocationCopy):
         for dir in dirs:
             # print (dir)
             if dir.endswith("playlists"):
