@@ -40,4 +40,4 @@ if __name__ == "__main__":
             playlist = CSV_Extraction(downloadsPath + namePlaylistsDir, pathToMusic, i)
             counter += playlistFileCreation(pathToFinalPlaylist, playlist)
 
-    print(counter + " total missing songs from library")
+    print(str(counter) + " total missing songs from library")
