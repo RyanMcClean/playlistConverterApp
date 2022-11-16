@@ -57,7 +57,7 @@ def m4aFinder(artist, album, name, pathToMusic):
                             if os.path.isfile(pathToMusic + i + "/" + j + "/" + k):
                                 if k.endswith(nameShort):
                                     stringToReturn = pathToMusic + i + "/" + j + "/" + k
-                                    stringToReturn = stringToReturn.replace(stringToReturn[:20], '', 1)
+                                    #stringToReturn = stringToReturn.replace(stringToReturn[:20], '', 1)
                                     return stringToReturn
                             else:
                                 for l in os.listdir(pathToMusic + i + "/" + j + "/" + k + "/"):
@@ -111,7 +111,7 @@ def m4aFinder(artist, album, name, pathToMusic):
                             if os.path.isfile(pathToMusic + i + "/" + j + "/" + k):
                                 if k.endswith(nameShort):
                                     stringToReturn = pathToMusic + i + "/" + j + "/" + k
-                                    stringToReturn = stringToReturn.replace(stringToReturn[:20], '', 1)
+                                    #stringToReturn = stringToReturn.replace(stringToReturn[:20], '', 1)
                                     return stringToReturn
                             else:
                                 for l in os.listdir(pathToMusic + i + "/" + j + "/" + k + "/"):
