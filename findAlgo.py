@@ -57,14 +57,14 @@ def m4aFinder(artist, album, name, pathToMusic):
                             if os.path.isfile(pathToMusic + i + "/" + j + "/" + k):
                                 if k.endswith(nameShort):
                                     stringToReturn = pathToMusic + i + "/" + j + "/" + k
-                                    #stringToReturn = stringToReturn.replace(stringToReturn[:20], '', 1)
+                                    stringToReturn = stringToReturn.replace(stringToReturn[:11], '', 1)
                                     return stringToReturn
                             else:
                                 for l in os.listdir(pathToMusic + i + "/" + j + "/" + k + "/"):
                                     if os.path.isfile(pathToMusic + i + "/" + j + "/" + k + "/" + l):
                                         if l.endswith(nameShort):
                                             stringToReturn = pathToMusic + i + "/" + j + "/" + k + "/" + l
-                                            #stringToReturn = stringToReturn.replace(stringToReturn[:0], '', 1)
+                                            stringToReturn = stringToReturn.replace(stringToReturn[:11], '', 1)
                                             return stringToReturn
 
     x = 0
@@ -111,14 +111,14 @@ def m4aFinder(artist, album, name, pathToMusic):
                             if os.path.isfile(pathToMusic + i + "/" + j + "/" + k):
                                 if k.endswith(nameShort):
                                     stringToReturn = pathToMusic + i + "/" + j + "/" + k
-                                    #stringToReturn = stringToReturn.replace(stringToReturn[:20], '', 1)
+                                    stringToReturn = stringToReturn.replace(stringToReturn[:11], '', 1)
                                     return stringToReturn
                             else:
                                 for l in os.listdir(pathToMusic + i + "/" + j + "/" + k + "/"):
                                     if os.path.isfile(pathToMusic + i + "/" + j + "/" + k + "/" + l):
                                         if l.endswith(nameShort):
                                             stringToReturn = pathToMusic + i + "/" + j + "/" + k + "/" + l
-                                            #stringToReturn = stringToReturn.replace(stringToReturn[:0], '', 1)
+                                            stringToReturn = stringToReturn.replace(stringToReturn[:11], '', 1)
                                             return stringToReturn
 
     return None
