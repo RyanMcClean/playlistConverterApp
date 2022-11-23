@@ -14,3 +14,4 @@ def playlistFileCreation(playlistFinalPath, playlist):
               " songs from file system.\n\n")
         time.sleep(2)
         return counter
+
