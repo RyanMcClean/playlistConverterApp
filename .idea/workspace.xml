@@ -5,11 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1429e8eb-fbd8-4b5f-9697-44bcc5b48d31" name="Changes" comment="Changing how it measures missing files">
-      <change afterPath="$PROJECT_DIR$/file.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flaskdir/meme_flask.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flaskdir/templates/meme_index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flaskdir/static/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flaskdir/templates/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flaskTest.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/file.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/flaskdir/meme_flask.py" beforeDir="false" afterPath="$PROJECT_DIR$/flaskdir/meme_flask.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flaskdir/templates/meme_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/flaskdir/templates/meme_index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,7 +31,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2Hrbv4QqmIetCn08RPJALVIySNm" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -41,7 +42,8 @@
   "keyToString": {
     "DefaultHtmlFileTemplate": "HTML File",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "run.code.analysis.last.selected.profile": "aDefault"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -108,7 +110,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="Backup/master" />
+                        <option value="origin/master" />
                       </list>
                     </value>
                   </entry>
