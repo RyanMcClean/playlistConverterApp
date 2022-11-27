@@ -51,7 +51,7 @@ def playlistdownloader(downloadsPath):
         fileExists = os.path.exists(downloadsPath + zippedFile)
         time.sleep(10)
         counter += 1
-        if counter > 30:
+        if counter > 100:
             fileExists = True
     print("Playlists downloaded\n\n")
     # Close window
