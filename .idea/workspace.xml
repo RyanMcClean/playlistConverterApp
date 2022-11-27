@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1429e8eb-fbd8-4b5f-9697-44bcc5b48d31" name="Changes" comment="Changing how it measures missing files">
-      <change afterPath="$PROJECT_DIR$/flaskdir/static/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flaskdir/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/file.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/flaskdir/meme_flask.py" beforeDir="false" afterPath="$PROJECT_DIR$/flaskdir/meme_flask.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flaskdir/templates/meme_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/flaskdir/templates/meme_index.html" afterDir="false" />
-    </list>
+    <list default="true" id="1429e8eb-fbd8-4b5f-9697-44bcc5b48d31" name="Changes" comment="moving Flask tests to new project" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -96,7 +89,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669201170131</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="moving Flask tests to new project">
+      <created>1669339078005</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1669339078005</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -139,6 +139,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Changing how it measures missing files" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changing how it measures missing files" />
+    <MESSAGE value="moving Flask tests to new project" />
+    <option name="LAST_COMMIT_MESSAGE" value="moving Flask tests to new project" />
   </component>
 </project>
