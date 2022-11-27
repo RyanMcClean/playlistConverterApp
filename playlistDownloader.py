@@ -46,9 +46,13 @@ def playlistdownloader(downloadsPath):
     # Check to close browser only after the file exists and has had a few seconds to download.
     # On a slow connection this may be an issue
     fileExists = False
+    counter = 0
     while not fileExists:
         fileExists = os.path.exists(downloadsPath + zippedFile)
         time.sleep(10)
+        counter += 1
+        if counter > 30:
+            fileExists = True
     print("Playlists downloaded\n\n")
     # Close window
     time.sleep(2)

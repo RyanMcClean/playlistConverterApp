@@ -1,0 +1,116 @@
+Index: playlistDownloader.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from selenium import webdriver\r\nfrom selenium.webdriver.common.keys import Keys\r\nfrom selenium.webdriver.common.by import By\r\nfrom selenium.webdriver.common.action_chains import ActionChains\r\nimport time\r\nimport os\r\nfrom dotenv import load_dotenv\r\n\r\n\r\n# This is the function to download a zip file of all the spotify playlists in a given account.\r\n# It takes advantage of selenium to run exportify.\r\ndef playlistdownloader(downloadsPath):\r\n    os.environ['MOZ_HEADLESS'] = '1'\r\n    load_dotenv()\r\n    USERNAME = os.getenv(\"SPOTIFY_USERNAME\")\r\n    PASSWORD = os.getenv(\"SPOTIFY_PASSWORD\")\r\n    # Open web browser and clear downloads folder of zipped file (important for checks later on)\r\n    driver = webdriver.Firefox()\r\n    action = ActionChains(driver)\r\n    zippedFile = \"spotify_playlists.zip\"\r\n    try:\r\n        os.remove(downloadsPath + zippedFile)\r\n    except:\r\n        print(\"\")\r\n    # Maximise window and navigate to exportify and click login\r\n    driver.get(\"https://watsonbox.github.io/exportify/\")\r\n    exportifyLogin = driver.find_element(By.ID, \"loginButton\")\r\n    action.move_to_element(exportifyLogin).click(exportifyLogin).perform()\r\n    time.sleep(2)\r\n    # Login to spotify\r\n    spotifyUsername = driver.find_element(By.ID, \"login-username\")\r\n    spotifyPassword = driver.find_element(By.ID, \"login-password\")\r\n    spotifyLoginButton = driver.find_element(By.ID, \"login-button\")\r\n    spotifyUsername.send_keys(USERNAME)\r\n    spotifyPassword.send_keys(PASSWORD)\r\n    action.move_to_element(spotifyLoginButton).click(spotifyLoginButton).perform()\r\n    time.sleep(2.5)\r\n    # TAB to appropriate button and press enter (this exports all users playlists)\r\n    i = 8\r\n    print(\"\\n\\nWaiting for extraction of playlists and subsequent zip file download\")\r\n    while i > 0:\r\n        action.send_keys(Keys.TAB).perform()\r\n        i -= 1\r\n    action.send_keys(Keys.ENTER).perform()\r\n    print(\"\\nStarting download of playlists\\n\")\r\n    # Check to close browser only after the file exists and has had a few seconds to download.\r\n    # On a slow connection this may be an issue\r\n    fileExists = False\r\n    while not fileExists:\r\n        fileExists = os.path.exists(downloadsPath + zippedFile)\r\n        time.sleep(10)\r\n    print(\"Playlists downloaded\\n\\n\")\r\n    # Close window\r\n    time.sleep(2)\r\n    driver.close()\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/playlistDownloader.py b/playlistDownloader.py
+--- a/playlistDownloader.py	(revision a5d31f33e77bf59ab26f46c18d9f897d44595c6d)
++++ b/playlistDownloader.py	(date 1669433754092)
+@@ -46,9 +46,13 @@
+     # Check to close browser only after the file exists and has had a few seconds to download.
+     # On a slow connection this may be an issue
+     fileExists = False
++    counter = 0
+     while not fileExists:
+         fileExists = os.path.exists(downloadsPath + zippedFile)
+         time.sleep(10)
++        counter += 1
++        if counter > 30:
++            fileExists = True
+     print("Playlists downloaded\n\n")
+     # Close window
+     time.sleep(2)
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"1429e8eb-fbd8-4b5f-9697-44bcc5b48d31\" name=\"Changes\" comment=\"Changing how it measures missing files\">\r\n      <change afterPath=\"$PROJECT_DIR$/file.html\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/flaskdir/meme_flask.py\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/flaskdir/templates/meme_index.html\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/flaskTest.py\" beforeDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"HTML File\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2Hrbv4QqmIetCn08RPJALVIySNm\" />\r\n  <component name=\"ProjectLevelVcsManager\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"DefaultHtmlFileTemplate\": \"HTML File\",\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\ryan1\\PycharmProjects\\playlistCSVConverterApp\\flaskdir\\templates\" />\r\n      <recent name=\"C:\\Users\\ryan1\\PycharmProjects\\playlistCSVConverterApp\\flaskdir\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"1429e8eb-fbd8-4b5f-9697-44bcc5b48d31\" name=\"Changes\" comment=\"\" />\r\n      <created>1669046376747</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1669046376747</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Changing how it measures missing files\">\r\n      <created>1669046451975</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1669046451975</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"Changing how it measures missing files\">\r\n      <created>1669200126894</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1669200126894</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"Changing how it measures missing files\">\r\n      <created>1669200629980</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1669200629980</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"Changing how it measures missing files\">\r\n      <created>1669201053404</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1669201053404</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"Changing how it measures missing files\">\r\n      <created>1669201170131</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1669201170131</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"6\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State>\r\n              <option name=\"FILTERS\">\r\n                <map>\r\n                  <entry key=\"branch\">\r\n                    <value>\r\n                      <list>\r\n                        <option value=\"Backup/master\" />\r\n                      </list>\r\n                    </value>\r\n                  </entry>\r\n                </map>\r\n              </option>\r\n            </State>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_FILTERS\">\r\n      <map>\r\n        <entry key=\"Branch\">\r\n          <value>\r\n            <list>\r\n              <RecentGroup>\r\n                <option name=\"FILTER_VALUES\">\r\n                  <option value=\"Backup/master\" />\r\n                </option>\r\n              </RecentGroup>\r\n            </list>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Changing how it measures missing files\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Changing how it measures missing files\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision a5d31f33e77bf59ab26f46c18d9f897d44595c6d)
++++ b/.idea/workspace.xml	(date 1669433754357)
+@@ -4,12 +4,9 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="1429e8eb-fbd8-4b5f-9697-44bcc5b48d31" name="Changes" comment="Changing how it measures missing files">
+-      <change afterPath="$PROJECT_DIR$/file.html" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/flaskdir/meme_flask.py" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/flaskdir/templates/meme_index.html" afterDir="false" />
++    <list default="true" id="1429e8eb-fbd8-4b5f-9697-44bcc5b48d31" name="Changes" comment="Added in flask meme functionality">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/flaskTest.py" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/playlistDownloader.py" beforeDir="false" afterPath="$PROJECT_DIR$/playlistDownloader.py" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -37,13 +34,13 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "DefaultHtmlFileTemplate": "HTML File",
+-    "RunOnceActivity.OpenProjectViewOnStart": "true",
+-    "RunOnceActivity.ShowReadmeOnStart": "true"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
++    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="RecentsManager">
+     <key name="MoveFile.RECENT_KEYS">
+       <recent name="C:\Users\ryan1\PycharmProjects\playlistCSVConverterApp\flaskdir\templates" />
+@@ -94,7 +91,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1669201170131</updated>
+     </task>
+-    <option name="localTasksCounter" value="6" />
++    <task id="LOCAL-00006" summary="Added in flask meme functionality">
++      <created>1669285698679</created>
++      <option name="number" value="00006" />
++      <option name="presentableId" value="LOCAL-00006" />
++      <option name="project" value="LOCAL" />
++      <updated>1669285698679</updated>
++    </task>
++    <option name="localTasksCounter" value="7" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+@@ -102,19 +106,7 @@
+       <map>
+         <entry key="MAIN">
+           <value>
+-            <State>
+-              <option name="FILTERS">
+-                <map>
+-                  <entry key="branch">
+-                    <value>
+-                      <list>
+-                        <option value="Backup/master" />
+-                      </list>
+-                    </value>
+-                  </entry>
+-                </map>
+-              </option>
+-            </State>
++            <State />
+           </value>
+         </entry>
+       </map>
+@@ -137,6 +129,7 @@
+   </component>
+   <component name="VcsManagerConfiguration">
+     <MESSAGE value="Changing how it measures missing files" />
+-    <option name="LAST_COMMIT_MESSAGE" value="Changing how it measures missing files" />
++    <MESSAGE value="Added in flask meme functionality" />
++    <option name="LAST_COMMIT_MESSAGE" value="Added in flask meme functionality" />
+   </component>
+ </project>
+\ No newline at end of file
