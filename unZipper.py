@@ -36,6 +36,6 @@ def unzipper(zipFileLocation, unZipFileLocation):
         print("\nUnzipping successful\n")
         os.remove(zipFileLocation)
     else:
-        print("Error unzipping file")
+        print("\nError unzipping file\n")
 
     time.sleep(1)
