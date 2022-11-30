@@ -61,7 +61,7 @@ def playlistdownloader(downloadsPath):
         print("Checking for old playlist information\n\n")
         for root, dirs, files in os.walk(downloadsPath):
             print(dirs)
-            if dirs is not None:
+            if dirs[0] is not None:
                 for directory in dirs:
                     print("Directory = " + directory)
                     if directory.endswith("playlists"):
