@@ -53,7 +53,17 @@ def playlistdownloader(downloadsPath):
         counter += 1
         if counter > 100:
             fileExists = True
-    print("Playlists downloaded\n\n")
+    if os.path.exists(downloadsPath+zippedFile):
+        print("Playlists downloaded\n\n")
+    elif not (os.path.exists(downloadsPath + zippedFile)):
+        for root, dirs, files in os.walk(downloadsPath):
+            for dir in dirs:
+                # print (dir)
+                if dir.endswith("playlists"):
+                    print("Playlist download timed out. Continuing on old playlist information")
+    else:
+        print("Error downloading, and lack of old information. Ending processes.")
+        exit()
     # Close window
     time.sleep(2)
     driver.close()
