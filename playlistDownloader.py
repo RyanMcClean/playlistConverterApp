@@ -64,8 +64,12 @@ def playlistdownloader(downloadsPath):
                 # print (dir)
                 if dir.endswith("playlists"):
                     print("Playlist download timed out. Continuing on old playlist information")
+                else:
+                    print("Error downloading, and lack of old information. Ending processes.")
+                    exit()
+
     else:
-        print("Error downloading, and lack of old information. Ending processes.")
+        print("Error, exiting")
         exit()
 
     # Close window

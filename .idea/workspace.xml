@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1429e8eb-fbd8-4b5f-9697-44bcc5b48d31" name="Changes" comment="fixed check in unzipper, debugging temp solutions in place">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="1429e8eb-fbd8-4b5f-9697-44bcc5b48d31" name="Changes" comment="Debug #1">
       <change beforePath="$PROJECT_DIR$/playlistDownloader.py" beforeDir="false" afterPath="$PROJECT_DIR$/playlistDownloader.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -113,7 +112,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669773567085</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Debug #1">
+      <created>1669775542437</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1669775542437</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -159,6 +165,7 @@
     <MESSAGE value="Made the time available for the zip download longer" />
     <MESSAGE value="Added checks into unZipper so it only runs unzipping if the .zip download was a success&#10;&#10;Also, added checks into playlist downloader to make sure that the .zip file downloaded, if not it chekcs for old playlist information to work with. If not found then it exits" />
     <MESSAGE value="fixed check in unzipper, debugging temp solutions in place" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed check in unzipper, debugging temp solutions in place" />
+    <MESSAGE value="Debug #1" />
+    <option name="LAST_COMMIT_MESSAGE" value="Debug #1" />
   </component>
 </project>
