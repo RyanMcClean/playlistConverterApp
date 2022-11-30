@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1429e8eb-fbd8-4b5f-9697-44bcc5b48d31" name="Changes" comment="Debug #14">
-      <change beforePath="$PROJECT_DIR$/playlistDownloader.py" beforeDir="false" afterPath="$PROJECT_DIR$/playlistDownloader.py" afterDir="false" />
+    <list default="true" id="1429e8eb-fbd8-4b5f-9697-44bcc5b48d31" name="Changes" comment="Added timer to playlist downloader so it doesn't wait for the download forever">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fileCreator.py" beforeDir="false" afterPath="$PROJECT_DIR$/fileCreator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unZipper.py" beforeDir="false" afterPath="$PROJECT_DIR$/unZipper.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,133 +93,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669201170131</updated>
     </task>
-    <task id="LOCAL-00006" summary="Made the time available for the zip download longer">
-      <created>1669576594319</created>
+    <task id="LOCAL-00006" summary="Added timer to playlist downloader so it doesn't wait for the download forever">
+      <created>1669433850861</created>
       <option name="number" value="00006" />
       <option name="presentableId" value="LOCAL-00006" />
       <option name="project" value="LOCAL" />
-      <updated>1669576594319</updated>
+      <updated>1669433850861</updated>
     </task>
-    <task id="LOCAL-00007" summary="Added checks into unZipper so it only runs unzipping if the .zip download was a success&#10;&#10;Also, added checks into playlist downloader to make sure that the .zip file downloaded, if not it chekcs for old playlist information to work with. If not found then it exits">
-      <created>1669773073091</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1669773073091</updated>
-    </task>
-    <task id="LOCAL-00008" summary="fixed check in unzipper, debugging temp solutions in place">
-      <created>1669773567085</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1669773567085</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Debug #1">
-      <created>1669775542437</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1669775542437</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Debug #2">
-      <created>1669775815975</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1669775815975</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Debug #3">
-      <created>1669775931869</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1669775931869</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Debug #4">
-      <created>1669776453708</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1669776453708</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Debug #5">
-      <created>1669777950333</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1669777950333</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Debug #6">
-      <created>1669778139061</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1669778139061</updated>
-    </task>
-    <task id="LOCAL-00015" summary="Debug #7">
-      <created>1669778235594</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1669778235594</updated>
-    </task>
-    <task id="LOCAL-00016" summary="Debug #8">
-      <created>1669778531880</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1669778531880</updated>
-    </task>
-    <task id="LOCAL-00017" summary="Debug #9">
-      <created>1669778755423</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1669778755423</updated>
-    </task>
-    <task id="LOCAL-00018" summary="Debug #10">
-      <created>1669778793662</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1669778793662</updated>
-    </task>
-    <task id="LOCAL-00019" summary="Debug #11">
-      <created>1669779094786</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1669779094786</updated>
-    </task>
-    <task id="LOCAL-00020" summary="Debug #12">
-      <created>1669779251948</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1669779251948</updated>
-    </task>
-    <task id="LOCAL-00021" summary="Debug #13">
-      <created>1669779337437</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1669779337437</updated>
-    </task>
-    <task id="LOCAL-00022" summary="Debug #134">
-      <created>1669779466307</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1669779466307</updated>
-    </task>
-    <task id="LOCAL-00023" summary="Debug #14">
-      <created>1669779559034</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1669779559034</updated>
-    </task>
-    <option name="localTasksCounter" value="24" />
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -260,24 +143,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Changing how it measures missing files" />
-    <MESSAGE value="Made the time available for the zip download longer" />
-    <MESSAGE value="Added checks into unZipper so it only runs unzipping if the .zip download was a success&#10;&#10;Also, added checks into playlist downloader to make sure that the .zip file downloaded, if not it chekcs for old playlist information to work with. If not found then it exits" />
-    <MESSAGE value="fixed check in unzipper, debugging temp solutions in place" />
-    <MESSAGE value="Debug #1" />
-    <MESSAGE value="Debug #2" />
-    <MESSAGE value="Debug #3" />
-    <MESSAGE value="Debug #4" />
-    <MESSAGE value="Debug #5" />
-    <MESSAGE value="Debug #6" />
-    <MESSAGE value="Debug #7" />
-    <MESSAGE value="Debug #8" />
-    <MESSAGE value="Debug #9" />
-    <MESSAGE value="Debug #10" />
-    <MESSAGE value="Debug #11" />
-    <MESSAGE value="Debug #12" />
-    <MESSAGE value="Debug #13" />
-    <MESSAGE value="Debug #134" />
-    <MESSAGE value="Debug #14" />
-    <option name="LAST_COMMIT_MESSAGE" value="Debug #14" />
+    <MESSAGE value="Added timer to playlist downloader so it doesn't wait for the download forever" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added timer to playlist downloader so it doesn't wait for the download forever" />
   </component>
 </project>

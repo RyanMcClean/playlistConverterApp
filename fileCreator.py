@@ -12,6 +12,6 @@ def playlistFileCreation(playlistFinalPath, playlist):
                 counter += 1
         print(playlist[0] + " Converted to " + playlist[0].replace("csv", "m3u8") + " missing " + str(counter) +
               " songs from file system.\n\n")
-        time.sleep(2)
+        time.sleep(1)
         return counter
 
