@@ -53,10 +53,10 @@ def playlistdownloader(downloadsPath):
         counter += 1
         if counter > 100:
             fileExists = True
-
+    # Check if zip file downlaoded after timeout
     if os.path.exists(downloadsPath+zippedFile):
         print("Playlists downloaded\n\n")
-
+    # If zip file not found, check for old downloaded playlist data, if not found exit
     elif not (os.path.exists(downloadsPath + zippedFile)):
         print("Checking for old playlist information\n\n")
         for root, dirs, files in os.walk(downloadsPath):
