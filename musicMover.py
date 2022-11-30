@@ -43,7 +43,7 @@ def musicCopy(musicLoc, musicMoveLoc):
                                         except:
                                             pass
     if os.path.exists(musicRAIDLoc):
-        print("Found RAID")
+        print("\n\nFound RAID")
         if os.path.exists(musicLoc):
             for artists in os.listdir(musicLoc):
                 try:

@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1429e8eb-fbd8-4b5f-9697-44bcc5b48d31" name="Changes" comment="Debug #6">
-      <change beforePath="$PROJECT_DIR$/CSVtoArray.py" beforeDir="false" afterPath="$PROJECT_DIR$/CSVtoArray.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/playlistDownloader.py" beforeDir="false" afterPath="$PROJECT_DIR$/playlistDownloader.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unZipper.py" beforeDir="false" afterPath="$PROJECT_DIR$/unZipper.py" afterDir="false" />
+    <list default="true" id="1429e8eb-fbd8-4b5f-9697-44bcc5b48d31" name="Changes" comment="Debug #7">
+      <change beforePath="$PROJECT_DIR$/musicMover.py" beforeDir="false" afterPath="$PROJECT_DIR$/musicMover.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,7 +154,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669778139061</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Debug #7">
+      <created>1669778235594</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1669778235594</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -208,6 +213,7 @@
     <MESSAGE value="Debug #4" />
     <MESSAGE value="Debug #5" />
     <MESSAGE value="Debug #6" />
-    <option name="LAST_COMMIT_MESSAGE" value="Debug #6" />
+    <MESSAGE value="Debug #7" />
+    <option name="LAST_COMMIT_MESSAGE" value="Debug #7" />
   </component>
 </project>
