@@ -61,19 +61,14 @@ def playlistdownloader(downloadsPath):
         print("Checking for old playlist information\n\n")
         for root, dirs, files in os.walk(downloadsPath):
             if dirs is not None:
-                for dir in dirs:
-                    print (dir)
-                    if dir.endswith("playlists"):
+                for directory in dirs:
+                    print("Directory = " + directory)
+                    if directory.endswith("playlists"):
                         print("Playlist download timed out. Continuing on old playlist information")
             else:
                 print("Error downloading, and lack of old information. Ending processes.")
                 driver.close()
                 exit()
-
-    else:
-        print("Error, exiting")
-        driver.close()
-        exit()
 
     # Close window
     time.sleep(2)
