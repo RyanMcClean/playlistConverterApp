@@ -8,7 +8,7 @@ def selection(CSVdirLoc):
     if os.path.exists(CSVdirLoc):
         fileList = os.listdir(CSVdirLoc)
     else:
-        print("Error, no CSV files found, exiting")
+        print("Error, no CSV files found, exiting\n")
         exit()
     file = ""
     while True:
