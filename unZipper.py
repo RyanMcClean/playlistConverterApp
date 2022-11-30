@@ -20,6 +20,8 @@ def unzipper(zipFileLocation, unZipFileLocation):
     if os.path.isfile(zipFileLocation):
         with ZipFile(zipFileLocation, 'r') as zObject:
             zObject.extractall(unZipFileLocation)
+    else:
+        print("No zip file found")
     # This checks the directory that the CSV files were unzipped to exists
     check = ""
     for root, dirs, files in os.walk(zipFileLocationCopy):

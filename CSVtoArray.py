@@ -5,7 +5,11 @@ from findAlgo import m4aFinder
 
 
 def selection(CSVdirLoc):
-    fileList = os.listdir(CSVdirLoc)
+    if os.path.exists(CSVdirLoc):
+        fileList = os.listdir(CSVdirLoc)
+    else:
+        print("Error, no CSV files found, exiting")
+        exit()
     file = ""
     while True:
         for num, f in enumerate(fileList):

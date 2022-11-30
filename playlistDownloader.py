@@ -45,14 +45,14 @@ def playlistdownloader(downloadsPath):
     print("\nStarting download of playlists\n")
     # Check to close browser only after the file exists and has had a few seconds to download.
     # On a slow connection this may be an issue
-    # fileExists = False
-    # counter = 0
-    # while not fileExists:
-    #     fileExists = os.path.exists(downloadsPath + zippedFile)
-    #     time.sleep(10)
-    #     counter += 1
-    #     if counter > 100:
-    #         fileExists = True
+    fileExists = False
+    counter = 0
+    while not fileExists:
+        fileExists = os.path.exists(downloadsPath + zippedFile)
+        time.sleep(10)
+        counter += 1
+        if counter > 100:
+            fileExists = True
 
     if os.path.exists(downloadsPath+zippedFile):
         print("Playlists downloaded\n\n")
@@ -61,15 +61,17 @@ def playlistdownloader(downloadsPath):
         print("Checking for old playlist information")
         for root, dirs, files in os.walk(downloadsPath):
             for dir in dirs:
-                # print (dir)
+                print (dir)
                 if dir.endswith("playlists"):
                     print("Playlist download timed out. Continuing on old playlist information")
                 else:
                     print("Error downloading, and lack of old information. Ending processes.")
+                    driver.close()
                     exit()
 
     else:
         print("Error, exiting")
+        driver.close()
         exit()
 
     # Close window
