@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1429e8eb-fbd8-4b5f-9697-44bcc5b48d31" name="Changes" comment="Made the time available for the zip download longer">
+    <list default="true" id="1429e8eb-fbd8-4b5f-9697-44bcc5b48d31" name="Changes" comment="Added checks into unZipper so it only runs unzipping if the .zip download was a success&#10;&#10;Also, added checks into playlist downloader to make sure that the .zip file downloaded, if not it chekcs for old playlist information to work with. If not found then it exits">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/playlistDownloader.py" beforeDir="false" afterPath="$PROJECT_DIR$/playlistDownloader.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/unZipper.py" beforeDir="false" afterPath="$PROJECT_DIR$/unZipper.py" afterDir="false" />
@@ -100,7 +100,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669576594319</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added checks into unZipper so it only runs unzipping if the .zip download was a success&#10;&#10;Also, added checks into playlist downloader to make sure that the .zip file downloaded, if not it chekcs for old playlist information to work with. If not found then it exits">
+      <created>1669773073091</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1669773073091</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -144,6 +151,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Changing how it measures missing files" />
     <MESSAGE value="Made the time available for the zip download longer" />
-    <option name="LAST_COMMIT_MESSAGE" value="Made the time available for the zip download longer" />
+    <MESSAGE value="Added checks into unZipper so it only runs unzipping if the .zip download was a success&#10;&#10;Also, added checks into playlist downloader to make sure that the .zip file downloaded, if not it chekcs for old playlist information to work with. If not found then it exits" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added checks into unZipper so it only runs unzipping if the .zip download was a success&#10;&#10;Also, added checks into playlist downloader to make sure that the .zip file downloaded, if not it chekcs for old playlist information to work with. If not found then it exits" />
   </component>
 </project>

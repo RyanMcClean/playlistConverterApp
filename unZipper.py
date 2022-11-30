@@ -17,7 +17,7 @@ def unzipper(zipFileLocation, unZipFileLocation):
     # print (zipFileLocation)
     # This unzips the files into the location
     # The if statement prevents errors if the zip file did not download
-    if zipFileLocation.exists():
+    if os.path.exists(zipFileLocation):
         with ZipFile(zipFileLocation, 'r') as zObject:
             zObject.extractall(unZipFileLocation)
     # This checks the directory that the CSV files were unzipped to exists
