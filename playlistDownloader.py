@@ -60,15 +60,15 @@ def playlistdownloader(downloadsPath):
     elif not (os.path.exists(downloadsPath + zippedFile)):
         print("Checking for old playlist information\n\n")
         for root, dirs, files in os.walk(downloadsPath):
-            for dir in dirs:
-                if dir is not None:
+            if dirs is not None:
+                for dir in dirs:
                     print (dir)
                     if dir.endswith("playlists"):
                         print("Playlist download timed out. Continuing on old playlist information")
-                else:
-                    print("Error downloading, and lack of old information. Ending processes.")
-                    driver.close()
-                    exit()
+            else:
+                print("Error downloading, and lack of old information. Ending processes.")
+                driver.close()
+                exit()
 
     else:
         print("Error, exiting")
