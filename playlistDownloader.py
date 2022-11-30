@@ -60,6 +60,7 @@ def playlistdownloader(downloadsPath):
     elif not (os.path.exists(downloadsPath + zippedFile)):
         print("Checking for old playlist information\n\n")
         for root, dirs, files in os.walk(downloadsPath):
+            print(dirs)
             if dirs is not None:
                 for directory in dirs:
                     print("Directory = " + directory)
