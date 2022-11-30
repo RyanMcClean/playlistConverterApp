@@ -46,7 +46,7 @@ def playlistdownloader(downloadsPath):
     # Check to close browser only after the file exists and has had a few seconds to download.
     # On a slow connection this may be an issue
     fileExists = False
-    counter = 100
+    counter = 0
     while not fileExists:
         fileExists = os.path.exists(downloadsPath + zippedFile)
         time.sleep(10)
@@ -60,11 +60,11 @@ def playlistdownloader(downloadsPath):
     elif not (os.path.exists(downloadsPath + zippedFile)):
         print("Checking for old playlist information\n\n")
         for root, dirs, files in os.walk(downloadsPath):
-            print(dirs)
+            # print(dirs)
             try:
                 if dirs[0] is not None:
                     for directory in dirs:
-                        print("Directory = " + directory)
+                        # print("Directory = " + directory)
                         if directory.endswith("playlists"):
                             print("Playlist download timed out. Continuing on old playlist information")
             except:
