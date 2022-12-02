@@ -35,6 +35,7 @@ if __name__ == "__main__":
     if isinstance(fileList, str):
         playlist = CSV_Extraction(downloadsPath + namePlaylistsDir, pathToMusic, fileList)
         counter += playlistFileCreation(pathToFinalPlaylist, playlist)
+        filesMissingPerPlaylist.append(str(fileList) + " - " + str(counter))
 
     else:
         for i in fileList:
@@ -45,11 +46,12 @@ if __name__ == "__main__":
             playlist = CSV_Extraction(downloadsPath + namePlaylistsDir, pathToMusic, i)
             counterAdder  += playlistFileCreation(pathToFinalPlaylist, playlist)
             if counterAdder > 0:
-                filesMissingPerPlaylist.append((str(i) + "-" + str(counterAdder)))
+                filesMissingPerPlaylist.append((str(i) + " - " + str(counterAdder)))
             counter += counterAdder
             os.system('cls' if os.name == 'nt' else 'clear')
 
     print(str(counter) + " total missing songs from library")
 
+    filesMissingPerPlaylist = filesMissingPerPlaylist.sort()
     for i in range(len(filesMissingPerPlaylist)):
         print(filesMissingPerPlaylist[i])
