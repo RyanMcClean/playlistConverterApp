@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1429e8eb-fbd8-4b5f-9697-44bcc5b48d31" name="Changes" comment="Debug #21&#10;&#10;Added so it'll print missing files from single playlist too">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="1429e8eb-fbd8-4b5f-9697-44bcc5b48d31" name="Changes" comment="Debug #22&#10;&#10;Changing how it prints for single playlist converted">
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -141,7 +140,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670015404370</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Debug #22&#10;&#10;Changing how it prints for single playlist converted">
+      <created>1670015792419</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1670015792419</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -191,6 +197,7 @@
     <MESSAGE value="Debug #19&#10;&#10;fixing ability to return missing files from each playlist to console" />
     <MESSAGE value="Debug #20&#10;&#10;Only print playlist at the end of the script" />
     <MESSAGE value="Debug #21&#10;&#10;Added so it'll print missing files from single playlist too" />
-    <option name="LAST_COMMIT_MESSAGE" value="Debug #21&#10;&#10;Added so it'll print missing files from single playlist too" />
+    <MESSAGE value="Debug #22&#10;&#10;Changing how it prints for single playlist converted" />
+    <option name="LAST_COMMIT_MESSAGE" value="Debug #22&#10;&#10;Changing how it prints for single playlist converted" />
   </component>
 </project>
