@@ -44,7 +44,7 @@ if __name__ == "__main__":
             print("Converting " + i)
             playlist = CSV_Extraction(downloadsPath + namePlaylistsDir, pathToMusic, i)
             counterAdder  += playlistFileCreation(pathToFinalPlaylist, playlist)
-            filesMissingPerPlaylist.append((str(i + "-" + counterAdder)))
+            filesMissingPerPlaylist.append((str(i) + "-" + str(counterAdder)))
             counter += counterAdder
             os.system('cls' if os.name == 'nt' else 'clear')
 
