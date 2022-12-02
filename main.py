@@ -50,5 +50,5 @@ if __name__ == "__main__":
 
     print(str(counter) + " total missing songs from library")
 
-    for i in len(filesMissingPerPlaylist):
+    for i in range(len(filesMissingPerPlaylist)):
         print(filesMissingPerPlaylist[i])
