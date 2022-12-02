@@ -35,7 +35,7 @@ if __name__ == "__main__":
     if isinstance(fileList, str):
         playlist = CSV_Extraction(downloadsPath + namePlaylistsDir, pathToMusic, fileList)
         counter += playlistFileCreation(pathToFinalPlaylist, playlist)
-        filesMissingPerPlaylist.append((str(fileList) + " - " + str(counter)))
+        filesMissingPerPlaylist = (str(fileList) + " - " + str(counter))
 
     else:
         for i in fileList:
