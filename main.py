@@ -52,9 +52,9 @@ if __name__ == "__main__":
 
     print(str(counter) + " total missing songs from library")
 
-    filesMissingPerPlaylist = filesMissingPerPlaylist.sort()
     try:
         for i in range(len(filesMissingPerPlaylist)):
+            filesMissingPerPlaylist = filesMissingPerPlaylist.sort()
             print(filesMissingPerPlaylist[i])
 
     except:
