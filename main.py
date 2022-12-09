@@ -1,5 +1,6 @@
 import os
 import threading
+import antigravity
 
 from CSVtoArray import CSV_Extraction, selection
 from fileCreator import playlistFileCreation
@@ -16,6 +17,7 @@ playlist = []
 
 if __name__ == "__main__":
     os.system('cls' if os.name == 'nt' else 'clear')
+    antigravity
 
     # move music from laptop to NAS
     x = threading.Thread(target=musicCopy, args=(pathToOriginalMusic, pathToMusic))

@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1429e8eb-fbd8-4b5f-9697-44bcc5b48d31" name="Changes" comment="Debug #29">
+    <list default="true" id="1429e8eb-fbd8-4b5f-9697-44bcc5b48d31" name="Changes" comment="Debug #30">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_26_11_2022_03_36_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_26_11_2022_03_36__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_11_2022_20_30_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_11_2022_20_30__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
@@ -197,7 +201,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670023518358</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Debug #30">
+      <created>1670031701557</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1670031701557</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -255,6 +266,7 @@
     <MESSAGE value="Debug #27" />
     <MESSAGE value="Debug #28" />
     <MESSAGE value="Debug #29" />
-    <option name="LAST_COMMIT_MESSAGE" value="Debug #29" />
+    <MESSAGE value="Debug #30" />
+    <option name="LAST_COMMIT_MESSAGE" value="Debug #30" />
   </component>
 </project>
