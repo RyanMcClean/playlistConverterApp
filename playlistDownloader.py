@@ -65,7 +65,7 @@ def playlistdownloader(downloadsPath):
                 if dirs[0] is not None:
                     for directory in dirs:
                         # print("Directory = " + directory)
-                        if directory.endswith("playlists"):
+                        if directory.contains("playlists"):
                             print("Playlist download timed out. Continuing on old playlist information")
             except:
                 print("Error downloading, and lack of old information. Ending processes.")

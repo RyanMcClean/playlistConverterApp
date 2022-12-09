@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1429e8eb-fbd8-4b5f-9697-44bcc5b48d31" name="Changes" comment="Debug 31&#10;&#10;Antigravity">
+    <list default="true" id="1429e8eb-fbd8-4b5f-9697-44bcc5b48d31" name="Changes" comment="Debug 32&#10;&#10;removing Antigravity">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/playlistDownloader.py" beforeDir="false" afterPath="$PROJECT_DIR$/playlistDownloader.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -211,7 +211,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670546577239</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Debug 32&#10;&#10;removing Antigravity">
+      <created>1670546800996</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1670546800996</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -271,6 +278,7 @@
     <MESSAGE value="Debug #29" />
     <MESSAGE value="Debug #30" />
     <MESSAGE value="Debug 31&#10;&#10;Antigravity" />
-    <option name="LAST_COMMIT_MESSAGE" value="Debug 31&#10;&#10;Antigravity" />
+    <MESSAGE value="Debug 32&#10;&#10;removing Antigravity" />
+    <option name="LAST_COMMIT_MESSAGE" value="Debug 32&#10;&#10;removing Antigravity" />
   </component>
 </project>
