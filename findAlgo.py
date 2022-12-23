@@ -16,7 +16,7 @@ def m4aFinder(artist, album, name, pathToMusic):
     z = 0
     # Check to enable cutting the whole loop early if needed
     check = 1
-    dirList = os.listdir(pathToMusic).sort()
+    dirList = os.listdir(pathToMusic)
     while check > 0:
         # Search for the artist name in the dir, if not found on first run through then
         # delete a character from the end of the string and try again
@@ -29,7 +29,7 @@ def m4aFinder(artist, album, name, pathToMusic):
         x += 1
         artistCounter += 1
         # print("artistShort = " + artistShort)
-        for i in dirList:
+        for i in dirList.sort():
             print(i)
             while i.startswith(artistShort):
                 # print("Found artist " + i)
