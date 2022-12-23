@@ -46,8 +46,10 @@ def m4aFinder(artist, album, name, pathToMusic):
                     logging.info("Album failure\b")
                     albumcounter = 0
                     albumShort = album
+                    artistCounter = 0
+                    artistShort = artist
                     break
-                if y > 0:
+                if y > 0 and y < len(album):
                     albumShort = album[:- y]
                 logging.info("albumShort = " + albumShort)
                 y += 1
@@ -61,6 +63,10 @@ def m4aFinder(artist, album, name, pathToMusic):
                             logging.info("Name failure\b")
                             nameCounter = 0
                             nameShort = name
+                            albumcounter = 0
+                            albumShort = album
+                            artistCounter = 0
+                            artistShort = artist
                             break
                         if z > 0:
                             nameShort = name[z:len(name)]

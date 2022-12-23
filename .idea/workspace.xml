@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1429e8eb-fbd8-4b5f-9697-44bcc5b48d31" name="Changes" comment="Debug 113">
+    <list default="true" id="1429e8eb-fbd8-4b5f-9697-44bcc5b48d31" name="Changes" comment="Debug 114">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/findAlgo.py" beforeDir="false" afterPath="$PROJECT_DIR$/findAlgo.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -61,14 +62,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1669046376747</updated>
-      <workItem from="1671792130319" duration="22239000" />
-    </task>
-    <task id="LOCAL-00063" summary="Debug 67">
-      <created>1671804807454</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1671804807454</updated>
+      <workItem from="1671792130319" duration="22556000" />
     </task>
     <task id="LOCAL-00064" summary="Debug 68">
       <created>1671805004872</created>
@@ -406,7 +400,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671817476258</updated>
     </task>
-    <option name="localTasksCounter" value="112" />
+    <task id="LOCAL-00112" summary="Debug 114">
+      <created>1671817620859</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1671817620859</updated>
+    </task>
+    <option name="localTasksCounter" value="113" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -451,7 +452,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Debug 89" />
     <MESSAGE value="Debug 90" />
     <MESSAGE value="Debug 91" />
     <MESSAGE value="Debug 92" />
@@ -476,6 +476,7 @@
     <MESSAGE value="Debug 111" />
     <MESSAGE value="Debug 112" />
     <MESSAGE value="Debug 113" />
-    <option name="LAST_COMMIT_MESSAGE" value="Debug 113" />
+    <MESSAGE value="Debug 114" />
+    <option name="LAST_COMMIT_MESSAGE" value="Debug 114" />
   </component>
 </project>
