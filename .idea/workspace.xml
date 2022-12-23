@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1429e8eb-fbd8-4b5f-9697-44bcc5b48d31" name="Changes" comment="Debug 54">
+    <list default="true" id="1429e8eb-fbd8-4b5f-9697-44bcc5b48d31" name="Changes" comment="Debug 55">
       <change beforePath="$PROJECT_DIR$/findAlgo.py" beforeDir="false" afterPath="$PROJECT_DIR$/findAlgo.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -61,7 +61,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1669046376747</updated>
-      <workItem from="1671792130319" duration="7277000" />
+      <workItem from="1671792130319" duration="7527000" />
     </task>
     <task id="LOCAL-00001" summary="Changing how it measures missing files">
       <created>1669046451975</created>
@@ -399,7 +399,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671800660196</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="Debug 55">
+      <created>1671800739805</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1671800739805</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -444,7 +451,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Debug 32&#10;&#10;removing Antigravity" />
     <MESSAGE value="Debug 33&#10;&#10;working on getting the converter to work even if download fails" />
     <MESSAGE value="Debug 34&#10;&#10;Working on the search algorithm, need to fix it, it's not finding a lot of files" />
     <MESSAGE value="Debug 34&#10;&#10;Undid last changes, they broke it" />
@@ -469,6 +475,7 @@
     <MESSAGE value="Debug 52" />
     <MESSAGE value="Debug 53" />
     <MESSAGE value="Debug 54" />
-    <option name="LAST_COMMIT_MESSAGE" value="Debug 54" />
+    <MESSAGE value="Debug 55" />
+    <option name="LAST_COMMIT_MESSAGE" value="Debug 55" />
   </component>
 </project>

@@ -30,9 +30,9 @@ def m4aFinder(artist, album, name, pathToMusic):
         x += 1
         artistCounter += 1
         # print("artistShort = " + artistShort)
-        for i in dirList:
+        for num, i in enumerate(dirList):
             while i.startswith(artistShort):
-                dirListCopy.remove(i)
+                del dirListCopy[num]
                 # print("Found artist " + i)
                 # similar as above with the artist, but searching through the albums now
                 if albumCounter > (0.95 * len(album)):
