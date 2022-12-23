@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1429e8eb-fbd8-4b5f-9697-44bcc5b48d31" name="Changes" comment="Debug 82">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="1429e8eb-fbd8-4b5f-9697-44bcc5b48d31" name="Changes" comment="Debug 83">
       <change beforePath="$PROJECT_DIR$/musicMover.py" beforeDir="false" afterPath="$PROJECT_DIR$/musicMover.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -62,14 +61,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1669046376747</updated>
-      <workItem from="1671792130319" duration="16277000" />
-    </task>
-    <task id="LOCAL-00031" summary="Debug 38">
-      <created>1671797902162</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1671797902162</updated>
+      <workItem from="1671792130319" duration="16516000" />
     </task>
     <task id="LOCAL-00032" summary="Debug 39">
       <created>1671797934569</created>
@@ -407,7 +399,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671811084528</updated>
     </task>
-    <option name="localTasksCounter" value="80" />
+    <task id="LOCAL-00080" summary="Debug 83">
+      <created>1671811243472</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1671811243472</updated>
+    </task>
+    <option name="localTasksCounter" value="81" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -452,7 +451,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Debug 58&#10;&#10;Significant reformatting to findAlgo.py" />
     <MESSAGE value="Debug 59" />
     <MESSAGE value="Debug 60&#10;&#10;Added unthreaded move files to allow realtime debugging" />
     <MESSAGE value="Debug 61&#10;&#10;Added small extra print to music mover" />
@@ -477,6 +475,7 @@
     <MESSAGE value="Debug 80" />
     <MESSAGE value="Debug 81" />
     <MESSAGE value="Debug 82" />
-    <option name="LAST_COMMIT_MESSAGE" value="Debug 82" />
+    <MESSAGE value="Debug 83" />
+    <option name="LAST_COMMIT_MESSAGE" value="Debug 83" />
   </component>
 </project>
