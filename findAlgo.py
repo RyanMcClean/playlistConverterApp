@@ -29,7 +29,7 @@ def m4aFinder(artist, album, name, pathToMusic):
             logging.info("Artist failure, cancelling search\n\n")
             return None
         if x > 0:
-            artistShort = artist[:-x/2]
+            artistShort = artist[:-int(x)]
         x += 1
         artistCounter += 0.1
         # logging.info("artistShort = " + artistShort)
