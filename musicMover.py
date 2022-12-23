@@ -9,7 +9,7 @@ def musicCopy(musicLoc, musicMoveLoc):
         output = subprocess.Popen("sudo mount.cifs //ryan_urq_laptop/c/ /mnt/windows-share/ "
                                       "-o user=ryan_urq, pass=44Glenavna,ip=192.168.50.78",
                                       shell=True, stdout=subprocess.PIPE)
-        logging.info(output.communicate())
+        logging.info(output.communicate()[0].decode("utf-8"))
     print("In background:\nChecking for laptop, then transferring music files")
     musicRAIDLoc = "/export/RAID/PlexMedia/Music/"
     if os.path.exists(musicLoc):
@@ -18,7 +18,7 @@ def musicCopy(musicLoc, musicMoveLoc):
         output = subprocess.Popen("sudo rsync -rpEogvht --delete --update "
                                   "/mnt/windows-share/Users/ryan1/Music/Soggfy/ "
                                   "/export/NAS/Music/", shell=True, stdout=subprocess.PIPE)
-        logging.info(output.communicate())
+        logging.info(output.communicate()[0].decode("utf-8"))
 
     if os.path.exists(musicRAIDLoc):
         print("\n\nFound RAID")
@@ -26,7 +26,7 @@ def musicCopy(musicLoc, musicMoveLoc):
         output = subprocess.Popen("sudo rsync -rpEogvht --delete --update "
                                       "/mnt/windows-share/Users/ryan1/Music/Soggfy/ /export/RAID/PlexMedia/Music/",
                                       shell=True, stdout=subprocess.PIPE)
-        logging.info(output.communicate())
+        logging.info(output.communicate()[0].decode("utf-8"))
 
     if not os.path.exists(musicRAIDLoc):
         print("No RAID")
