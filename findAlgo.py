@@ -22,26 +22,26 @@ def m4aFinder(artist, album, name, pathToMusic):
     artistList.sort()
     artistListCopy = artistList
     while check > 0:
+
         artistList = artistListCopy
-        # Search for the artist name in the dir, if not found on first run through then
-        # delete a character from the end of the string and try again
-        if artistCounter > (0.95 * len(artist)):
-            logging.info("Artist failure, cancelling search\n\n")
-            return None
-        if x > 0 and x < len(artist):
-            artistShort = artist[:- x]
-        x += 1
-        artistCounter += 0.1
-        logging.info("artistShort = " + artistShort)
+
         for num, i in enumerate(artistList):
             dirLower = i.lower()
             artistShort = artistShort.lower()
+            if artistCounter > (0.95 * len(artist)):
+                logging.info("Artist failure, cancelling search\n\n")
+                return None
+            if x > 0 and x < len(artist):
+                artistShort = artist[:- x]
+            x += 1
+            artistCounter += 1
+            logging.info("artistShort = " + artistShort)
+
             if dirLower.startswith(artistShort):
                 del artistListCopy[num]
                 logging.info("Found artist " + i)
                 albumList = os.listdir(pathToMusic + i + "/")
                 albumListCopy = albumList
-                # sleep(2)
             while dirLower.startswith(artistShort):
                 albumList = albumListCopy
                 # similar as above with the artist, but searching through the albums now
@@ -58,6 +58,8 @@ def m4aFinder(artist, album, name, pathToMusic):
                 y += 1
                 albumCounter += 1
                 for nums, j in enumerate(albumList):
+
+
                     if j.startswith(albumShort):
                         del albumListCopy[nums]
                         logging.info("Found album " + j)
@@ -78,6 +80,8 @@ def m4aFinder(artist, album, name, pathToMusic):
                         z += 1
                         nameCounter += 1
                         for k in os.listdir(pathToMusic + i + "/" + j + "/"):
+
+
                             if os.path.isfile(pathToMusic + i + "/" + j + "/" + k):
                                 if k.endswith(nameShort):
                                     logging.info("Found song file " + k)
