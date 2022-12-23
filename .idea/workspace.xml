@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1429e8eb-fbd8-4b5f-9697-44bcc5b48d31" name="Changes" comment="Debug 52">
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+    <list default="true" id="1429e8eb-fbd8-4b5f-9697-44bcc5b48d31" name="Changes" comment="Debug 53">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/findAlgo.py" beforeDir="false" afterPath="$PROJECT_DIR$/findAlgo.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +62,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1669046376747</updated>
-      <workItem from="1671792130319" duration="7120000" />
+      <workItem from="1671792130319" duration="7200000" />
     </task>
     <task id="LOCAL-00001" summary="Changing how it measures missing files">
       <created>1669046451975</created>
@@ -385,7 +386,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671800464058</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="Debug 53">
+      <created>1671800583801</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1671800583801</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -430,7 +438,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Debug #30" />
     <MESSAGE value="Debug 31&#10;&#10;Antigravity" />
     <MESSAGE value="Debug 32&#10;&#10;removing Antigravity" />
     <MESSAGE value="Debug 33&#10;&#10;working on getting the converter to work even if download fails" />
@@ -455,6 +462,7 @@
     <MESSAGE value="Debug 50" />
     <MESSAGE value="Debug 51" />
     <MESSAGE value="Debug 52" />
-    <option name="LAST_COMMIT_MESSAGE" value="Debug 52" />
+    <MESSAGE value="Debug 53" />
+    <option name="LAST_COMMIT_MESSAGE" value="Debug 53" />
   </component>
 </project>
