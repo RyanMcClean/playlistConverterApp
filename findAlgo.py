@@ -12,6 +12,7 @@ def m4aFinder(artist, album, name, pathToMusic):
     albumCounter = 0
     nameShort = name
     nameCounter = 0
+    outerReturn = 0
     # declare loop variables (these are used to shorten the strings of the path when searching)
     x = 0
     y = 0
