@@ -23,8 +23,7 @@ def m4aFinder(artist, album, name, pathToMusic):
             # print("Artist failure")
             check -= 1
             break
-        if x > 0:
-            artistShort = artist[:-x]
+        artistShort = artist[:-x]
         x += 1
         artistCounter += 1
         # print("artistShort = " + artistShort)
@@ -36,8 +35,7 @@ def m4aFinder(artist, album, name, pathToMusic):
                     # print("Album failure")
                     check -= 1
                     break
-                if y > 0:
-                    albumShort = album[:- y]
+                albumShort = album[:- y]
                 # print("albumShort = " + albumShort)
                 y += 1
                 albumCounter += 1
@@ -48,8 +46,7 @@ def m4aFinder(artist, album, name, pathToMusic):
                             # print("Name failure")
                             check -= 1
                             break
-                        if z > 0:
-                            nameShort = name[z:len(name)]
+                        nameShort = name[z:len(name)]
                         # print("nameShort = " + nameShort)
                         z += 1
                         nameCounter += 1
