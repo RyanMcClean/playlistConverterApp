@@ -38,6 +38,9 @@ def m4aFinder(artist, album, name, pathToMusic):
         for num, i in enumerate(artistList):
             dirLower = i.lower()
             artistShort = artistShort.lower()
+            if outerReturn == 1:
+                outerReturn = 0
+                break
 
 
             if dirLower.startswith(artistShort):
@@ -54,6 +57,7 @@ def m4aFinder(artist, album, name, pathToMusic):
                     albumShort = album
                     artistCounter = 0
                     artistShort = artist
+                    outerReturn = 1
                     break
                 if y > 0 and y < len(album):
                     albumShort = album[:- y]

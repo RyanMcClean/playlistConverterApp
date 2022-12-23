@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1429e8eb-fbd8-4b5f-9697-44bcc5b48d31" name="Changes" comment="Debug 118">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="1429e8eb-fbd8-4b5f-9697-44bcc5b48d31" name="Changes" comment="Debug 119">
       <change beforePath="$PROJECT_DIR$/findAlgo.py" beforeDir="false" afterPath="$PROJECT_DIR$/findAlgo.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -62,14 +61,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1669046376747</updated>
-      <workItem from="1671792130319" duration="24907000" />
-    </task>
-    <task id="LOCAL-00068" summary="Debug 71&#10;&#10;Added logging to music mover">
-      <created>1671807725599</created>
-      <option name="number" value="00068" />
-      <option name="presentableId" value="LOCAL-00068" />
-      <option name="project" value="LOCAL" />
-      <updated>1671807725599</updated>
+      <workItem from="1671792130319" duration="25193000" />
     </task>
     <task id="LOCAL-00069" summary="Debug 72">
       <created>1671807895822</created>
@@ -407,7 +399,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671822428548</updated>
     </task>
-    <option name="localTasksCounter" value="117" />
+    <task id="LOCAL-00117" summary="Debug 119">
+      <created>1671822551341</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1671822551341</updated>
+    </task>
+    <option name="localTasksCounter" value="118" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -452,7 +451,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Debug 94" />
     <MESSAGE value="Debug 95" />
     <MESSAGE value="Debug 96" />
     <MESSAGE value="Debug 97" />
@@ -477,6 +475,7 @@
     <MESSAGE value="Debug 116" />
     <MESSAGE value="Debug 117" />
     <MESSAGE value="Debug 118" />
-    <option name="LAST_COMMIT_MESSAGE" value="Debug 118" />
+    <MESSAGE value="Debug 119" />
+    <option name="LAST_COMMIT_MESSAGE" value="Debug 119" />
   </component>
 </project>
