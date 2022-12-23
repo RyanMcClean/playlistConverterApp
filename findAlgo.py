@@ -1,5 +1,4 @@
 import os
-from time import sleep
 
 def m4aFinder(artist, album, name, pathToMusic):
     # print("\n Searching for Artist: " + artist + " Album: " + album + " Song: " + name)
@@ -22,24 +21,20 @@ def m4aFinder(artist, album, name, pathToMusic):
         # Search for the artist name in the dir, if not found on first run through then
         # delete a character from the end of the string and try again
         if artistCounter > (0.95 * len(artist)):
-            # print("Artist failure")
+            print("Artist failure")
             check -= 1
-            break
         if x > 0:
             artistShort = artist[:-x]
         x += 1
         artistCounter += 1
         # print("artistShort = " + artistShort)
         for i in dirList:
-            if not i.startswith(artistShort):
-                dirList.remove(i)
             while i.startswith(artistShort):
                 # print("Found artist " + i)
                 # similar as above with the artist, but searching through the albums now
                 if albumCounter > (0.95 * len(album)):
-                    # print("Album failure")
+                    print("Album failure")
                     check -= 1
-                    break
                 if y > 0:
                     albumShort = album[:- y]
                 # print("albumShort = " + albumShort)
@@ -112,7 +107,7 @@ def m4aFinder(artist, album, name, pathToMusic):
                         for k in os.listdir(pathToMusic + i + "/" + j + "/"):
                             if os.path.isfile(pathToMusic + i + "/" + j + "/" + k):
                                 if k.endswith(nameShort):
-                                    stringToReturn = "/Music/" + i + "/" + j + "/" + k + "/" + l
+                                    stringToReturn = "/Music/" + i + "/" + j + "/" + k
                                     return stringToReturn
                             else:
                                 for l in os.listdir(pathToMusic + i + "/" + j + "/" + k + "/"):
