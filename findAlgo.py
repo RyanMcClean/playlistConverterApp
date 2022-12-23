@@ -30,7 +30,7 @@ def m4aFinder(artist, album, name, pathToMusic):
             return None
         if x > 0:
             artistShort = artist[:-int(x)]
-        x += 1
+        x += 0.1
         artistCounter += 0.1
         # logging.info("artistShort = " + artistShort)
         for num, i in enumerate(dirList):
