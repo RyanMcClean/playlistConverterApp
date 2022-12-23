@@ -3,7 +3,8 @@ import logging
 
 def m4aFinder(artist, album, name, pathToMusic):
 
-    logging.basicConfig(filename = "/export/NAS/playlistConverterLog.txt", filemode = "w")
+    logging.basicConfig(filename = "/export/NAS/playlistConverterLog.txt", filemode = "w",
+                        format = "%(name)s - %(levelname)s - %(message)s")
 
     logging.info("\n Searching for Artist: " + artist + " Album: " + album + " Song: " + name)
     # sleep(2)
