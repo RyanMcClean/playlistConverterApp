@@ -22,7 +22,7 @@ def m4aFinder(artist, album, name, pathToMusic):
         # delete a character from the end of the string and try again
         if artistCounter > (0.95 * len(artist)):
             print("Artist failure")
-            check -= 1
+            return None
         if x > 0:
             artistShort = artist[:-x]
         x += 1
@@ -34,7 +34,7 @@ def m4aFinder(artist, album, name, pathToMusic):
                 # similar as above with the artist, but searching through the albums now
                 if albumCounter > (0.95 * len(album)):
                     print("Album failure")
-                    check -= 1
+                    return None
                 if y > 0:
                     albumShort = album[:- y]
                 # print("albumShort = " + albumShort)
@@ -44,9 +44,8 @@ def m4aFinder(artist, album, name, pathToMusic):
                     while j.startswith(albumShort):
                         # print("Found album " + j)
                         if nameCounter > (0.95 * len(name)):
-                            # print("Name failure")
-                            check -= 1
-                            break
+                            print("Name failure")
+                            return None
                         if z > 0:
                             nameShort = name[z:len(name)]
                         # print("nameShort = " + nameShort)
