@@ -22,10 +22,10 @@ if __name__ == "__main__":
     x.start()
 
     # Download zipped file of spotify playlists
-    playlistdownloader(downloadsPath)
+    # playlistdownloader(downloadsPath)
 
     # unzip playlists file
-    unzipper(downloadsPath, downloadsPath + namePlaylistsDir)
+    # unzipper(downloadsPath, downloadsPath + namePlaylistsDir)
 
     fileList = selection(downloadsPath + namePlaylistsDir)
     counter = 0
