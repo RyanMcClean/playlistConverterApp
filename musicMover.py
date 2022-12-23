@@ -5,8 +5,7 @@ import subprocess
 
 def musicCopy(musicLoc, musicMoveLoc):
     if not os.path.exists(musicLoc):
-        logging.info(subprocess.Popen("sudo mount.cifs //ryan_urq_laptop/c/ /mnt/windows-share/ -o user=ryan_urq,"
-                  "pass=44Glenavna,ip=192.168.50.78", stdout=subprocess.PIPE).communicate()[0])
+        logging.info(subprocess.Popen("sudo mount.cifs //ryan_urq_laptop/c/ /mnt/windows-share/ -o user=ryan_urq, pass=44Glenavna,ip=192.168.50.78", stdout=subprocess.PIPE).communicate()[0])
     print("In background:\nChecking for laptop, then transferring music files")
     musicRAIDLoc = "/export/RAID/PlexMedia/Music/"
     if os.path.exists(musicLoc):
