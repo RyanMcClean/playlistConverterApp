@@ -1,4 +1,5 @@
 import os
+import logging
 import threading
 
 from CSVtoArray import CSV_Extraction, selection
@@ -15,6 +16,8 @@ pathToOriginalMusic = "/mnt/windows-share/Users/ryan1/Music/Soggfy"
 playlist = []
 
 if __name__ == "__main__":
+    logging.basicConfig(filename = "/export/NAS/playlistConverterLog.txt", filemode = "w",
+                        format = "%(name)s - %(levelname)s - %(message)s", level = logging.INFO)
     os.system('cls' if os.name == 'nt' else 'clear')
 
     # move music from laptop to NAS
