@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1429e8eb-fbd8-4b5f-9697-44bcc5b48d31" name="Changes" comment="Debug 68">
-      <change beforePath="$PROJECT_DIR$/findAlgo.py" beforeDir="false" afterPath="$PROJECT_DIR$/findAlgo.py" afterDir="false" />
+    <list default="true" id="1429e8eb-fbd8-4b5f-9697-44bcc5b48d31" name="Changes" comment="Debug 69">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/musicMover.py" beforeDir="false" afterPath="$PROJECT_DIR$/musicMover.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,14 +62,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1669046376747</updated>
-      <workItem from="1671792130319" duration="11085000" />
-    </task>
-    <task id="LOCAL-00016" summary="Debug #25">
-      <created>1670016847142</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1670016847142</updated>
+      <workItem from="1671792130319" duration="12383000" />
     </task>
     <task id="LOCAL-00017" summary="Debug #26">
       <created>1670017092704</created>
@@ -406,7 +400,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671805004872</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="Debug 69">
+      <created>1671805200164</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1671805200164</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -451,7 +452,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Debug 44" />
     <MESSAGE value="Debug 45" />
     <MESSAGE value="Debug 46" />
     <MESSAGE value="Debug 47" />
@@ -476,6 +476,7 @@
     <MESSAGE value="Debug 66" />
     <MESSAGE value="Debug 67" />
     <MESSAGE value="Debug 68" />
-    <option name="LAST_COMMIT_MESSAGE" value="Debug 68" />
+    <MESSAGE value="Debug 69" />
+    <option name="LAST_COMMIT_MESSAGE" value="Debug 69" />
   </component>
 </project>

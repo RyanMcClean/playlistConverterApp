@@ -11,76 +11,11 @@ def musicCopy(musicLoc, musicMoveLoc):
     musicRAIDLoc = "/export/RAID/PlexMedia/Music/"
     if os.path.exists(musicLoc):
         print("Found laptop, checking for files to move now")
-        for artists in os.listdir(musicLoc):
-            try:
-                # try to move files, if directory exists then move on
-                shutil.copytree(musicLoc + "/" + artists, musicMoveLoc + artists)
-            except:
-                for albums in os.listdir(musicLoc + "/" + artists):
-                    try:
-                        # try to move album, if dir exists move on
-                        shutil.copytree(musicLoc + "/" + artists + "/" + albums,
-                                              musicMoveLoc + artists + "/" + albums)
-                    except:
-                        for songs in os.listdir(musicLoc + "/" + artists + "/" + albums):
-                            if os.path.isfile(musicLoc + "/" + artists + "/" + albums + "/" + songs):
-                                try:
-                                    # try to move songs (if they are files and not directories) if song exists move on
-                                    shutil.copytree(musicLoc + "/" + artists + "/" + albums + "/" + songs,
-                                                          musicMoveLoc + artists + "/" + albums + "/" + songs)
-                                except:
-                                    pass
-                            else:
-                                try:
-                                    # if song was a directory then try to move it, if it exists then move on
-                                    shutil.copytree(musicLoc + "/" + artists + "/" + albums + "/" + songs,
-                                                          musicMoveLoc + artists + "/" + albums + "/" + songs)
-                                except:
-                                    for song in os.listdir(musicLoc + "/" + artists + "/" + albums + "/" + songs):
-                                        try:
-                                            # try to move the final files, if they already exist then give up
-                                            shutil.copytree(
-                                                musicLoc + "/" + artists + "/" + albums + "/" + songs + "/" + song,
-                                                musicMoveLoc + artists + "/" + albums + "/" + songs + "/" + song)
-                                        except:
-                                            pass
+        os.system("rsync -rpEogvht --delete --update /mnt/windows-share/Users/ryan1/Music/Soggfy/ /export/NAS/Music/")
     if os.path.exists(musicRAIDLoc):
         print("\n\nFound RAID")
-        if os.path.exists(musicLoc):
-            for artists in os.listdir(musicLoc):
-                try:
-                    # try to move files, if directory exists then move on
-                    shutil.copytree(musicLoc + "/" + artists, musicRAIDLoc + artists)
-                except:
-                    for albums in os.listdir(musicLoc + "/" + artists):
-                        try:
-                            # try to move album, if dir exists move on
-                            shutil.copytree(musicLoc + "/" + artists + "/" + albums,
-                                                  musicRAIDLoc + artists + "/" + albums)
-                        except:
-                            for songs in os.listdir(musicLoc + "/" + artists + "/" + albums):
-                                if os.path.isfile(musicLoc + "/" + artists + "/" + albums + "/" + songs):
-                                    try:
-                                        # try to move songs (if they are files and not directories) if song exists move on
-                                        shutil.copytree(musicLoc + "/" + artists + "/" + albums + "/" + songs,
-                                                              musicRAIDLoc + artists + "/" + albums + "/" + songs)
-                                    except:
-                                        pass
-                                else:
-                                    try:
-                                        # if song was a directory then try to move it, if it exists then move on
-                                        shutil.copytree(musicLoc + "/" + artists + "/" + albums + "/" + songs,
-                                                              musicRAIDLoc + artists + "/" + albums + "/" + songs)
-                                    except:
-                                        for song in os.listdir(
-                                                musicLoc + "/" + artists + "/" + albums + "/" + songs):
-                                            try:
-                                                # try to move the final files, if they already exist then give up
-                                                shutil.copytree(
-                                                    musicLoc + "/" + artists + "/" + albums + "/" + songs + "/" + song,
-                                                    musicRAIDLoc + artists + "/" + albums + "/" + songs + "/" + song)
-                                            except:
-                                                pass
+        os.system("rsync -rpEogvht --delete --update /mnt/windows-share/Users/ryan1/Music/Soggfy/ "
+                  "/export/RAID/PlexMedia/Music/")
     if not os.path.exists(musicRAIDLoc):
         print("No RAID")
     print("Music dir up-to-date")
