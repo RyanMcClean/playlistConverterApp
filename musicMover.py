@@ -9,6 +9,7 @@ def musicCopy(musicLoc, musicMoveLoc):
     print("In background:\nChecking for laptop, then transferring music files")
     musicRAIDLoc = "/export/RAID/PlexMedia/Music/"
     if os.path.exists(musicLoc):
+        print("Found laptop, checking for files to move now")
         for artists in os.listdir(musicLoc):
             try:
                 # try to move files, if directory exists then move on
@@ -82,4 +83,3 @@ def musicCopy(musicLoc, musicMoveLoc):
     if not os.path.exists(musicRAIDLoc):
         print("No RAID")
     print("Music dir up-to-date")
-    time.sleep(1)
