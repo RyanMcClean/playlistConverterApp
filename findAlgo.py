@@ -32,7 +32,7 @@ def m4aFinder(artist, album, name, pathToMusic):
         x += 1
         artistCounter += 1
         # print("artistShort = " + artistShort)
-        for i in dirList.sort():
+        for i in dirList:
             print(i)
             while i.startswith(artistShort):
                 # print("Found artist " + i)
