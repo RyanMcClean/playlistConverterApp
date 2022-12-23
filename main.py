@@ -21,6 +21,8 @@ if __name__ == "__main__":
     # x = threading.Thread(target=musicCopy, args=(pathToOriginalMusic, pathToMusic))
     # x.start()
 
+    musicCopy(pathToOriginalMusic, pathToMusic)
+
     # Download zipped file of spotify playlists
     # playlistdownloader(downloadsPath)
 
