@@ -12,10 +12,10 @@ def musicCopy(musicLoc, musicMoveLoc):
     if os.path.exists(musicLoc):
         print("Found laptop, checking for files to move now")
         logging.info(subprocess.Popen("sudo rsync -rpEogvht --delete --update "
-                               "/mnt/windows-share/Users/ryan1/Music/Soggfy/ /export/NAS/Music/", stdout=subprocess.PIPE).communicate()[0])
+                               "/mnt/windows-share/Users/ryan1/Music/Soggfy /export/NAS/Music/", stdout=subprocess.PIPE).communicate()[0])
     if os.path.exists(musicRAIDLoc):
         print("\n\nFound RAID")
-        logging.info(subprocess.Popen("sudo rsync -rpEogvht --delete --update /mnt/windows-share/Users/ryan1/Music/Soggfy/ "
+        logging.info(subprocess.Popen("sudo rsync -rpEogvht --delete --update /mnt/windows-share/Users/ryan1/Music/Soggfy "
                   "/export/RAID/PlexMedia/Music/", stdout=subprocess.PIPE).communicate()[0])
     if not os.path.exists(musicRAIDLoc):
         print("No RAID")
