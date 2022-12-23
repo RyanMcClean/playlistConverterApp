@@ -54,8 +54,9 @@ if __name__ == "__main__":
 
     try:
         # filesMissingPerPlaylist.sort()
-        for i in filesMissingPerPlaylist:
-            print(i)
+        if filesMissingPerPlaylist is list:
+            for i in filesMissingPerPlaylist:
+                print(i)
 
     except:
         print(filesMissingPerPlaylist)
