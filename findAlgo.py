@@ -1,7 +1,9 @@
 import os
+from time import sleep
 
 def m4aFinder(artist, album, name, pathToMusic):
-    # print("\n Searching for Artist: " + artist + " Album: " + album + " Song: " + name)
+    print("\n Searching for Artist: " + artist + " Album: " + album + " Song: " + name)
+    sleep(1)
     # declare variables used in search function
     artistShort = artist
     artistCounter = 0
