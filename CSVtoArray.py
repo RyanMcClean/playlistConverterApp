@@ -11,6 +11,7 @@ def selection(CSVdirLoc):
         print("Error, no CSV files found, exiting\n")
         exit()
     file = ""
+    fileList.sort()
     while True:
         for num, f in enumerate(fileList):
             print(str(num + 1) + ". " + f)
