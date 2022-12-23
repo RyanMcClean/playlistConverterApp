@@ -1,5 +1,5 @@
 import os
-
+from time import sleep
 
 def m4aFinder(artist, album, name, pathToMusic):
     # print("\n Searching for Artist: " + artist + " Album: " + album + " Song: " + name)
@@ -17,6 +17,7 @@ def m4aFinder(artist, album, name, pathToMusic):
     # Check to enable cutting the whole loop early if needed
     check = 1
     print (os.listdir(pathToMusic))
+    sleep(10)
     while check > 0:
         # Search for the artist name in the dir, if not found on first run through then
         # delete a character from the end of the string and try again
