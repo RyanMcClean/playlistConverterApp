@@ -17,7 +17,7 @@ def m4aFinder(artist, album, name, pathToMusic):
     # Check to enable cutting the whole loop early if needed
     check = 1
     dirList = []
-    for i in os.listdir(pathToMusic):
+    for i in os.listdir(pathToMusic).sort():
         dirList.append(i)
         print(i)
     while check > 0:
