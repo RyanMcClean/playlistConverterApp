@@ -21,10 +21,10 @@ if __name__ == "__main__":
     os.system('cls' if os.name == 'nt' else 'clear')
 
     # move music from laptop to NAS
-    # x = threading.Thread(target=musicCopy, args=(pathToOriginalMusic, pathToMusic))
-    # x.start()
+    x = threading.Thread(target=musicCopy, args=(pathToOriginalMusic, pathToMusic))
+    x.start()
 
-    musicCopy(pathToOriginalMusic, pathToMusic)
+    # musicCopy(pathToOriginalMusic, pathToMusic)
 
 
     # Download zipped file of spotify playlists
