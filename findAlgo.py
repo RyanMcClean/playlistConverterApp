@@ -63,12 +63,14 @@ def m4aFinder(artist, album, name, pathToMusic):
                         for k in os.listdir(pathToMusic + i + "/" + j + "/"):
                             if os.path.isfile(pathToMusic + i + "/" + j + "/" + k):
                                 if k.endswith(nameShort):
+                                    print("Found song file")
                                     stringToReturn = "/Music/" + i + "/" + j + "/" + k
                                     return stringToReturn
                             else:
                                 for l in os.listdir(pathToMusic + i + "/" + j + "/" + k + "/"):
                                     if os.path.isfile(pathToMusic + i + "/" + j + "/" + k + "/" + l):
                                         if l.endswith(nameShort):
+                                            print("Found song file")
                                             stringToReturn = "/Music/" + i + "/" + j + "/" + k + "/" + l
                                             return stringToReturn
 
