@@ -3,7 +3,7 @@ from time import sleep
 
 def m4aFinder(artist, album, name, pathToMusic):
     print("\n Searching for Artist: " + artist + " Album: " + album + " Song: " + name)
-    sleep(2)
+    # sleep(2)
     # declare variables used in search function
     artistShort = artist
     artistCounter = 0
@@ -36,7 +36,7 @@ def m4aFinder(artist, album, name, pathToMusic):
             if i.startswith(artistShort):
                 del dirListCopy[num]
                 print("Found artist " + i)
-                sleep(2)
+                # sleep(2)
             while i.startswith(artistShort):
                 # similar as above with the artist, but searching through the albums now
                 if albumCounter > (0.95 * len(album)):
@@ -50,7 +50,7 @@ def m4aFinder(artist, album, name, pathToMusic):
                 for j in os.listdir(pathToMusic + i + "/"):
                     if j.startswith(albumShort):
                         print("Found album " + j)
-                        sleep(2)
+                        # sleep(2)
                     while j.startswith(albumShort):
                         if nameCounter > (0.95 * len(name)):
                             print("Name failure")
