@@ -3,7 +3,6 @@ import logging
 
 
 def musicCopy(musicLoc, musicMoveLoc):
-    logging.basicConfig(filename = "/export/NAS/fileMoverLog.txt", filemode = "w", level = logging.INFO)
     if not os.path.exists(musicLoc):
         logging.info(os.system("sudo mount.cifs //ryan_urq_laptop/c/ /mnt/windows-share/ -o user=ryan_urq,"
                   "pass=44Glenavna,ip=192.168.50.78"))
