@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1429e8eb-fbd8-4b5f-9697-44bcc5b48d31" name="Changes" comment="Debug 61&#10;&#10;Added small extra print to music mover">
-      <change beforePath="$PROJECT_DIR$/musicMover.py" beforeDir="false" afterPath="$PROJECT_DIR$/musicMover.py" afterDir="false" />
+    <list default="true" id="1429e8eb-fbd8-4b5f-9697-44bcc5b48d31" name="Changes" comment="Debug 62">
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,14 +61,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1669046376747</updated>
-      <workItem from="1671792130319" duration="8612000" />
-    </task>
-    <task id="LOCAL-00008" summary="Debug #17&#10;&#10;Added ability to return missing files from each playlist to console">
-      <created>1670008493820</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1670008493820</updated>
+      <workItem from="1671792130319" duration="8801000" />
     </task>
     <task id="LOCAL-00009" summary="Debug #18&#10;&#10;fixing ability to return missing files from each playlist to console">
       <created>1670009641303</created>
@@ -406,7 +399,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671801816767</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="Debug 62">
+      <created>1671802129660</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1671802129660</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -451,7 +451,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Debug 37" />
     <MESSAGE value="Debug 38" />
     <MESSAGE value="Debug 39" />
     <MESSAGE value="Debug 40" />
@@ -476,6 +475,7 @@
     <MESSAGE value="Debug 59" />
     <MESSAGE value="Debug 60&#10;&#10;Added unthreaded move files to allow realtime debugging" />
     <MESSAGE value="Debug 61&#10;&#10;Added small extra print to music mover" />
-    <option name="LAST_COMMIT_MESSAGE" value="Debug 61&#10;&#10;Added small extra print to music mover" />
+    <MESSAGE value="Debug 62" />
+    <option name="LAST_COMMIT_MESSAGE" value="Debug 62" />
   </component>
 </project>
