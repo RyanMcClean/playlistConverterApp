@@ -68,9 +68,7 @@ def playlistdownloader(downloadsPath):
                         if directory.contains("playlists"):
                             print("Playlist download timed out. Continuing on old playlist information")
             except:
-                print("Error downloading, and lack of old information. Ending processes.")
-                driver.close()
-                exit()
+                print("Error downloading, using old information.")
 
     # Close window
     time.sleep(2)
