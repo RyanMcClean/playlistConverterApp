@@ -9,10 +9,6 @@ def m4aFinder(artist, album, name, pathToMusic):
     dirList = os.listdir(pathToMusic)
     dirList.sort()
 
-    print(artist)
-    print(artist[0:2])
-    sleep(10)
-
     for i in dirList:
         if not i.startswith(artist[0:2]):
             dirList.remove(i)
