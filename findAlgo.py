@@ -29,9 +29,9 @@ def m4aFinder(artist, album, name, pathToMusic):
         # Search for the artist name in the dir, if not found on first run through then
         # delete a character from the end of the string and try again
         if artistCounter > (0.95 * len(artist)):
-            logging.info("Artist failure, cancelling search\n\n")
+            logging.info("Artist failure, cancelling search")
             return None
-        if x > 0:
+        if x > 0 & x < len(artist):
             artistShort = artist[:- x]
 
         x += 1
@@ -52,9 +52,10 @@ def m4aFinder(artist, album, name, pathToMusic):
 
             while dirLower.startswith(artistShort):
                 albumList = albumListCopy
+
                 # similar as above with the artist, but searching through the albums now
                 if albumCounter > (0.95 * len(album)):
-                    logging.info("Album failure\b")
+                    logging.info("Album failure")
                     albumcounter = 0
                     albumShort = album
                     y = 0
@@ -63,12 +64,13 @@ def m4aFinder(artist, album, name, pathToMusic):
                     x = 0
                     break
 
-                if y > 0:
+                if y > 0 & y < len(album):
                     albumShort = album[:- y]
 
                 logging.info("albumShort = " + albumShort)
                 y += 1
                 albumCounter += 1
+
                 for nums, j in enumerate(albumList):
 
 
@@ -78,7 +80,7 @@ def m4aFinder(artist, album, name, pathToMusic):
                         # sleep(2)
                     while j.lower().startswith(albumShort.lower()):
                         if nameCounter > (0.95 * len(name)):
-                            logging.info("Name failure\b")
+                            logging.info("Name failure")
                             nameCounter = 0
                             nameShort = name
                             z = 0
@@ -89,7 +91,7 @@ def m4aFinder(artist, album, name, pathToMusic):
                             artistShort = artist
                             x = 0
                             break
-                        if z > 0:
+                        if z > 0 & z < len(name):
                             nameShort = name[z:len(name)]
                         # logging.info("nameShort = " + nameShort)
                         z += 1
