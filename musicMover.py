@@ -8,7 +8,7 @@ def musicCopy(musicLoc, musicMoveLoc):
     if not os.path.exists(musicLoc):
         logging.info("Mounting laptop")
         output = subprocess.Popen("sudo mount.cifs //ryan_urq_laptop/c/ /mnt/windows-share/ "
-                                      "-o user=ryan_urq, pass=44Glenavna,ip=192.168.50.78",
+                                      "-o user=ryan_urq,pass=44Glenavna,ip=192.168.50.78",
                                       shell=True, stdout=subprocess.PIPE)
         logging.info(output.communicate()[0].decode("utf-8"))
     print("In background:\nChecking for laptop, then transferring music files")

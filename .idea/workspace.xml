@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1429e8eb-fbd8-4b5f-9697-44bcc5b48d31" name="Changes" comment="Debug 145">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="1429e8eb-fbd8-4b5f-9697-44bcc5b48d31" name="Changes" comment="Debug 146">
       <change beforePath="$PROJECT_DIR$/musicMover.py" beforeDir="false" afterPath="$PROJECT_DIR$/musicMover.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -63,14 +62,7 @@
       <option name="presentableId" value="Default" />
       <updated>1669046376747</updated>
       <workItem from="1671792130319" duration="26086000" />
-      <workItem from="1671882373765" duration="7808000" />
-    </task>
-    <task id="LOCAL-00096" summary="Debug 99">
-      <created>1671815581043</created>
-      <option name="number" value="00096" />
-      <option name="presentableId" value="LOCAL-00096" />
-      <option name="project" value="LOCAL" />
-      <updated>1671815581043</updated>
+      <workItem from="1671882373765" duration="8185000" />
     </task>
     <task id="LOCAL-00097" summary="Debug 100">
       <created>1671815785103</created>
@@ -408,7 +400,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671892224013</updated>
     </task>
-    <option name="localTasksCounter" value="145" />
+    <task id="LOCAL-00145" summary="Debug 146">
+      <created>1671892283049</created>
+      <option name="number" value="00145" />
+      <option name="presentableId" value="LOCAL-00145" />
+      <option name="project" value="LOCAL" />
+      <updated>1671892283049</updated>
+    </task>
+    <option name="localTasksCounter" value="146" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -453,7 +452,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Debug 121" />
     <MESSAGE value="Debug 122" />
     <MESSAGE value="Debug 123" />
     <MESSAGE value="Debug 124" />
@@ -478,6 +476,7 @@
     <MESSAGE value="Debug 143" />
     <MESSAGE value="Debug 144" />
     <MESSAGE value="Debug 145" />
-    <option name="LAST_COMMIT_MESSAGE" value="Debug 145" />
+    <MESSAGE value="Debug 146" />
+    <option name="LAST_COMMIT_MESSAGE" value="Debug 146" />
   </component>
 </project>
