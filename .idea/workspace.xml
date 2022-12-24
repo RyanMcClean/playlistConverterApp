@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1429e8eb-fbd8-4b5f-9697-44bcc5b48d31" name="Changes" comment="Debug 177">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/findAlgo.py" beforeDir="false" afterPath="$PROJECT_DIR$/findAlgo.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -63,14 +62,7 @@
       <option name="presentableId" value="Default" />
       <updated>1669046376747</updated>
       <workItem from="1671792130319" duration="26086000" />
-      <workItem from="1671882373765" duration="29161000" />
-    </task>
-    <task id="LOCAL-00251" summary="Debug 177">
-      <created>1671915201456</created>
-      <option name="number" value="00251" />
-      <option name="presentableId" value="LOCAL-00251" />
-      <option name="project" value="LOCAL" />
-      <updated>1671915201456</updated>
+      <workItem from="1671882373765" duration="29315000" />
     </task>
     <task id="LOCAL-00252" summary="Debug 177">
       <created>1671915233026</created>
@@ -408,7 +400,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671921785187</updated>
     </task>
-    <option name="localTasksCounter" value="300" />
+    <task id="LOCAL-00300" summary="Debug 177">
+      <created>1671921895894</created>
+      <option name="number" value="00300" />
+      <option name="presentableId" value="LOCAL-00300" />
+      <option name="project" value="LOCAL" />
+      <updated>1671921895894</updated>
+    </task>
+    <option name="localTasksCounter" value="301" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
