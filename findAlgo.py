@@ -6,7 +6,6 @@ def m4aFinder(artist, album, name, pathToMusic):
 
     logging.info("Searching for Artist: " + artist + " Album: " + album + " Song: " + name + "\n")
 
-    artist = artist.strip()
     dirList = os.listdir(pathToMusic)
     dirList.sort()
 
@@ -20,7 +19,7 @@ def m4aFinder(artist, album, name, pathToMusic):
         elif (i[1:2] != artist[1:2]):
             del dirList[num]
             print("removed " + i )
-        elif (i.startswith(artist[:3])):
+        elif (i[1:2] != artist[2:3]):
             del dirList[num]
             print("removed " + i )
 
