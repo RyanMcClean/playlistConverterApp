@@ -31,6 +31,8 @@ def m4aFinder(artist, album, name, pathToMusic):
                 for j in albumDirs:
                     y = len(album)
                     while album in albumDirs:
+                        if not j.startswith(album[0:2]):
+                            break
                         logging.info("Searching in " + j)
                         logging.info("Searching for " + album[0:y])
                         if (j.startswith(album[0:y])):
