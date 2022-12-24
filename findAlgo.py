@@ -18,7 +18,7 @@ def m4aFinder(artist, album, name, pathToMusic):
     logging.info("Searching for " + artistToFind + "\n")
     for num, i in enumerate(dirList):
         while i in artist:
-            if (i == artistToFind[0:x]):
+            if (i.startswith(artistToFind[0:x])):
                 logging.info("Found " + i + "\n\n")
                 return ("Found " + i)
 
