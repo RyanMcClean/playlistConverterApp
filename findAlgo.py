@@ -6,6 +6,7 @@ def m4aFinder(artist, album, name, pathToMusic):
 
     logging.info("Searching for Artist: " + artist + " Album: " + album + " Song: " + name + "\n")
 
+    artist = artist.strip()
     dirList = os.listdir(pathToMusic)
     dirList.sort()
 
