@@ -36,7 +36,7 @@ def m4aFinder(artist, album, name, pathToMusic):
                         #     break
                         logging.info("Searching in " + j)
                         logging.info("Searching for " + album[0:y])
-                        if (j.lower().startswith(album[0:y]).lower()):
+                        if (j.lower().startswith(album[0:y].lower())):
                             logging.info("Found album " + j + "\n\n")
                             return ("Found " + i + "/" + j)
                         y -= 1
