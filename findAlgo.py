@@ -16,3 +16,5 @@ def m4aFinder(artist, album, name, pathToMusic):
 
     for i in dirList:
         print("What's left " + i)
+
+    sleep(10)
