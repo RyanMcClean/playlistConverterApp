@@ -1,5 +1,6 @@
 import os
 import logging
+from time import sleep
 
 def m4aFinder(artist, album, name, pathToMusic):
 
@@ -8,8 +9,11 @@ def m4aFinder(artist, album, name, pathToMusic):
     dirList = os.listdir(pathToMusic)
     dirList.sort()
 
+    print(artist[1:len(artist)])
+    sleep(10)
+
     for i in dirList:
-        if not i.startswith(artist[1:len(artist)]):
+        if not i.startswith(artist[0:len(artist)]):
             dirList.remove(i)
             print("removed " + i )
 
