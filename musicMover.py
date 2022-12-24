@@ -4,6 +4,7 @@ import subprocess
 
 
 def musicCopy(musicLoc, musicMoveLoc):
+    sentCheck = False
     if not os.path.exists(musicLoc):
         logging.info("Mounting laptop")
         output = subprocess.Popen("sudo mount.cifs //ryan_urq_laptop/c/ /mnt/windows-share/ "
@@ -19,6 +20,8 @@ def musicCopy(musicLoc, musicMoveLoc):
                                   "/mnt/windows-share/Users/ryan1/Music/Soggfy/ "
                                   "/export/NAS/Music/", shell=True, stdout=subprocess.PIPE)
         logging.info(output.communicate()[0].decode("utf-8"))
+        print("Music dir up-to-date")
+        sentCheck = True
 
     if os.path.exists(musicLoc):
         if os.path.exists(musicRAIDLoc):
@@ -28,7 +31,11 @@ def musicCopy(musicLoc, musicMoveLoc):
                                           "/mnt/windows-share/Users/ryan1/Music/Soggfy/ /export/RAID/PlexMedia/Music/",
                                           shell=True, stdout=subprocess.PIPE)
             logging.info(output.communicate()[0].decode("utf-8"))
+            print("RAID up-to-date")
+            sentCheck = True
 
-    if not os.path.exists(musicRAIDLoc):
+    else not os.path.exists(musicRAIDLoc):
         print("No RAID")
-    print("Music dir up-to-date")
+
+    if not sentCheck:
+        print("No music moved")
