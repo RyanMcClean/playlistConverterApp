@@ -69,7 +69,7 @@ def playlistdownloader(downloadsPath):
                         if directory.contains("playlists"):
                             print("Playlist download timed out. Continuing on old playlist information")
             except:
-                if files.exists():
+                if files is not None:
                     print("Error downloading, using old information.")
 
     # Close window
