@@ -49,7 +49,7 @@ def playlistdownloader(downloadsPath):
     counter = 0
     while not fileExists:
         fileExists = os.path.exists(downloadsPath + zippedFile)
-        print("Waiting " + str(counter) + " seconds", end = "\b")
+        print("Waiting " + str(counter) + " seconds", end = "\r")
         time.sleep(1)
         counter += 1
         if counter > 100:
