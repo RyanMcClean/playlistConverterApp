@@ -9,7 +9,9 @@ def m4aFinder(artist, album, name, pathToMusic):
     dirList = os.listdir(pathToMusic)
     dirList.sort()
     for num, i in enumerate(dirList):
-        if not artist.find(i):
-            del dirList[num]
+        if artist in i:
+            if (i == artist):
+                logging.info("Found " + i + "\n")
+                return ("Found " + i)
+        # else:
 
-    print(len(dirList))
