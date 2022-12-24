@@ -34,7 +34,7 @@ def musicCopy(musicLoc, musicMoveLoc):
             print("RAID up-to-date")
             sentCheck = True
 
-    else not os.path.exists(musicRAIDLoc):
+    if not os.path.exists(musicRAIDLoc):
         print("No RAID")
 
     if not sentCheck:
