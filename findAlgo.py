@@ -9,6 +9,7 @@ def m4aFinder(artist, album, name, pathToMusic):
     dirList = os.listdir(pathToMusic)
     dirList.sort()
 
+    print(artist)
     print(artist[1:len(artist)])
     sleep(10)
 
