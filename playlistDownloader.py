@@ -49,7 +49,7 @@ def playlistdownloader(downloadsPath):
     counter = 0
     while not fileExists:
         fileExists = os.path.exists(downloadsPath + zippedFile)
-        time.sleep(10)
+        time.sleep(5)
         counter += 1
         if counter > 100:
             fileExists = True
