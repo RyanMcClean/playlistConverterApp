@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1429e8eb-fbd8-4b5f-9697-44bcc5b48d31" name="Changes" comment="Debug 147">
-      <change beforePath="$PROJECT_DIR$/playlistDownloader.py" beforeDir="false" afterPath="$PROJECT_DIR$/playlistDownloader.py" afterDir="false" />
+    <list default="true" id="1429e8eb-fbd8-4b5f-9697-44bcc5b48d31" name="Changes" comment="Debug 148">
+      <change beforePath="$PROJECT_DIR$/musicMover.py" beforeDir="false" afterPath="$PROJECT_DIR$/musicMover.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,14 +62,7 @@
       <option name="presentableId" value="Default" />
       <updated>1669046376747</updated>
       <workItem from="1671792130319" duration="26086000" />
-      <workItem from="1671882373765" duration="8340000" />
-    </task>
-    <task id="LOCAL-00098" summary="Debug 101">
-      <created>1671815816065</created>
-      <option name="number" value="00098" />
-      <option name="presentableId" value="LOCAL-00098" />
-      <option name="project" value="LOCAL" />
-      <updated>1671815816065</updated>
+      <workItem from="1671882373765" duration="8551000" />
     </task>
     <task id="LOCAL-00099" summary="Debug 102">
       <created>1671815862972</created>
@@ -407,7 +400,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671892665269</updated>
     </task>
-    <option name="localTasksCounter" value="147" />
+    <task id="LOCAL-00147" summary="Debug 148">
+      <created>1671892821966</created>
+      <option name="number" value="00147" />
+      <option name="presentableId" value="LOCAL-00147" />
+      <option name="project" value="LOCAL" />
+      <updated>1671892821966</updated>
+    </task>
+    <option name="localTasksCounter" value="148" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -452,7 +452,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Debug 123" />
     <MESSAGE value="Debug 124" />
     <MESSAGE value="Debug 125" />
     <MESSAGE value="Debug 126" />
@@ -477,6 +476,7 @@
     <MESSAGE value="Debug 145" />
     <MESSAGE value="Debug 146" />
     <MESSAGE value="Debug 147" />
-    <option name="LAST_COMMIT_MESSAGE" value="Debug 147" />
+    <MESSAGE value="Debug 148" />
+    <option name="LAST_COMMIT_MESSAGE" value="Debug 148" />
   </component>
 </project>

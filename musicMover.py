@@ -31,7 +31,7 @@ def musicCopy(musicLoc, musicMoveLoc):
                                           "/mnt/windows-share/Users/ryan1/Music/Soggfy/ /export/RAID/PlexMedia/Music/",
                                           shell=True, stdout=subprocess.PIPE)
             logging.info(output.communicate()[0].decode("utf-8"))
-            print("RAID up-to-date")
+            print("\nRAID up-to-date")
             sentCheck = True
 
     if not os.path.exists(musicRAIDLoc):
