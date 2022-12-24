@@ -55,7 +55,7 @@ def m4aFinder(artist, album, name, pathToMusic):
 
 
                 # similar as above with the artist, but searching through the albums now
-                if albumCounter > (0.95*len(album)) :
+                if albumCounter > (0.95 * len(album)) :
                     logging.info("Album failure")
                     artistCounter = (0.1 * len(artist))
                     artistShort = artist
@@ -78,7 +78,7 @@ def m4aFinder(artist, album, name, pathToMusic):
                     nameCounter = 0
                     nameShort = name
                     z = 0
-                    while j.startswith(albumShort):
+                    while j.lower().startswith(albumShort.lower()):
                         if nameCounter > (0.95 * len(name)):
                             logging.info("Name failure")
                             artistCounter = 0
