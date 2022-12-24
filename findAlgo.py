@@ -41,9 +41,9 @@ def m4aFinder(artist, album, name, pathToMusic):
             dirLower = i.lower()
             artistShort = artistShort.lower()
 
-            if not i.startswith(artist[1:]):
-                del artistListCopy[num]
-                break
+            # if not i.startswith(artist[1:]):
+            #     del artistListCopy[num]
+            #     break
             if dirLower.startswith(artistShort):
                 del artistListCopy[num]
                 logging.info("Found artist " + i)
