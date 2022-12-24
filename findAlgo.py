@@ -13,15 +13,5 @@ def m4aFinder(artist, album, name, pathToMusic):
     sleep(10)
 
     for num, i in enumerate(dirList):
-        if (i != artist):
-            del dirList[num]
-            print("removed " + i )
-
-    print(len(dirList))
-    sleep(10)
-
-    for i in dirList:
-        print("What's left " + i)
-
-    print(artist)
-    exit()
+        if (i == artist):
+            return ("Found " + i)
