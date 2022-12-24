@@ -25,7 +25,7 @@ def m4aFinder(artist, album, name, pathToMusic):
         artistList = artistListCopy
         # Search for the artist name in the dir, if not found on first run through then
         # delete a character from the end of the string and try again
-        if artistCounter > (0.95 * len(artist)):
+        if artistCounter > len(artist) - 1:
             logging.info("Artist failure, cancelling search")
             return None
         if x > 0 & x < len(artist):
@@ -52,7 +52,7 @@ def m4aFinder(artist, album, name, pathToMusic):
 
 
                 # similar as above with the artist, but searching through the albums now
-                if albumCounter > len(album) - 1:
+                if albumCounter > len(album) * 0.25:
                     logging.info("Album failure")
                     artistCounter = 0
                     artistShort = artist
