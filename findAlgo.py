@@ -14,7 +14,7 @@ def m4aFinder(artist, album, name, pathToMusic):
     sleep(10)
 
     for i in dirList:
-        if not i.startswith(artist[0:len(artist)]):
+        if not i.startswith(artist[0:2]):
             dirList.remove(i)
             print("removed " + i )
 
