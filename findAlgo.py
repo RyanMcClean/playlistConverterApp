@@ -7,7 +7,7 @@ def m4aFinder(artist, album, name, pathToMusic):
 
     dirList = os.listdir(pathToMusic)
 
-    dirList = dirList.sort()
+    dirList.sort()
 
     for i in dirList:
         print(i)
