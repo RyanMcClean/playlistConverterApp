@@ -28,10 +28,10 @@ if __name__ == "__main__":
 
 
     # Download zipped file of spotify playlists
-    # playlistdownloader(downloadsPath)
+    playlistdownloader(downloadsPath)
 
     # unzip playlists file
-    # unzipper(downloadsPath, downloadsPath + namePlaylistsDir)
+    unzipper(downloadsPath, downloadsPath + namePlaylistsDir)
 
     fileList = selection(downloadsPath + namePlaylistsDir)
     counter = 0
@@ -59,7 +59,6 @@ if __name__ == "__main__":
     print(str(counter) + " total missing songs from library")
 
     try:
-        # filesMissingPerPlaylist.sort()
         if filesMissingPerPlaylist is list:
             for i in filesMissingPerPlaylist:
                 print(i)
