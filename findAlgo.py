@@ -20,4 +20,4 @@ def m4aFinder(artist, album, name, pathToMusic):
             if x < (0.2 * len(artist)) :
                 break
 
-    return "None"
+    return None
