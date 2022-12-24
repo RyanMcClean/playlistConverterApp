@@ -41,15 +41,15 @@ def m4aFinder(artist, album, name, pathToMusic):
                             logging.info("Found album " + j + "\n\n")
 
                             songDir = os.listdir(pathToMusic + "/" + i + "/" + j)
-                            z = len(name)
+                            z = 0
                             for k in songDir:
 
                                 while True:
 
                                     logging.info("Searching in " + k)
-                                    logging.info("Searching for " + name[0:z])
+                                    logging.info("Searching for " + name[z:len(name)])
                                     if os.path.isfile(pathToMusic + "/" + i + "/" + j + "/" + k):
-                                        if (k.startswith(name[0:z])):
+                                        if (k.endswith(name[0:z])):
                                             logging.info("Found song " + pathToMusic + "/" + i + "/" + j + "/" + k)
                                             return (pathToMusic + "/" + i + "/" + j + "/" + k)
                                     else:
@@ -60,12 +60,12 @@ def m4aFinder(artist, album, name, pathToMusic):
 
                                                 logging.info("Searching in " + l)
                                                 logging.info("Searching for " + l)
-                                                if l.startswith(name[0:z]):
+                                                if l.startswith(name[z:len(name)]):
                                                     logging.info("Found song " + pathToMusic + "/" + i + "/" + j + "/" + k + "/" + l)
                                                     return (pathToMusic + "/" + i + "/" + j + "/" + k + "/" + l)
 
-                                        z -= 1
-                                        if z < (0.5 * len(name)):
+                                        z += 1
+                                        if z > (0.5 * len(name)):
                                             break
 
                         y -= 1
