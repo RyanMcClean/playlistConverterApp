@@ -13,13 +13,7 @@ def m4aFinder(artist, album, name, pathToMusic):
     sleep(10)
 
     for num, i in enumerate(dirList):
-        if (i[0] != artist[0]):
-            del dirList[num]
-            print("removed " + i )
-        elif (i[1:2] != artist[1:2]):
-            del dirList[num]
-            print("removed " + i )
-        elif (i[1:2] != artist[2:3]):
+        if (i == artist):
             del dirList[num]
             print("removed " + i )
 
