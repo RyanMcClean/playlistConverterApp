@@ -30,6 +30,7 @@ def unzipper(zipFileLocation, unZipFileLocation):
             if dir.endswith("playlists"):
                 check = zipFileLocation.replace("spotify_playlists.zip", "") + dir
             else:
+                check = ""
                 print("Error finding dir")
 
     if os.path.exists(check):
