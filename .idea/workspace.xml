@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1429e8eb-fbd8-4b5f-9697-44bcc5b48d31" name="Changes" comment="Debug 177">
-      <change beforePath="$PROJECT_DIR$/fileCreator.py" beforeDir="false" afterPath="$PROJECT_DIR$/fileCreator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/findAlgo.py" beforeDir="false" afterPath="$PROJECT_DIR$/findAlgo.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -63,14 +62,7 @@
       <option name="presentableId" value="Default" />
       <updated>1669046376747</updated>
       <workItem from="1671792130319" duration="26086000" />
-      <workItem from="1671882373765" duration="21816000" />
-    </task>
-    <task id="LOCAL-00192" summary="Debug 177">
-      <created>1671908490098</created>
-      <option name="number" value="00192" />
-      <option name="presentableId" value="LOCAL-00192" />
-      <option name="project" value="LOCAL" />
-      <updated>1671908490098</updated>
+      <workItem from="1671882373765" duration="21950000" />
     </task>
     <task id="LOCAL-00193" summary="Debug 177">
       <created>1671908606012</created>
@@ -408,7 +400,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671914024258</updated>
     </task>
-    <option name="localTasksCounter" value="241" />
+    <task id="LOCAL-00241" summary="Debug 177">
+      <created>1671914178947</created>
+      <option name="number" value="00241" />
+      <option name="presentableId" value="LOCAL-00241" />
+      <option name="project" value="LOCAL" />
+      <updated>1671914178947</updated>
+    </task>
+    <option name="localTasksCounter" value="242" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
