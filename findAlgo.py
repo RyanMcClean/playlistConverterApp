@@ -28,7 +28,7 @@ def m4aFinder(artist, album, name, pathToMusic):
         if artistCounter > (0.95 * len(artist)):
             logging.info("Artist failure, cancelling search")
             return None
-        if x > 0 & x < len(artist):
+        if x > 0:
             artistShort = artist[0:- x]
 
         x += 1
@@ -59,7 +59,7 @@ def m4aFinder(artist, album, name, pathToMusic):
                     x = 0
                     break
 
-                if y > 0 & y < len(album):
+                if y > 0:
                     albumShort = album[0:- y]
 
                 logging.info("albumShort = " + albumShort)
@@ -76,13 +76,13 @@ def m4aFinder(artist, album, name, pathToMusic):
                     nameShort = name
                     z = 0
                     while j.startswith(albumShort):
-                        if nameCounter > (0.95 * len(name)):
+                        if nameCounter > (0.85 * len(name)):
                             logging.info("Name failure")
                             artistCounter = 0
                             artistShort = artist
                             x = 0
                             break
-                        if z > 0 & z < len(name):
+                        if z > 0:
                             nameShort = name[z:len(name)]
                         # logging.info("nameShort = " + nameShort)
                         z += 1
