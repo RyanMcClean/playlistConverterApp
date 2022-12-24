@@ -36,7 +36,7 @@ def unzipper(zipFileLocation, unZipFileLocation):
     if os.path.exists(check):
         print("\nUnzipping successful\n")
         if os.path.exists(zipFileLocationCopy):
-            os.remove(zipFileLocation)
+            os.remove(zipFileLocationCopy)
     else:
         print("\nError unzipping file\n")
 
