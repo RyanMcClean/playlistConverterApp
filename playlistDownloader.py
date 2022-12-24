@@ -49,9 +49,9 @@ def playlistdownloader(downloadsPath):
     counter = 0
     while not fileExists:
         fileExists = os.path.exists(downloadsPath + zippedFile)
+        print("Waiting " + str(counter) + " seconds", end = "\b")
         time.sleep(1)
         counter += 1
-        print("Waiting " + str(counter) + " seconds", end = "\b")
         if counter > 100:
             fileExists = True
     # Check if zip file downlaoded after timeout
