@@ -45,7 +45,7 @@ def m4aFinder(artist, album, name, pathToMusic):
                 del artistListCopy[num]
                 logging.info("Found artist " + i)
 
-            albumCounter = (1/2 * len(artist))
+            albumCounter = (0.95 * len(artist))
             albumShort = album
             y = 0
             while dirLower.startswith(artistShort):
@@ -76,7 +76,7 @@ def m4aFinder(artist, album, name, pathToMusic):
                     nameShort = name
                     z = 0
                     while j.startswith(albumShort):
-                        if nameCounter > (0.90 * len(name)):
+                        if nameCounter > (0.95 * len(name)):
                             logging.info("Name failure")
                             artistCounter = 0
                             artistShort = artist
