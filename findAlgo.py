@@ -16,3 +16,6 @@ def m4aFinder(artist, album, name, pathToMusic):
                 return ("Found " + i)
 
             x -= 1
+
+            if x == 0 :
+                break
