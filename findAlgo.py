@@ -8,7 +8,9 @@ def m4aFinder(artist, album, name, pathToMusic):
 
     artist = artist.split(", ")
     if artist is list:
-        artistToFind = str(artist[0])
+        for i in artist:
+            artistToFind = i
+            break
     else:
         artistToFind = str(artist)
     dirList = os.listdir(pathToMusic)
