@@ -8,10 +8,7 @@ def m4aFinder(artist, album, name, pathToMusic):
     # declare variables used in search function
     artistShort = artist
     artistCounter = 0
-    albumShort = album
-    albumCounter = 0
-    nameShort = name
-    nameCounter = 0
+
     # declare loop variables (these are used to shorten the strings of the path when searching)
     x = 0
     y = 0
@@ -48,7 +45,7 @@ def m4aFinder(artist, album, name, pathToMusic):
                 del artistListCopy[num]
                 logging.info("Found artist " + i)
 
-            albumcounter = 0
+            albumCounter = 0
             albumShort = album
             y = 0
             while dirLower.startswith(artistShort):
@@ -71,14 +68,14 @@ def m4aFinder(artist, album, name, pathToMusic):
 
                 for j in os.listdir(pathToMusic + "/" + i + "/"):
 
-                    if j.lower().startswith(albumShort.lower()):
+                    if j.startswith(albumShort):
                         logging.info("Found album " + j)
                         # sleep(2)
 
                     nameCounter = 0
                     nameShort = name
                     z = 0
-                    while j.lower().startswith(albumShort.lower()):
+                    while j.startswith(albumShort):
                         if nameCounter > (0.95 * len(name)):
                             logging.info("Name failure")
                             artistCounter = 0

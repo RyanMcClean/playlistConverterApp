@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1429e8eb-fbd8-4b5f-9697-44bcc5b48d31" name="Changes" comment="Debug 132">
+    <list default="true" id="1429e8eb-fbd8-4b5f-9697-44bcc5b48d31" name="Changes" comment="Debug 133">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/findAlgo.py" beforeDir="false" afterPath="$PROJECT_DIR$/findAlgo.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -62,14 +63,7 @@
       <option name="presentableId" value="Default" />
       <updated>1669046376747</updated>
       <workItem from="1671792130319" duration="26086000" />
-      <workItem from="1671882373765" duration="4688000" />
-    </task>
-    <task id="LOCAL-00082" summary="Debug 85">
-      <created>1671811611671</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1671811611671</updated>
+      <workItem from="1671882373765" duration="4809000" />
     </task>
     <task id="LOCAL-00083" summary="Debug 86">
       <created>1671812379281</created>
@@ -407,7 +401,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671887053438</updated>
     </task>
-    <option name="localTasksCounter" value="131" />
+    <task id="LOCAL-00131" summary="Debug 133">
+      <created>1671887114798</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1671887114798</updated>
+    </task>
+    <option name="localTasksCounter" value="132" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -452,7 +453,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Debug 108" />
     <MESSAGE value="Debug 109" />
     <MESSAGE value="Debug 110" />
     <MESSAGE value="Debug 111" />
@@ -477,6 +477,7 @@
     <MESSAGE value="Debug 130" />
     <MESSAGE value="Debug 131" />
     <MESSAGE value="Debug 132" />
-    <option name="LAST_COMMIT_MESSAGE" value="Debug 132" />
+    <MESSAGE value="Debug 133" />
+    <option name="LAST_COMMIT_MESSAGE" value="Debug 133" />
   </component>
 </project>
