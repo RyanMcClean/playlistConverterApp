@@ -62,6 +62,8 @@ if __name__ == "__main__":
         if filesMissingPerPlaylist is list:
             for i in filesMissingPerPlaylist:
                 print(i)
+                logging.info(i)
 
     except:
         print(filesMissingPerPlaylist)
+        logging.info(filesMissingPerPlaylist)
