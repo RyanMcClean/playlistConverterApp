@@ -76,7 +76,7 @@ def m4aFinder(artist, album, name, pathToMusic):
                                             break
 
                         y -= 1
-                        if y < (0.18 * len(album)) or y < 2:
+                        if y < (0.18 * len(album)):
                             albumDirs.remove(j)
                             break
 
