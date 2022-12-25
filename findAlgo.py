@@ -20,6 +20,8 @@ def m4aFinder(artist, album, name, pathToMusic):
     for i in dirList:
         x = len(artistToFind)
         while True:
+            if x < (0.55 * len(artistToFind)) :
+                break
             if not i.startswith(artistToFind[0:int(0.5*len(artistToFind))]):
                 # logging.info("Not " + i)
                 break
@@ -34,6 +36,9 @@ def m4aFinder(artist, album, name, pathToMusic):
                     logging.info("next album is: " + j)
                     y = len(album)
                     while True:
+                        if y < (2):
+                            albumDirs.remove(j)
+                            break
                         logging.info("Searching through " + j)
                         if not j.lower().startswith(album[0:1].lower()):
                             logging.info("Ignoring album; " + j)
@@ -47,7 +52,8 @@ def m4aFinder(artist, album, name, pathToMusic):
                             for k in songDir:
                                 z = 0
                                 while True:
-
+                                    if z > (0.5 * len(name)):
+                                        break
                                     logging.info("Searching in " + k)
                                     logging.info("Searching for " + name[z:len(name)])
                                     if os.path.isfile(pathToMusic + "/" + i + "/" + j + "/" + k):
@@ -59,7 +65,8 @@ def m4aFinder(artist, album, name, pathToMusic):
                                         for l in cdDir:
                                             a = 0
                                             while True:
-
+                                                if a > (0.5 * len(name)):
+                                                    break
 
                                                 logging.info("Searching in " +  k + "/" + l)
                                                 logging.info("Searching for " + l)
@@ -68,22 +75,15 @@ def m4aFinder(artist, album, name, pathToMusic):
                                                     return (pathToMusic + "/" + i + "/" + j + "/" + k + "/" + l)
 
                                                 a += 1
-                                                if a > (0.5 * len(name)):
-                                                    break
 
                                     z += 1
-                                    if z > (0.5 * len(name)):
-                                        break
 
                         y -= 1
-                        if y < (2):
-                            albumDirs.remove(j)
-                            break
+
 
 
             x -= 1
-            if x < (0.55 * len(artistToFind)) :
-                break
+
 
     logging.info("\n\n\n None found \n\n\n")
     return None
