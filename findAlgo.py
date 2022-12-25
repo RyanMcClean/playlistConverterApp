@@ -40,35 +40,32 @@ def m4aFinder(artist, album, name, pathToMusic):
                             break
                         logging.info("Searching in " + j)
                         logging.info("Searching for " + album[0:y])
-                        if y > 0:
-                            if (j.lower().startswith(album[0:y].lower())):
-                                logging.info("Found album " + j + "\n\n")
 
-                                songDir = os.listdir(pathToMusic + "/" + i + "/" + j)
+                        if (j.lower().startswith(album[0:y].lower())):
+                            logging.info("Found album " + j + "\n\n")
+                            songDir = os.listdir(pathToMusic + "/" + i + "/" + j)
+                            for k in songDir:
+                                z = 0
+                                while True:
 
-                                for k in songDir:
-                                    z = 0
-                                    while True:
-
-                                        logging.info("Searching in " + k)
-                                        logging.info("Searching for " + name[z:len(name)])
-                                        if os.path.isfile(pathToMusic + "/" + i + "/" + j + "/" + k):
-
-                                            if (k.lower().endswith(name[z:len(name)].lower())):
-                                                logging.info("Found song " + pathToMusic + "/" + i + "/" + j + "/" + k + "\n\n")
-                                                return (pathToMusic + "/" + i + "/" + j + "/" + k)
-                                        elif os.path.isdir(pathToMusic + "/" + i + "/" + j + "/" + k):
-                                            cdDir = os.listdir(pathToMusic + "/" + i + "/" + j + "/" + k)
-                                            for l in cdDir:
-                                                a = 0
-                                                while True:
+                                    logging.info("Searching in " + k)
+                                    logging.info("Searching for " + name[z:len(name)])
+                                    if os.path.isfile(pathToMusic + "/" + i + "/" + j + "/" + k):
+                                        if (k.lower().endswith(name[z:len(name)].lower())):
+                                            logging.info("Found song " + pathToMusic + "/" + i + "/" + j + "/" + k + "\n\n")
+                                            return (pathToMusic + "/" + i + "/" + j + "/" + k)
+                                    elif os.path.isdir(pathToMusic + "/" + i + "/" + j + "/" + k):
+                                        cdDir = os.listdir(pathToMusic + "/" + i + "/" + j + "/" + k)
+                                        for l in cdDir:
+                                            a = 0
+                                            while True:
 
 
-                                                    logging.info("Searching in " +  k + "/" + l)
-                                                    logging.info("Searching for " + l)
-                                                    if l.lower().startswith(name[a:len(name)].lower()):
-                                                        logging.info("Found song " + pathToMusic + "/" + i + "/" + j + "/" + k + "/" + l + "\n\n")
-                                                        return (pathToMusic + "/" + i + "/" + j + "/" + k + "/" + l)
+                                                logging.info("Searching in " +  k + "/" + l)
+                                                logging.info("Searching for " + l)
+                                                if l.lower().startswith(name[a:len(name)].lower()):
+                                                    logging.info("Found song " + pathToMusic + "/" + i + "/" + j + "/" + k + "/" + l + "\n\n")
+                                                    return (pathToMusic + "/" + i + "/" + j + "/" + k + "/" + l)
 
                                                     a += 1
                                                     if a > (0.5 * len(name)):
