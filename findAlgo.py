@@ -51,7 +51,7 @@ def m4aFinder(artist, album, name, pathToMusic):
                                         logging.info("Searching for " + name[z:len(name)])
                                         if os.path.isfile(pathToMusic + "/" + i + "/" + j + "/" + k):
 
-                                            elif (k.lower().endswith(name[0:z].lower())):
+                                            if (k.lower().endswith(name[0:z].lower())):
                                                 logging.info("Found song " + pathToMusic + "/" + i + "/" + j + "/" + k + "\n\n")
                                                 return (pathToMusic + "/" + i + "/" + j + "/" + k)
                                         elif os.path.isdir(pathToMusic + "/" + i + "/" + j + "/" + k):
