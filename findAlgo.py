@@ -51,7 +51,7 @@ def m4aFinder(artist, album, name, pathToMusic):
                                         logging.info("Searching for " + name[z:len(name)])
                                         if os.path.isfile(pathToMusic + "/" + i + "/" + j + "/" + k):
                                             if (k.endswith(name[0:z])):
-                                                logging.info("Found song " + pathToMusic + "/" + i + "/" + j + "/" + k)
+                                                logging.info("Found song " + pathToMusic + "/" + i + "/" + j + "/" + k + "\n\n")
                                                 return (pathToMusic + "/" + i + "/" + j + "/" + k)
                                         else:
                                             cdDir = os.listdir(pathToMusic + "/" + i + "/" + j + "/" + k)
@@ -62,7 +62,7 @@ def m4aFinder(artist, album, name, pathToMusic):
                                                     logging.info("Searching in " + l)
                                                     logging.info("Searching for " + l)
                                                     if l.startswith(name[z:len(name)]):
-                                                        logging.info("Found song " + pathToMusic + "/" + i + "/" + j + "/" + k + "/" + l)
+                                                        logging.info("Found song " + pathToMusic + "/" + i + "/" + j + "/" + k + "/" + l + "\n\n")
                                                         return (pathToMusic + "/" + i + "/" + j + "/" + k + "/" + l)
 
                                         z += 1
