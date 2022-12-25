@@ -78,4 +78,5 @@ def m4aFinder(artist, album, name, pathToMusic):
             if x < (0.5 * len(artistToFind)) :
                 break
 
+    logging.info("\n\n\n None found \n\n\n")
     return None
