@@ -44,9 +44,9 @@ def m4aFinder(artist, album, name, pathToMusic):
                             albumDirs.remove(j)
                             break
                         logging.info("Searching through " + j)
-                        # if not j.lower().startswith(album[0:1].lower()):
-                        #     logging.info("Ignoring album; " + j)
-                        #     break
+                        if not j.lower().startswith(album[0:1].lower()):
+                            logging.info("Ignoring album; " + j)
+                            break
                         logging.info("Searching in " + j)
                         logging.info("Searching for " + album[0:y])
 
