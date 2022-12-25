@@ -9,6 +9,7 @@ def m4aFinder(artist, album, name, pathToMusic):
     musicPaths = os.scandir(pathToMusic)
 
     print(len(musicPaths))
+    sleep(5)
 
     for dirs in musicPaths:
         if dirs.is_dir():
