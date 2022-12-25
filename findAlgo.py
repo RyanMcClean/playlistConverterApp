@@ -31,6 +31,7 @@ def m4aFinder(artist, album, name, pathToMusic):
                 albumDirs = os.listdir(pathToMusic + "/" + i)
                 logging.info(albumDirs)
                 for j in albumDirs:
+                    logging.info("next album is: " + j)
                     y = len(album)
                     while True:
                         logging.info("Searching through " + j)
