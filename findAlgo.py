@@ -23,7 +23,7 @@ def m4aFinder(artist, album, name, pathToMusic):
 
     for i in dirList:
         x = len(artistToFind)
-        while True:
+        while i is not None:
             if x < (0.55 * len(artistToFind)) :
                 break
             if not i.startswith(artistToFind[0:int(0.5*len(artistToFind))]):
@@ -39,7 +39,7 @@ def m4aFinder(artist, album, name, pathToMusic):
                 for j in albumDirs:
                     logging.info("next album is: " + j)
                     y = len(album)
-                    while True:
+                    while j is not None:
                         if y < (2):
                             albumDirs.remove(j)
                             break
@@ -55,7 +55,7 @@ def m4aFinder(artist, album, name, pathToMusic):
                             songDir = os.listdir(pathToMusic + "/" + i + "/" + j)
                             for k in songDir:
                                 z = 0
-                                while True:
+                                while k is not None:
                                     if z > (0.5 * len(name)):
                                         break
                                     logging.info("Searching in " + k)
@@ -68,7 +68,7 @@ def m4aFinder(artist, album, name, pathToMusic):
                                         cdDir = os.listdir(pathToMusic + "/" + i + "/" + j + "/" + k)
                                         for l in cdDir:
                                             a = 0
-                                            while True:
+                                            while l is not None:
                                                 if a > (0.5 * len(name)):
                                                     break
 
