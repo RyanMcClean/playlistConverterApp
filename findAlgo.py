@@ -25,7 +25,7 @@ def m4aFinder(artist, album, name, pathToMusic):
                 break
             logging.info("Searching in " + i)
             logging.info("Searching for " + artistToFind[0:x])
-            if (i.startswith(artistToFind[0:x])):
+            if (i.lower().startswith(artistToFind[0:x].lower())):
                 logging.info("Found artist " + i + "\n")
 
                 albumDirs = os.listdir(pathToMusic + "/" + i)
@@ -33,8 +33,8 @@ def m4aFinder(artist, album, name, pathToMusic):
                 for j in albumDirs:
                     y = len(album)
                     while True:
-                        # if not j.startswith(album[0:int(0.1*len(album))]):
-                        #     break
+                        if not j.startswith(album[0:1]):
+                            break
                         logging.info("Searching in " + j)
                         logging.info("Searching for " + album[0:y])
                         if y > 0:
@@ -50,7 +50,7 @@ def m4aFinder(artist, album, name, pathToMusic):
                                         logging.info("Searching in " + k)
                                         logging.info("Searching for " + name[z:len(name)])
                                         if os.path.isfile(pathToMusic + "/" + i + "/" + j + "/" + k):
-                                            if (k.endswith(name[0:z])):
+                                            if (k.lower().endswith(name[0:z].lower())):
                                                 logging.info("Found song " + pathToMusic + "/" + i + "/" + j + "/" + k + "\n\n")
                                                 return (pathToMusic + "/" + i + "/" + j + "/" + k)
                                         else:
@@ -61,7 +61,7 @@ def m4aFinder(artist, album, name, pathToMusic):
 
                                                     logging.info("Searching in " + l)
                                                     logging.info("Searching for " + l)
-                                                    if l.startswith(name[z:len(name)]):
+                                                    if l.lower().startswith(name[z:len(name)].lower()):
                                                         logging.info("Found song " + pathToMusic + "/" + i + "/" + j + "/" + k + "/" + l + "\n\n")
                                                         return (pathToMusic + "/" + i + "/" + j + "/" + k + "/" + l)
 
