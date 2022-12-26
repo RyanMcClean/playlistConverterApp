@@ -10,7 +10,9 @@ def m4aFinder(artist, album, name, pathToMusic):
     firstArtist = artist.split(",")
 
     artist = firstArtist[0].replace(" ", "")
-    sleep(2.5)
+    album = album.replace(" ", "")
+    name = name.replace(" ", "")
+
 
     for num, i in enumerate(artistDirs):
         logging.info("Checking " + i)
@@ -23,6 +25,7 @@ def m4aFinder(artist, album, name, pathToMusic):
             if artistCheck == artist:
                 logging.info("Found " + i)
                 albumDirs = os.listdir(pathToMusic + "/" + i)
+
                 for num, j in enumerate(albumDirs):
                     logging.info("Checking " + j)
                     albumCheck = j.replace(" ", "")
