@@ -22,7 +22,7 @@ if __name__ == "__main__":
                         format = "%(name)s - %(levelname)s - %(message)s", level = logging.INFO)
     os.system('cls' if os.name == 'nt' else 'clear')
 
-    v = input("Verbose? y/n")
+    v = input("Verbose? y/n\n\n")
 
     # move music from laptop to NAS
     x = threading.Thread(target=musicCopy, args=(pathToOriginalMusic, pathToMusic))
