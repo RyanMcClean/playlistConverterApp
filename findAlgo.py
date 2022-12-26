@@ -48,7 +48,7 @@ def m4aFinder(artist, album, name, pathToMusic):
                                         continue
                                     elif songCheck.lower().endswith(name[len(name)-2:len(name)].lower()):
                                         logging.info("Album starts with " + k)
-                                        if songCheck.lower() == name.lower():
+                                        if songCheck.lower().endswith(name.lower()):
                                             logging.info("\n\nFound song " + k)
                                             return i + "/" + j + "/" + k
                                         else:

@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1429e8eb-fbd8-4b5f-9697-44bcc5b48d31" name="Changes" comment="Debug 177">
-      <change beforePath="$PROJECT_DIR$/CSVtoArray.py" beforeDir="false" afterPath="$PROJECT_DIR$/CSVtoArray.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/findAlgo.py" beforeDir="false" afterPath="$PROJECT_DIR$/findAlgo.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,14 +63,7 @@
       <updated>1669046376747</updated>
       <workItem from="1671792130319" duration="26086000" />
       <workItem from="1671882373765" duration="38078000" />
-      <workItem from="1671972959790" duration="9395000" />
-    </task>
-    <task id="LOCAL-00332" summary="Debug 177">
-      <created>1671929604054</created>
-      <option name="number" value="00332" />
-      <option name="presentableId" value="LOCAL-00332" />
-      <option name="project" value="LOCAL" />
-      <updated>1671929604054</updated>
+      <workItem from="1671972959790" duration="9477000" />
     </task>
     <task id="LOCAL-00333" summary="Debug 177">
       <created>1671929620411</created>
@@ -408,7 +401,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672067610124</updated>
     </task>
-    <option name="localTasksCounter" value="381" />
+    <task id="LOCAL-00381" summary="Debug 177">
+      <created>1672067800664</created>
+      <option name="number" value="00381" />
+      <option name="presentableId" value="LOCAL-00381" />
+      <option name="project" value="LOCAL" />
+      <updated>1672067800664</updated>
+    </task>
+    <option name="localTasksCounter" value="382" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
