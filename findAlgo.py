@@ -28,7 +28,7 @@ def m4aFinder(artist, album, name, pathToMusic, v):
         artistCheck = artistCheck.replace("？", "?")
         artistCheck = artistCheck.replace("Æ", "Æ")
 
-        if artistCheck.lower() == artist.lower():
+        if artistCheck.lower().startswith(artist.lower()):
             if v == "y":
                 logging.info("\n\nFound artist " + i)
             albumDirs = os.listdir(pathToMusic + "/" + i)
