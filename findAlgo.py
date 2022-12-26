@@ -37,6 +37,10 @@ def m4aFinder(artist, album, name, pathToMusic):
                         if albumCheck.lower() == album.lower():
                             logging.info("\n\nFound album " + j)
                             return (i + "/" + j)
+                        else:
+                            logging.info("The two that didn't match")
+                            logging.info(albumCheck)
+                            logging.info(album)
 
     logging.info("\n\n\n None found \n\n\n")
     return None
