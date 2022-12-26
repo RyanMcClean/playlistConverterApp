@@ -16,12 +16,14 @@ pathToFinalPlaylist = "/export/NAS/Playlists/"
 pathToOriginalMusic = "/mnt/windows-share/Users/ryan1/Music/Soggfy"
 playlist = []
 
-v = sys.argv[0]
+
 
 if __name__ == "__main__":
     logging.basicConfig(filename = "/export/NAS/playlistConverterLog.txt", filemode = "w",
                         format = "%(name)s - %(levelname)s - %(message)s", level = logging.INFO)
     os.system('cls' if os.name == 'nt' else 'clear')
+
+    v = sys.argv
 
     # # move music from laptop to NAS
     # x = threading.Thread(target=musicCopy, args=(pathToOriginalMusic, pathToMusic))
