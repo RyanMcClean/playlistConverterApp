@@ -33,7 +33,7 @@ def selection(CSVdirLoc):
             time.sleep(2)
 
 
-def CSV_Extraction(CSVdirLoc, pathToMusic, fileList):
+def CSV_Extraction(CSVdirLoc, pathToMusic, fileList, v):
     fields = ["Track Name", "Artist Name(s)", "Album Name"]
     df = ""
     playlist = []
@@ -49,7 +49,7 @@ def CSV_Extraction(CSVdirLoc, pathToMusic, fileList):
         artistName = str(df.loc[j, fields[1]])
         albumName = str(df.loc[j, fields[2]])
         #print(m4aFinder(artistName, albumName, songName, pathToMusic))
-        playlist.append(m4aFinder(artistName, albumName, songName, pathToMusic))
+        playlist.append(m4aFinder(artistName, albumName, songName, pathToMusic, v))
         j += 1
         # for i in playlist:
         #     print(i)

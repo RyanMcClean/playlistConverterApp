@@ -33,13 +33,16 @@ if __name__ == "__main__":
     # # unzip playlists file
     # unzipper(downloadsPath, downloadsPath + namePlaylistsDir)
 
+    v = input("Would you like this to be verose?")
+
+
     fileList = selection(downloadsPath + namePlaylistsDir)
     counter = 0
     loopCounter = 0
     filesMissingPerPlaylist = []
 
     if isinstance(fileList, str):
-        playlist = CSV_Extraction(downloadsPath + namePlaylistsDir, pathToMusic, fileList)
+        playlist = CSV_Extraction(downloadsPath + namePlaylistsDir, pathToMusic, fileList, v)
         counter += playlistFileCreation(pathToFinalPlaylist, playlist)
         filesMissingPerPlaylist = (fileList + "\t-\t" + str(counter))
 
