@@ -45,7 +45,7 @@ def CSV_Extraction(CSVdirLoc, pathToMusic, fileList):
     # print (dfCount)
     while j < dfCount:
         print("%2d" %(((j/dfCount)*100)) + "%", end="\r")
-        songName = ("*" + str(df.loc[j, fields[0]]) + ".m4a")
+        songName = (str(df.loc[j, fields[0]]) + ".m4a")
         artistName = str(df.loc[j, fields[1]])
         albumName = str(df.loc[j, fields[2]])
         #print(m4aFinder(artistName, albumName, songName, pathToMusic))
