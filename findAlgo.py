@@ -16,13 +16,14 @@ def m4aFinder(artist, album, name, pathToMusic):
     for num, i in enumerate(artistDirs):
         logging.info("Checking artist " + i)
         if not i.startswith(artist[0:2]):
-            logging.info("Not " + i)
+            logging.info(i + " Not " + artist)
             continue
         artistCheck = i.replace(" ", "")
         artistCheck = artistCheck.replace("．", ".")
         artistCheck = artistCheck.replace("：", ":")
         artistCheck = artistCheck.replace("／", "/")
         artistCheck = artistCheck.replace("？", "?")
+        artistCheck = artistCheck.replace("Æ", "Æ")
 
         if artistCheck.lower() == artist.lower():
             logging.info("\n\nFound artist " + i)
@@ -55,6 +56,7 @@ def m4aFinder(artist, album, name, pathToMusic):
                                 songCheck = songCheck.replace("／", "/")
                                 songCheck = songCheck.replace("．", ".")
                                 songCheck = songCheck.replace("？", "?")
+
                                 if not songCheck.lower().endswith(name[len(name)-1:len(name)].lower()):
                                     logging.info("Not " + k)
                                     continue
@@ -77,6 +79,7 @@ def m4aFinder(artist, album, name, pathToMusic):
                                     songCheck = songCheck.replace("／", "/")
                                     songCheck = songCheck.replace("．", ".")
                                     songCheck = songCheck.replace("？", "?")
+
                                     if not songCheck.lower().endswith(name[len(name)-1:len(name)].lower()):
                                         logging.info("Not " + l)
                                         continue
