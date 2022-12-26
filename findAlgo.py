@@ -58,11 +58,15 @@ def m4aFinder(artist, album, name, pathToMusic):
                                 elif os.path.isdir(pathToMusic + "/" + i + "/" + j + "/" + k):
                                     continue
 
-
                         else:
                             logging.info("The two that didn't match")
                             logging.info(albumCheck)
                             logging.info(album)
+
+            else:
+                logging.info("The two that didn't match")
+                logging.info(artistCheck)
+                logging.info(artist)
 
     logging.info("\n\n\n None found \n\n\n")
     return None
