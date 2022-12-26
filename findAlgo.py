@@ -22,11 +22,17 @@ def m4aFinder(artist, album, name, pathToMusic):
             logging.info("Artist starts like " + i)
             if artistCheck == artist:
                 logging.info("Found " + i)
-                return i
-            # elif:
-
-
-
+                albumDirs = os.listdir(pathToMusic + "/" + i)
+                for num, j in enumerate(albumDirs):
+                    logging.info("Checking " + j)
+                    albumCheck = j.replace(" ", "")
+                    if not albumCheck.startswith(album[0:1]):
+                        logging.info("Not " + j)
+                        continue
+                    elif albumCheck.startswith(album[0:2]):
+                        logging.info("Album starts with " + j)
+                        if albumCheck == album:
+                            return (i + "/" + j)
 
     logging.info("\n\n\n None found \n\n\n")
     return None
