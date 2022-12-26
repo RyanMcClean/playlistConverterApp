@@ -16,8 +16,7 @@ def m4aFinder(artist, album, name, pathToMusic):
         artistDirs[num] = i
 
     for i in artistDirs:
-        if i != artist:
-            artistDirs.remove(i)
+        del artistDirs[0:7440]
     print(len(artistDirs))
 
     logging.info("\n\n\n None found \n\n\n")
