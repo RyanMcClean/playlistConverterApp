@@ -33,7 +33,7 @@ def selection(CSVdirLoc):
             time.sleep(2)
 
 
-def CSV_Extraction(CSVdirLoc, pathToMusic, fileList, v):
+def CSV_Extraction(CSVdirLoc, pathToMusic, fileList):
     fields = ["Track Name", "Artist Name(s)", "Album Name"]
     df = ""
     playlist = []
