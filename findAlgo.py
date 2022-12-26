@@ -10,12 +10,13 @@ def m4aFinder(artist, album, name, pathToMusic):
 
     artist = artist.replace(" ", "")
     print(len(artistDirs))
-    sleep(5)
+    sleep(2.5)
     for num, i in enumerate(artistDirs):
         i = i.replace(" ", "")
         artistDirs[num] = i
+    artistDirs.sort()
 
-    del artistDirs[0:7440]
+
     print((artistDirs))
 
     logging.info("\n\n\n None found \n\n\n")
