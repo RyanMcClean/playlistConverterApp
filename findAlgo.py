@@ -4,7 +4,8 @@ from time import sleep
 
 def m4aFinder(artist, album, name, pathToMusic, v):
 
-    logging.info("Searching for Artist: " + artist + " Album: " + album + " Song: " + name + "\n")
+    if v == "y":
+        logging.info("Searching for Artist: " + artist + " Album: " + album + " Song: " + name + "\n")
 
     artistDirs = os.listdir(pathToMusic)
     firstArtist = artist.split(",")
