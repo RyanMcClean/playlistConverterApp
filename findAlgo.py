@@ -43,7 +43,7 @@ def m4aFinder(artist, album, name, pathToMusic):
                                 logging.info("Checking song " + k)
                                 if os.path.isfile(pathToMusic + "/" + i + "/" + j + "/" + k):
                                     songCheck = k.replace(" ", "")
-                                    if not songCheck.lower().endsswith(name[len(name)-5:len(name)-4].lower()):
+                                    if not songCheck.lower().endswith(name[len(name)-5:len(name)-4].lower()):
                                         logging.info("Not " + k)
                                         continue
                                     elif songCheck.lower().endswith(name[len(name)-6:len(name)-4].lower()):
