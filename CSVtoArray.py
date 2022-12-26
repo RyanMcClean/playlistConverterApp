@@ -48,7 +48,7 @@ def CSV_Extraction(CSVdirLoc, pathToMusic, fileList, v):
         songName = (str(df.loc[j, fields[0]]) + ".m4a")
         artistName = str(df.loc[j, fields[1]])
         albumName = str(df.loc[j, fields[2]])
-        #print(m4aFinder(artistName, albumName, songName, pathToMusic))
+        # print(m4aFinder(artistName, albumName, songName, pathToMusic))
         playlist.append(m4aFinder(artistName, albumName, songName, pathToMusic, v))
         j += 1
         # for i in playlist:

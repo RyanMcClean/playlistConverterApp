@@ -15,8 +15,8 @@ def m4aFinder(artist, album, name, pathToMusic, v):
 
     artistDirs.sort()
     for num, i in enumerate(artistDirs):
-        if v == "y":
-            logging.info("Checking artist " + i)
+        # if v == "y":
+        #     logging.info("Checking artist " + i)
         if not i.startswith(artist[0:1]):
             if v == "y":
                 logging.info(i + " Not " + artist)

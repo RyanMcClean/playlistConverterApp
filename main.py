@@ -1,7 +1,6 @@
 import os
 import logging
 import threading
-import sys
 
 from CSVtoArray import CSV_Extraction, selection
 from fileCreator import playlistFileCreation
@@ -25,18 +24,18 @@ if __name__ == "__main__":
 
     v = input("Verbose? y/n")
 
-    # # move music from laptop to NAS
-    # x = threading.Thread(target=musicCopy, args=(pathToOriginalMusic, pathToMusic))
-    # x.start()
-    #
-    # # musicCopy(pathToOriginalMusic, pathToMusic)
-    #
-    #
-    # # Download zipped file of spotify playlists
-    # playlistdownloader(downloadsPath)
-    #
-    # # unzip playlists file
-    # unzipper(downloadsPath, downloadsPath + namePlaylistsDir)
+    # move music from laptop to NAS
+    x = threading.Thread(target=musicCopy, args=(pathToOriginalMusic, pathToMusic))
+    x.start()
+
+    # musicCopy(pathToOriginalMusic, pathToMusic)
+
+
+    # Download zipped file of spotify playlists
+    playlistdownloader(downloadsPath)
+
+    # unzip playlists file
+    unzipper(downloadsPath, downloadsPath + namePlaylistsDir)
 
 
 
@@ -53,12 +52,11 @@ if __name__ == "__main__":
 
     else:
         for i in fileList:
-            counterAdder = 0
             loopCounter += 1
             print("%2d" % ((loopCounter/len(os.listdir(downloadsPath + namePlaylistsDir)))*100) + "%")
             print("Converting " + i)
             playlist = CSV_Extraction(downloadsPath + namePlaylistsDir, pathToMusic, i, v)
-            counterAdder  += playlistFileCreation(pathToFinalPlaylist, playlist)
+            counterAdder = playlistFileCreation(pathToFinalPlaylist, playlist)
             if counterAdder > 0:
                 filesMissingPerPlaylist.append((str(counterAdder) + "\tsongs missing from:\t" + i))
             counter += counterAdder
