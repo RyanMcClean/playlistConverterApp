@@ -88,12 +88,12 @@ def m4aFinder(artist, album, name, pathToMusic):
                                             # logging.info("\n\nFound song " + k + "/" + l)
                                             return "Music/" + i + "/" + j + "/" + k + "/" + l
 
-                    else:
+                    # else:
                         # logging.info("The two that didn't match")
                         # logging.info(albumCheck)
                         # logging.info(album)
 
-        else:
+        # else:
             # logging.info("The two that didn't match")
             # logging.info(artistCheck)
             # logging.info(artist)
