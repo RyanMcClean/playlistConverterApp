@@ -1,6 +1,7 @@
 import os
 import logging
 import threading
+import sys
 
 from CSVtoArray import CSV_Extraction, selection
 from fileCreator import playlistFileCreation
@@ -14,6 +15,8 @@ pathToMusic = "/export/NAS/Music/"
 pathToFinalPlaylist = "/export/NAS/Playlists/"
 pathToOriginalMusic = "/mnt/windows-share/Users/ryan1/Music/Soggfy"
 playlist = []
+
+v = sys.argv[0]
 
 if __name__ == "__main__":
     logging.basicConfig(filename = "/export/NAS/playlistConverterLog.txt", filemode = "w",
@@ -33,7 +36,7 @@ if __name__ == "__main__":
     # # unzip playlists file
     # unzipper(downloadsPath, downloadsPath + namePlaylistsDir)
 
-    v = input("Would you like this to be verose?")
+
 
 
     fileList = selection(downloadsPath + namePlaylistsDir)
