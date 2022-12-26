@@ -9,7 +9,7 @@ def m4aFinder(artist, album, name, pathToMusic):
     artistDirs = os.listdir(pathToMusic)
 
     for num, i in enumerate(artistDirs):
-        i.replace(" ", "")
+        i = i.replace(" ", "")
         artistDirs[num] = i
 
     for i in artistDirs:
