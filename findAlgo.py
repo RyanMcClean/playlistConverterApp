@@ -50,7 +50,7 @@ def m4aFinder(artist, album, name, pathToMusic):
                                         logging.info("Not " + k)
                                         continue
                                     elif songCheck.lower().endswith(name[len(name)-2:len(name)].lower()):
-                                        logging.info("Album starts with " + k)
+                                        logging.info("Song ends with " + k)
                                         if songCheck.lower().endswith(name.lower()):
                                             logging.info("\n\nFound song " + k)
                                             return i + "/" + j + "/" + k
@@ -59,7 +59,20 @@ def m4aFinder(artist, album, name, pathToMusic):
                                             logging.info(songCheck)
                                             logging.info(name)
                                 elif os.path.isdir(pathToMusic + "/" + i + "/" + j + "/" + k):
-                                    continue
+                                    cdDir = os.listdir(pathToMusic + "/" + i + "/" + j + "/" + k)
+
+                                    for num, l in enumerate(cdDir):
+                                        logging.info("Checking song " + l)
+                                        songCheck = l.replace(" ", "")
+                                        if not songCheck.lower().endswith(name[len(name)-1:len(name)].lower()):
+                                            logging.info("Not " + l)
+                                            continue
+                                        elif songCheck.lower().endswith(name[len(name)-2:len(name)].lower()):
+                                            logging.info("Song ends with " + l)
+                                            if songCheck.lower().endswith(name.lower()):
+                                                logging.info("\n\nFound song " + k + "/" + l)
+                                                return i + "/" + j + "/" + k + "/" + l
+
 
                         else:
                             logging.info("The two that didn't match")
