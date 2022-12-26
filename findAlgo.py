@@ -13,7 +13,7 @@ def m4aFinder(artist, album, name, pathToMusic):
     album = album.replace(" ", "")
     name = name.replace(" ", "")
 
-
+    artistDirs.sort()
     for num, i in enumerate(artistDirs):
         logging.info("Checking artist " + i)
         artistCheck = i.replace(" ", "")
