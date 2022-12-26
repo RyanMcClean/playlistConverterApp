@@ -54,7 +54,7 @@ def m4aFinder(artist, album, name, pathToMusic):
                                         logging.info("Song ends with " + k)
                                         if songCheck.lower().endswith(name.lower()):
                                             logging.info("\n\nFound song " + k)
-                                            return i + "/" + j + "/" + k
+                                            return "Music/" + i + "/" + j + "/" + k
                                         else:
                                             logging.info("The two songs that didn't match")
                                             logging.info(songCheck)
@@ -72,7 +72,7 @@ def m4aFinder(artist, album, name, pathToMusic):
                                             logging.info("Song ends with " + l)
                                             if songCheck.lower().endswith(name.lower()):
                                                 logging.info("\n\nFound song " + k + "/" + l)
-                                                return i + "/" + j + "/" + k + "/" + l
+                                                return "Music/" + i + "/" + j + "/" + k + "/" + l
 
 
                         else:
