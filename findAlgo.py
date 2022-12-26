@@ -20,6 +20,8 @@ def m4aFinder(artist, album, name, pathToMusic):
             continue
         artistCheck = i.replace(" ", "")
         artistCheck = artistCheck.replace("．", ".")
+        artistCheck = artistCheck.replace("：", ":")
+        artistCheck = artistCheck.replace("／", "/")
 
         if artistCheck.lower() == artist.lower():
             logging.info("\n\nFound artist " + i)
@@ -30,6 +32,8 @@ def m4aFinder(artist, album, name, pathToMusic):
                 albumCheck = j.replace(" ", "")
                 albumCheck = albumCheck.replace("：", ":")
                 albumCheck = albumCheck.replace("／", "/")
+                albumCheck = albumCheck.replace("．", ".")
+
                 if not albumCheck.lower().startswith(album[0:1].lower()):
                     logging.info("Not " + j)
                     logging.info(albumCheck)
