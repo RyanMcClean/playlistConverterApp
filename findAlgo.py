@@ -2,9 +2,9 @@ import os
 import logging
 from time import sleep
 
-def m4aFinder(artist, album, name, pathToMusic):
+def m4aFinder(artist, album, name, pathToMusic, v):
 
-    # logging.info("Searching for Artist: " + artist + " Album: " + album + " Song: " + name + "\n")
+    logging.info("Searching for Artist: " + artist + " Album: " + album + " Song: " + name + "\n")
 
     artistDirs = os.listdir(pathToMusic)
     firstArtist = artist.split(",")
@@ -14,9 +14,11 @@ def m4aFinder(artist, album, name, pathToMusic):
 
     artistDirs.sort()
     for num, i in enumerate(artistDirs):
-        # logging.info("Checking artist " + i)
+        if v == "y":
+            logging.info("Checking artist " + i)
         if not i.startswith(artist[0:1]):
-            # logging.info(i + " Not " + artist)
+            if v == "y":
+                logging.info(i + " Not " + artist)
             continue
         artistCheck = i.replace(" ", "")
         artistCheck = artistCheck.replace("．", ".")
@@ -26,11 +28,13 @@ def m4aFinder(artist, album, name, pathToMusic):
         artistCheck = artistCheck.replace("Æ", "Æ")
 
         if artistCheck.lower() == artist.lower():
-            # logging.info("\n\nFound artist " + i)
+            if v == "y":
+                logging.info("\n\nFound artist " + i)
             albumDirs = os.listdir(pathToMusic + "/" + i)
 
             for num, j in enumerate(albumDirs):
-                # logging.info("Checking album " + j)
+                if v=="y":
+                    logging.info("Checking album " + j)
                 albumCheck = j.replace(" ", "")
                 albumCheck = albumCheck.replace("：", ":")
                 albumCheck = albumCheck.replace("／", "/")
@@ -38,18 +42,22 @@ def m4aFinder(artist, album, name, pathToMusic):
                 albumCheck = albumCheck.replace("？", "?")
 
                 if not albumCheck.lower().startswith(album[0:1].lower()):
-                    # logging.info("Not " + j)
-                    # logging.info(albumCheck)
-                    # logging.info(album)
+                    if v =="y":
+                        logging.info("Not " + j)
+                        logging.info(albumCheck)
+                        logging.info(album)
                     continue
                 elif albumCheck.lower().startswith(album[0:2].lower()):
-                    # logging.info("Album starts with " + j)
+                    if v=="y":
+                        logging.info("Album starts with " + j)
                     if albumCheck.lower() == album.lower():
-                        # logging.info("\n\nFound album " + j)
+                        if v == "y":
+                            logging.info("\n\nFound album " + j)
                         songDir = os.listdir(pathToMusic + "/" + i + "/" + j)
 
                         for num, k in enumerate(songDir):
-                            # logging.info("Checking song " + k)
+                            if v == "y":
+                                logging.info("Checking song " + k)
                             if os.path.isfile(pathToMusic + "/" + i + "/" + j + "/" + k):
                                 songCheck = k.replace(" ", "")
                                 songCheck = songCheck.replace("：", ":")
@@ -58,21 +66,26 @@ def m4aFinder(artist, album, name, pathToMusic):
                                 songCheck = songCheck.replace("？", "?")
 
                                 if not songCheck.lower().endswith(name[len(name)-1:len(name)].lower()):
-                                    # logging.info("Not " + k)
+                                    if v == "y":
+                                        logging.info("Not " + k)
                                     continue
                                 elif songCheck.lower().endswith(name[len(name)-2:len(name)].lower()):
-                                    # logging.info("Song ends with " + k)
+                                    if v == "y":
+                                        logging.info("Song ends with " + k)
                                     if songCheck.lower().endswith(name.lower()):
-                                        # logging.info("\n\nFound song " + k)
+                                        if v == "y":
+                                            logging.info("\n\nFound song " + k)
                                         return "Music/" + i + "/" + j + "/" + k
-                                    # logging.info("The two songs that didn't match")
-                                    # logging.info(songCheck)
-                                    # logging.info(name)
+                                    elif v == "y":
+                                        logging.info("The two songs that didn't match")
+                                        logging.info(songCheck)
+                                        logging.info(name)
                             elif os.path.isdir(pathToMusic + "/" + i + "/" + j + "/" + k):
                                 cdDir = os.listdir(pathToMusic + "/" + i + "/" + j + "/" + k)
 
                                 for num, l in enumerate(cdDir):
-                                    # logging.info("Checking song " + l)
+                                    if v == "y":
+                                        logging.info("Checking song " + l)
                                     songCheck = l.replace(" ", "")
                                     songCheck = songCheck.replace("：", ":")
                                     songCheck = songCheck.replace("／", "/")
@@ -80,23 +93,26 @@ def m4aFinder(artist, album, name, pathToMusic):
                                     songCheck = songCheck.replace("？", "?")
 
                                     if not songCheck.lower().endswith(name[len(name)-1:len(name)].lower()):
-                                        # logging.info("Not " + l)
+                                        if v == "y":
+                                            logging.info("Not " + l)
                                         continue
                                     elif songCheck.lower().endswith(name[len(name)-2:len(name)].lower()):
-                                        # logging.info("Song ends with " + l)
+                                        if v == "y":
+                                            logging.info("Song ends with " + l)
                                         if songCheck.lower().endswith(name.lower()):
-                                            # logging.info("\n\nFound song " + k + "/" + l)
+                                            if v == "y":
+                                                logging.info("\n\nFound song " + k + "/" + l)
                                             return "Music/" + i + "/" + j + "/" + k + "/" + l
 
-                    # else:
-                        # logging.info("The two that didn't match")
-                        # logging.info(albumCheck)
-                        # logging.info(album)
+                    elif v == "y":
+                        logging.info("The two that didn't match")
+                        logging.info(albumCheck)
+                        logging.info(album)
 
-        # else:
-            # logging.info("The two that didn't match")
-            # logging.info(artistCheck)
-            # logging.info(artist)
+        elif v == "y":
+            logging.info("The two that didn't match")
+            logging.info(artistCheck)
+            logging.info(artist)
 
-    # logging.info("\n\n\n None found \n\n\n")
+    if v == "y": logging.info("\n\n\n None found \n\n\n")
     return None
