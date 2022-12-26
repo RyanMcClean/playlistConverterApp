@@ -23,7 +23,6 @@ if __name__ == "__main__":
                         format = "%(name)s - %(levelname)s - %(message)s", level = logging.INFO)
     os.system('cls' if os.name == 'nt' else 'clear')
 
-    v = input("Verbose? y/n")
 
     # # move music from laptop to NAS
     # x = threading.Thread(target=musicCopy, args=(pathToOriginalMusic, pathToMusic))
@@ -47,7 +46,7 @@ if __name__ == "__main__":
     filesMissingPerPlaylist = []
 
     if isinstance(fileList, str):
-        playlist = CSV_Extraction(downloadsPath + namePlaylistsDir, pathToMusic, fileList, v)
+        playlist = CSV_Extraction(downloadsPath + namePlaylistsDir, pathToMusic, fileList)
         counter += playlistFileCreation(pathToFinalPlaylist, playlist)
         filesMissingPerPlaylist = (fileList + "\t-\t" + str(counter))
 
@@ -57,7 +56,7 @@ if __name__ == "__main__":
             loopCounter += 1
             print("%2d" % ((loopCounter/len(os.listdir(downloadsPath + namePlaylistsDir)))*100) + "%")
             print("Converting " + i)
-            playlist = CSV_Extraction(downloadsPath + namePlaylistsDir, pathToMusic, v)
+            playlist = CSV_Extraction(downloadsPath + namePlaylistsDir, pathToMusic)
             counterAdder  += playlistFileCreation(pathToFinalPlaylist, playlist)
             if counterAdder > 0:
                 filesMissingPerPlaylist.append((str(counterAdder) + "\tsongs missing from:\t" + i))
