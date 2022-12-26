@@ -16,7 +16,7 @@ def m4aFinder(artist, album, name, pathToMusic):
         artistDirs[num] = i
 
     for i in artistDirs:
-        if not i.startswith(artist[0:2]):
+        if i != artist:
             artistDirs.remove(i)
     print(len(artistDirs))
 

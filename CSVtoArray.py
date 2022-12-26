@@ -18,6 +18,7 @@ def selection(CSVdirLoc):
         selection = input("\nPlease input a playlist number to convert,"
                           "\n\tif you wish to convert all files,"
                           "\n\tplease type 'all'\n")
+        selection = 223
         if selection.lower() == "all":
             os.system('cls' if os.name == 'nt' else 'clear')
             print("Converting " + str(len(fileList)) + " files")
