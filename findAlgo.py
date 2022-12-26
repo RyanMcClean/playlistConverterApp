@@ -1,15 +1,19 @@
 import os
 import logging
 from time import sleep
-from pathlib import Path
 
 def m4aFinder(artist, album, name, pathToMusic):
 
     logging.info("Searching for Artist: " + artist + " Album: " + album + " Song: " + name + "\n")
 
-    for path in Path(pathToMusic).iterdir():
-        if path.is_dir():
-            print(path)
+    artistDirs = os.listdir(pathToMusic)
+
+    for num, i in enumerate(artistDirs):
+        i.replace(" ", "")
+        artistDirs[num] = i
+
+    for i in artistDirs:
+        print(i)
 
     logging.info("\n\n\n None found \n\n\n")
     return None
