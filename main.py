@@ -56,7 +56,7 @@ if __name__ == "__main__":
             loopCounter += 1
             print("%2d" % ((loopCounter/len(os.listdir(downloadsPath + namePlaylistsDir)))*100) + "%")
             print("Converting " + i)
-            playlist = CSV_Extraction(downloadsPath + namePlaylistsDir, pathToMusic, fileList)
+            playlist = CSV_Extraction(downloadsPath + namePlaylistsDir, pathToMusic, i)
             counterAdder  += playlistFileCreation(pathToFinalPlaylist, playlist)
             if counterAdder > 0:
                 filesMissingPerPlaylist.append((str(counterAdder) + "\tsongs missing from:\t" + i))
