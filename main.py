@@ -28,9 +28,6 @@ if __name__ == "__main__":
     x = threading.Thread(target=musicCopy, args=(pathToOriginalMusic, pathToMusic))
     x.start()
 
-    # musicCopy(pathToOriginalMusic, pathToMusic)
-
-
     # Download zipped file of spotify playlists
     y = threading.Thread(target=playlistdownloader, args=(downloadsPath,))
     y.start()
@@ -65,12 +62,12 @@ if __name__ == "__main__":
 
     print(str(counter) + " total missing songs from library")
 
-    try:
-        if filesMissingPerPlaylist is list:
-            for i in filesMissingPerPlaylist:
-                print(i)
-                logging.info(i)
 
-    except:
+    if filesMissingPerPlaylist is list:
+        for i in filesMissingPerPlaylist:
+            print(i)
+            logging.info(i)
+
+    if filesMissingPerPlaylist is str:
         print(filesMissingPerPlaylist)
         logging.info(filesMissingPerPlaylist)
