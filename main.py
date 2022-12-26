@@ -20,18 +20,18 @@ if __name__ == "__main__":
                         format = "%(name)s - %(levelname)s - %(message)s", level = logging.INFO)
     os.system('cls' if os.name == 'nt' else 'clear')
 
-    # move music from laptop to NAS
-    # x = threading.Thread(target=musicCopy, args=(pathToOriginalMusic, pathToMusic))
-    # x.start()
+    move music from laptop to NAS
+    x = threading.Thread(target=musicCopy, args=(pathToOriginalMusic, pathToMusic))
+    x.start()
 
-    # # musicCopy(pathToOriginalMusic, pathToMusic)
-    #
-    #
-    # # Download zipped file of spotify playlists
-    # playlistdownloader(downloadsPath)
-    #
-    # # unzip playlists file
-    # unzipper(downloadsPath, downloadsPath + namePlaylistsDir)
+    # musicCopy(pathToOriginalMusic, pathToMusic)
+
+
+    # Download zipped file of spotify playlists
+    playlistdownloader(downloadsPath)
+
+    # unzip playlists file
+    unzipper(downloadsPath, downloadsPath + namePlaylistsDir)
 
     fileList = selection(downloadsPath + namePlaylistsDir)
     counter = 0
