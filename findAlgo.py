@@ -11,6 +11,8 @@ def m4aFinder(artist, album, name, pathToMusic, v):
     firstArtist = artist.split(",")
     if not firstArtist[0].endswith("/"):
         artist = firstArtist[0].replace(" ", "")
+    else:
+        artist = artist.replace("\\", "")
     album = album.replace(" ", "")
     name = name.replace(" ", "")
 
