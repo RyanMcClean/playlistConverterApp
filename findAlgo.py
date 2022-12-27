@@ -9,7 +9,8 @@ def m4aFinder(artist, album, name, pathToMusic, v):
 
     artistDirs = os.listdir(pathToMusic)
     firstArtist = artist.split(",")
-    artist = firstArtist[0].replace(" ", "")
+    if not firstArtist.endswith("/"):
+        artist = firstArtist[0].replace(" ", "")
     album = album.replace(" ", "")
     name = name.replace(" ", "")
 
