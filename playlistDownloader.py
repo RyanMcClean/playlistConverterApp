@@ -18,6 +18,7 @@ def playlistdownloader(downloadsPath):
     driver = webdriver.Firefox()
     action = ActionChains(driver)
     zippedFile = "spotify_playlists.zip"
+
     # Maximise window and navigate to exportify and click login
     driver.get("https://watsonbox.github.io/exportify/")
     exportifyLogin = driver.find_element(By.ID, "loginButton")
@@ -42,6 +43,10 @@ def playlistdownloader(downloadsPath):
     print("\nStarting download of playlists\n")
     # Check to close browser only after the file exists and has had a few seconds to download.
     # On a slow connection this may be an issue
+    try:
+        os.remove(downloadsPath + zippedFile)
+    except:
+        print("")
     fileExists = False
     while not fileExists:
         fileExists = os.path.exists(downloadsPath + zippedFile)
