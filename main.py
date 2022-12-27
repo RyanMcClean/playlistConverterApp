@@ -29,9 +29,9 @@ if __name__ == "__main__":
     x.start()
 
     # Download zipped file of spotify playlists
-    y = threading.Thread(target=playlistdownloader, args=(downloadsPath,))
-    y.start()
-    # playlistdownloader(downloadsPath)
+    # y = threading.Thread(target=playlistdownloader, args=(downloadsPath,))
+    # y.start()
+    playlistdownloader(downloadsPath)
 
     # unzip playlists file
     unzipper(downloadsPath, downloadsPath + namePlaylistsDir)
