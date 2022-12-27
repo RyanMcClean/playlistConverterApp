@@ -74,5 +74,4 @@ def playlistdownloader(downloadsPath):
                     print("Error downloading, using old information.")
 
     # Close window
-    time.sleep(2)
     driver.quit()
