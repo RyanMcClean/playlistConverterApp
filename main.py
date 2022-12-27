@@ -63,11 +63,11 @@ if __name__ == "__main__":
     print(str(counter) + " total missing songs from library")
 
 
-    if filesMissingPerPlaylist is list:
+    try:
         for i in filesMissingPerPlaylist:
             print(i)
             logging.info(i)
 
-    if filesMissingPerPlaylist is str:
+    except:
         print(filesMissingPerPlaylist)
         logging.info(filesMissingPerPlaylist)
