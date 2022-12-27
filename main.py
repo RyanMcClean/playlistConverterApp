@@ -66,7 +66,7 @@ if __name__ == "__main__":
     filesMissingPerPlaylist.sort()
 
 
-    if filesMissingPerPlaylist is list:
+    if isinstance(filesMissingPerPlaylist, list):
 
         filesMissingPerPlaylist.sort()
         for i in filesMissingPerPlaylist:
