@@ -26,7 +26,7 @@ def playlistdownloader(downloadsPath):
     driver.get("https://watsonbox.github.io/exportify/")
     exportifyLogin = driver.find_element(By.ID, "loginButton")
     action.move_to_element(exportifyLogin).click(exportifyLogin).perform()
-    time.sleep(2)
+    time.sleep(5)
     # Login to spotify
     spotifyUsername = driver.find_element(By.ID, "login-username")
     spotifyPassword = driver.find_element(By.ID, "login-password")
@@ -34,13 +34,14 @@ def playlistdownloader(downloadsPath):
     spotifyUsername.send_keys(USERNAME)
     spotifyPassword.send_keys(PASSWORD)
     action.move_to_element(spotifyLoginButton).click(spotifyLoginButton).perform()
-    time.sleep(2.5)
+    time.sleep(5)
     # TAB to appropriate button and press enter (this exports all users playlists)
     i = 8
     print("\n\nWaiting for extraction of playlists and subsequent zip file download")
     while i > 0:
         action.send_keys(Keys.TAB).perform()
         i -= 1
+        time.sleep(1)
     action.send_keys(Keys.ENTER).perform()
     print("\nStarting download of playlists\n")
     # Check to close browser only after the file exists and has had a few seconds to download.

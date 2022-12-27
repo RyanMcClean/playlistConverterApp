@@ -30,7 +30,6 @@ def selection(CSVdirLoc):
                     return file
         else:
             print("\nUser input did not match expected. \n\n\tError. \n\nPlease try again.")
-            time.sleep(2)
 
 
 def CSV_Extraction(CSVdirLoc, pathToMusic, fileList, v):
@@ -55,5 +54,4 @@ def CSV_Extraction(CSVdirLoc, pathToMusic, fileList, v):
         #     print(i)
         # print("\n\n\n")
     print("Conversion complete, now creating file.\n")
-    time.sleep(1)
     return playlist
