@@ -67,8 +67,12 @@ if __name__ == "__main__":
 
 
     if not isinstance(filesMissingPerPlaylist, str):
-        filesMissingPerPlaylist.sort()
+        try:
+            filesMissingPerPlaylist.sort()
 
-        for i in filesMissingPerPlaylist:
-            print(i)
-            logging.info(i)
+            for i in filesMissingPerPlaylist:
+                print(i)
+                logging.info(i)
+        except:
+            print(filesMissingPerPlaylist)
+            logging.info(filesMissingPerPlaylist)
