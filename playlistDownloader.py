@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 # This is the function to download a zip file of all the spotify playlists in a given account.
 # It takes advantage of selenium to run exportify.
 def playlistdownloader(downloadsPath):
-    os.environ['MOZ_HEADLESS'] = '1'
+    os.environ['MOZ_HEADLESS'] = '0'
     load_dotenv()
     USERNAME = os.getenv("SPOTIFY_USERNAME")
     PASSWORD = os.getenv("SPOTIFY_PASSWORD")
