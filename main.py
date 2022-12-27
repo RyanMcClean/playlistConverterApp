@@ -26,7 +26,7 @@ if __name__ == "__main__":
     x = threading.Thread(target=musicCopy, args=(pathToOriginalMusic, pathToMusic))
     x.start()
 
-    v = input("Verbose? y/n\n\n")
+    v = input("\nVerbose? y/n\n\n")
 
     # Download zipped file of spotify playlists
     # y = threading.Thread(target=playlistdownloader, args=(downloadsPath,))
