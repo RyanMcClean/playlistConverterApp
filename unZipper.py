@@ -34,7 +34,6 @@ def unzipper(zipFileLocation, unZipFileLocation):
                 print("Error finding dir")
 
     if os.path.exists(check):
-        print("\nUnzipping successful\n")
         if os.path.exists(zipFileLocation + "playlists.zip"):
             os.remove(zipFileLocation)
     else:
