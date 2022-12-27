@@ -66,6 +66,8 @@ if __name__ == "__main__":
     filesMissingPerPlaylist.sort()
 
     try:
+        filesMissingPerPlaylist.sort()
+
         for i in filesMissingPerPlaylist:
             print(i)
             logging.info(i)
