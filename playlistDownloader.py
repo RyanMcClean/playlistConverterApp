@@ -53,7 +53,7 @@ def playlistdownloader(downloadsPath):
         fileExists = os.path.exists(downloadsPath + zippedFile)
         time.sleep(1)
         counter += 1
-        print("Waiting " + counter + "s")
+        print("Waiting " + counter + "s", end="\r")
 
     # Check if zip file downlaoded after timeout
     if os.path.exists(downloadsPath+zippedFile):
