@@ -4,6 +4,7 @@ import subprocess
 
 
 def musicCopy(musicLoc, musicMoveLoc):
+    subprocess.Popen('sudo -S', shell=True, stdout=subprocess.PIPE)
     sentCheck = False
     if not os.path.exists(musicLoc):
         logging.info("Mounting laptop")
