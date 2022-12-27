@@ -47,7 +47,7 @@ if __name__ == "__main__":
     if isinstance(fileList, str):
         playlist = CSV_Extraction(downloadsPath + namePlaylistsDir, pathToMusic, fileList, v)
         counter += playlistFileCreation(pathToFinalPlaylist, playlist)
-        filesMissingPerPlaylist = (fileList + "\t-\t" + str(counter))
+        filesMissingPerPlaylistString = (fileList + "\t-\t" + str(counter))
 
     else:
         for i in fileList:
@@ -66,7 +66,7 @@ if __name__ == "__main__":
     filesMissingPerPlaylist.sort()
 
 
-    if isinstance(filesMissingPerPlaylist, list):
+    if len(filesMissingPerPlaylist) > 0:
 
         filesMissingPerPlaylist.sort()
         for i in filesMissingPerPlaylist:
