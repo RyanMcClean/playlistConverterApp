@@ -1,6 +1,7 @@
 import os
 import logging
 import threading
+from time import sleep
 
 from CSVtoArray import CSV_Extraction, selection
 from fileCreator import playlistFileCreation
@@ -26,7 +27,7 @@ if __name__ == "__main__":
     x = threading.Thread(target=musicCopy, args=(pathToOriginalMusic, pathToMusic))
     x.start()
 
-    time.sleep(0.5)
+    sleep(0.5)
     v = input("\nVerbose? y/n\n\n")
 
     # Download zipped file of spotify playlists
