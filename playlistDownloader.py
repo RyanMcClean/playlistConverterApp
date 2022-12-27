@@ -17,11 +17,6 @@ def playlistdownloader(downloadsPath):
     # Open web browser and clear downloads folder of zipped file (important for checks later on)
     driver = webdriver.Firefox()
     action = ActionChains(driver)
-    zippedFile = "spotify_playlists.zip"
-    try:
-        os.remove(downloadsPath + zippedFile)
-    except:
-        print("")
     # Maximise window and navigate to exportify and click login
     driver.get("https://watsonbox.github.io/exportify/")
     exportifyLogin = driver.find_element(By.ID, "loginButton")
