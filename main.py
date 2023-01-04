@@ -24,16 +24,17 @@ if __name__ == "__main__":
     os.system('cls' if os.name == 'nt' else 'clear')
 
     # move music from laptop to NAS
-    x = threading.Thread(target=musicCopy, args=(pathToOriginalMusic, pathToMusic))
-    x.start()
+    # x = threading.Thread(target=musicCopy, args=(pathToOriginalMusic, pathToMusic))
+    # x.start()
+    musicCopy(pathToOriginalMusic, pathToMusic)
 
     sleep(0.5)
     v = input("\nVerbose? y/n\n\n")
 
-    # Download zipped file of spotify playlists
-    y = threading.Thread(target=playlistdownloader, args=(downloadsPath,))
-    y.start()
-    # playlistdownloader(downloadsPath)
+    # # Download zipped file of spotify playlists
+    # y = threading.Thread(target=playlistdownloader, args=(downloadsPath,))
+    # y.start()
+    playlistdownloader(downloadsPath)
 
     # unzip playlists file
     unzipper(downloadsPath, downloadsPath + namePlaylistsDir)
