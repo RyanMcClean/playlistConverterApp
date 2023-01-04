@@ -31,9 +31,9 @@ if __name__ == "__main__":
     v = input("\nVerbose? y/n\n\n")
 
     # Download zipped file of spotify playlists
-    # y = threading.Thread(target=playlistdownloader, args=(downloadsPath,))
-    # y.start()
-    playlistdownloader(downloadsPath)
+    y = threading.Thread(target=playlistdownloader, args=(downloadsPath,))
+    y.start()
+    # playlistdownloader(downloadsPath)
 
     # unzip playlists file
     unzipper(downloadsPath, downloadsPath + namePlaylistsDir)
