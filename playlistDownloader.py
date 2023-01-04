@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 # This is the function to download a zip file of all the spotify playlists in a given account.
 # It takes advantage of selenium to run exportify.
 def playlistdownloader(downloadsPath):
-    os.environ['MOZ_HEADLESS'] = '1'
+    # os.environ['MOZ_HEADLESS'] = '1'
     load_dotenv()
     USERNAME = os.getenv("SPOTIFY_USERNAME")
     PASSWORD = os.getenv("SPOTIFY_PASSWORD")
@@ -35,11 +35,14 @@ def playlistdownloader(downloadsPath):
     # TAB to appropriate button and press enter (this exports all users playlists)
     i = 8
     print("\n\nWaiting for extraction of playlists and subsequent zip file download")
-    while i > 0:
-        action.send_keys(Keys.TAB).perform()
-        i -= 1
-        time.sleep(1)
-    action.send_keys(Keys.ENTER).perform()
+    exportAll = driver.find_element(By.XPATH, "/html/body/div[2]/div/div/table/thead/tr/th[7]/button")
+    action.move_to_element(exportAll).click(exportAll).perform()
+
+    # while i > 0:
+    #     action.send_keys(Keys.TAB).perform()
+    #     i -= 1
+    #     time.sleep(1)
+    # action.send_keys(Keys.ENTER).perform()
     print("\nStarting download of playlists\n")
     # Check to close browser only after the file exists and has had a few seconds to download.
     # On a slow connection this may be an issue
@@ -54,6 +57,8 @@ def playlistdownloader(downloadsPath):
         time.sleep(1)
         counter += 1
         print("Waiting " + str(counter) + "s", end="\r")
+        if counter >= 500:
+            fileExists = True
 
     # Check if zip file downlaoded after timeout
     if os.path.exists(downloadsPath+zippedFile):
