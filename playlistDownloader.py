@@ -2,38 +2,49 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
+import logging
 import time
-import os
+import os, traceback
 from dotenv import load_dotenv
 
 
 # This is the function to download a zip file of all the spotify playlists in a given account.
 # It takes advantage of selenium to run exportify.
 def playlistdownloader(downloadsPath):
+    logging.info("starting playlist download")
     try:
         os.environ['MOZ_HEADLESS'] = '1'
+        logging.info("Accepted headless load")
         load_dotenv()
         USERNAME = os.getenv("SPOTIFY_USERNAME")
         PASSWORD = os.getenv("SPOTIFY_PASSWORD")
         # Open web browser and clear downloads folder of zipped file (important for checks later on)
         driver = webdriver.Firefox()
         action = ActionChains(driver)
+        logging.info("Loaded webdriver")
         zippedFile = "spotify_playlists.zip"
 
         # Maximise window and navigate to exportify and click login
         driver.get("https://watsonbox.github.io/exportify/")
+        logging.info("Loaded site")
+        driver.set_window_size(2000, 2000)
         exportifyLogin = driver.find_element(By.ID, "loginButton")
+        logging.info("Found login button")
         action.move_to_element(exportifyLogin).click(exportifyLogin).perform()
         time.sleep(5)
+        logging.info("Pressed login")
         # Login to spotify
         spotifyUsername = driver.find_element(By.ID, "login-username")
         spotifyPassword = driver.find_element(By.ID, "login-password")
+        logging.info("Found username and password area")
         spotifyLoginButton = driver.find_element(By.ID, "login-button")
         spotifyUsername.send_keys(USERNAME)
         spotifyPassword.send_keys(PASSWORD)
+        logging.info("Filled in username and password")
         action.move_to_element(spotifyLoginButton).click(spotifyLoginButton).perform()
         time.sleep(5)
-        # TAB to appropriate button and press enter (this exports all users playlists)
+        logging.info("Pressed login")
+        # TAB to appropriate button and press enter (this exports all of the users playlists)
         i = 8
         print("\n\nWaiting for extraction of playlists and subsequent zip file download")
         exportAll = driver.find_element(By.XPATH, "/html/body/div[2]/div/div/table/thead/tr/th[7]/button")
@@ -82,5 +93,9 @@ def playlistdownloader(downloadsPath):
         # Close window
         driver.close()
 
-    except:
+    except Exception:
+        print(traceback.format_exc())
         print("Error downloading, moving on with script")
+        driver = webdriver.Firefox()
+        driver.close()
+

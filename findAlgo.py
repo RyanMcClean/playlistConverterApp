@@ -3,6 +3,8 @@ import logging
 from time import sleep
 
 def m4aFinder(artist, album, name, pathToMusic, v):
+    
+    prefix = "\\\\Omv\\nas\\Music\\"
 
     if v == "y":
         logging.info("Searching for Artist: " + artist + " Album: " + album + " Song: " + name + "\n")
@@ -19,8 +21,8 @@ def m4aFinder(artist, album, name, pathToMusic, v):
 
     artistDirs.sort()
     for num, i in enumerate(artistDirs):
-        # if v == "y":
-        #     logging.info("Checking artist " + i)
+        if v == "y":
+            logging.info("Checking artist " + i)
 
         artistCheck = i.replace(" ", "")
         artistCheck = artistCheck.replace("．", ".")
@@ -90,7 +92,7 @@ def m4aFinder(artist, album, name, pathToMusic, v):
                                     if songCheck.lower().endswith(name.lower()):
                                         if v == "y":
                                             logging.info("\n\nFound song " + k)
-                                        return "Music/" + i + "/" + j + "/" + k
+                                        return prefix + i + "\\" + j + "\\" + k
                                     elif v == "y":
                                         logging.info("The two songs that didn't match")
                                         logging.info(songCheck)
@@ -121,7 +123,7 @@ def m4aFinder(artist, album, name, pathToMusic, v):
                                         if songCheck.lower().endswith(name.lower()):
                                             if v == "y":
                                                 logging.info("\n\nFound song " + k + "/" + l)
-                                            return "Music/" + i + "/" + j + "/" + k + "/" + l
+                                            return prefix + i + "\\" + j + "\\" + k + "\\" + l
 
                     elif v == "y":
                         logging.info("The two that didn't match")

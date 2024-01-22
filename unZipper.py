@@ -1,6 +1,7 @@
 # This function unzips the spotify_playlist.zip file. It specifically targets that name
 # if the name of the file is altered this will not work.
 import os
+import logging
 import time
 from zipfile import ZipFile
 
@@ -14,7 +15,7 @@ def unzipper(zipFileLocation, unZipFileLocation):
             if file.endswith("playlists.zip"):
                 zipFileLocation = zipFileLocation + file
                 os.makedirs(unZipFileLocation, exist_ok=True)
-    # print (zipFileLocation)
+    logging.info(zipFileLocation)
     # This unzips the files into the location
     # The if statement prevents errors if the zip file did not download
     if os.path.isfile(zipFileLocation):
@@ -26,7 +27,7 @@ def unzipper(zipFileLocation, unZipFileLocation):
     check = ""
     for root, dirs, files in os.walk(zipFileLocationCopy):
         for dir in dirs:
-            # print (dir)
+            logging.info(dir)
             if dir.endswith("playlists"):
                 check = zipFileLocation.replace("spotify_playlists.zip", "") + dir
             else:

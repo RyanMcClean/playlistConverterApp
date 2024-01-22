@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 import os
 import logging
 import threading
@@ -19,14 +21,14 @@ playlist = []
 
 
 if __name__ == "__main__":
-    logging.basicConfig(filename = "/export/NAS/playlistConverterLog.txt", filemode = "w",
+    logging.basicConfig(filename = "/tmp/playlistConverterLog.txt", filemode = "w",
                         format = "%(name)s - %(levelname)s - %(message)s", level = logging.INFO)
     os.system('cls' if os.name == 'nt' else 'clear')
 
     # move music from laptop to NAS
-    # x = threading.Thread(target=musicCopy, args=(pathToOriginalMusic, pathToMusic))
-    # x.start()
-    musicCopy(pathToOriginalMusic, pathToMusic)
+    x = threading.Thread(target=musicCopy, args=(pathToOriginalMusic, pathToMusic))
+    x.start()
+    #musicCopy(pathToOriginalMusic, pathToMusic)
 
     sleep(0.5)
     v = input("\nVerbose? y/n\n\n")
