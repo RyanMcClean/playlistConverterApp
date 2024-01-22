@@ -33,7 +33,8 @@ def m4aFinder(artist, album, name, pathToMusic, v):
         artistCheck = artistCheck.replace("＂", "\"")
         artistCheck = artistCheck.replace("￤", "|")
         artistCheck = artistCheck.replace("＊", "*")
-
+        artistCheck = artistCheck.replace("＞", ">")
+        artistCheck = artistCheck.replace("＜", "<")
         if not i.lower().startswith(artist[0:1].lower()):
             if v == "y":
                 logging.info(i + " Not " + artist)
@@ -54,6 +55,8 @@ def m4aFinder(artist, album, name, pathToMusic, v):
                 albumCheck = albumCheck.replace("＂", "\"")
                 albumCheck = albumCheck.replace("￤", "|")
                 albumCheck = albumCheck.replace("＊", "*")
+                albumCheck = albumCheck.replace("＞", ">")
+                albumCheck = albumCheck.replace("＜", "<")
 
                 if not albumCheck.lower().startswith(album[0:1].lower()):
                     if v =="y":
@@ -81,6 +84,8 @@ def m4aFinder(artist, album, name, pathToMusic, v):
                                 songCheck = songCheck.replace("＂", "\"")
                                 songCheck = songCheck.replace("￤", "|")
                                 songCheck = songCheck.replace("＊", "*")
+                                songCheck = songCheck.replace("＞", ">")
+                                songCheck = songCheck.replace("＜", "<")
 
                                 if not songCheck.lower().endswith(name[len(name)-1:len(name)].lower()):
                                     if v == "y":
@@ -111,7 +116,8 @@ def m4aFinder(artist, album, name, pathToMusic, v):
                                     songCheck = songCheck.replace("＂", "\"")
                                     songCheck = songCheck.replace("￤", "|")
                                     songCheck = songCheck.replace("＊", "*")
-
+                                    songCheck = songCheck.replace("＞", ">")
+                                    songCheck = songCheck.replace("＜", "<")
 
                                     if not songCheck.lower().endswith(name[len(name)-1:len(name)].lower()):
                                         if v == "y":

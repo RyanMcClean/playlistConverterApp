@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="1429e8eb-fbd8-4b5f-9697-44bcc5b48d31" name="Changes" comment="Debug 179">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/playlistDownloader.py" beforeDir="false" afterPath="$PROJECT_DIR$/playlistDownloader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/findAlgo.py" beforeDir="false" afterPath="$PROJECT_DIR$/findAlgo.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,14 +103,7 @@
       <workItem from="1671972959790" duration="35399000" />
       <workItem from="1672112876685" duration="973000" />
       <workItem from="1672859943332" duration="2811000" />
-      <workItem from="1672875684026" duration="2996000" />
-    </task>
-    <task id="LOCAL-00430" summary="Debug 177">
-      <created>1672099204608</created>
-      <option name="number" value="00430" />
-      <option name="presentableId" value="LOCAL-00430" />
-      <option name="project" value="LOCAL" />
-      <updated>1672099204608</updated>
+      <workItem from="1672875684026" duration="3701000" />
     </task>
     <task id="LOCAL-00431" summary="Debug 177">
       <created>1672099295074</created>
@@ -448,7 +441,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672881485550</updated>
     </task>
-    <option name="localTasksCounter" value="479" />
+    <task id="LOCAL-00479" summary="Debug 179">
+      <created>1672883002316</created>
+      <option name="number" value="00479" />
+      <option name="presentableId" value="LOCAL-00479" />
+      <option name="project" value="LOCAL" />
+      <updated>1672883002316</updated>
+    </task>
+    <option name="localTasksCounter" value="480" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
