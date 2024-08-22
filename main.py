@@ -4,6 +4,7 @@ import os
 import logging
 import threading
 from time import sleep
+from collections import OrderedDict
 
 from CSVtoArray import CSV_Extraction, selection
 from fileCreator import playlistFileCreation
@@ -21,8 +22,9 @@ playlist = []
 
 
 if __name__ == "__main__":
-    logging.basicConfig(filename = "/tmp/playlistConverterLog.txt", filemode = "w",
-                        format = "%(name)s - %(levelname)s - %(message)s", level = logging.INFO)
+    # TODO Change logging levels so verbose mode changes logging level, would remove all the dumb if statements
+    logging.basicConfig(filename = "/home/ryan_urq/playlistCSVConverterApp/playlistConverterLog.txt", filemode = "w",
+                        format = "%(name)s - %(levelname)s - %(message)s", level = logging.DEBUG)
     os.system('cls' if os.name == 'nt' else 'clear')
 
     # move music from laptop to NAS
@@ -36,18 +38,16 @@ if __name__ == "__main__":
     # # Download zipped file of spotify playlists
     # y = threading.Thread(target=playlistdownloader, args=(downloadsPath,))
     # y.start()
-    playlistdownloader(downloadsPath)
+    # playlistdownloader(downloadsPath)
 
     # unzip playlists file
     unzipper(downloadsPath, downloadsPath + namePlaylistsDir)
 
 
-
-
     fileList = selection(downloadsPath + namePlaylistsDir)
     counter = 0
     loopCounter = 0
-    filesMissingPerPlaylist = []
+    filesMissingPerPlaylist = {}
 
     if isinstance(fileList, str):
         playlist = CSV_Extraction(downloadsPath + namePlaylistsDir, pathToMusic, fileList, v)
@@ -62,23 +62,23 @@ if __name__ == "__main__":
             playlist = CSV_Extraction(downloadsPath + namePlaylistsDir, pathToMusic, i, v)
             counterAdder = playlistFileCreation(pathToFinalPlaylist, playlist)
             if counterAdder > 0:
-                filesMissingPerPlaylist.append((str(counterAdder) + "\tsongs missing from:\t" + i))
+                filesMissingPerPlaylist.update({counterAdder: "songs missing from:\t" + i})
             counter += counterAdder
             os.system('cls' if os.name == 'nt' else 'clear')
 
     print(str(counter) + " total missing songs from library")
+    logging.info(str(counter) + " total missing songs from library")
 
-    filesMissingPerPlaylist.sort()
+    filesMissingPerPlaylist = OrderedDict(sorted(filesMissingPerPlaylist.items()))
 
 
     if len(filesMissingPerPlaylist) > 0:
 
-        filesMissingPerPlaylist.sort()
-        for i in filesMissingPerPlaylist:
-            print(i)
-            logging.info(i)
+        for key, value in filesMissingPerPlaylist.items():
+            print(f"{key} {value}")
+            logging.info(f"{key} {value}")
 
     else:
-        for i in filesMissingPerPlaylist:
-            print(i)
-            logging.info(i)
+        for key, value in filesMissingPerPlaylist.items():
+            print(f"{key} {value}")
+            logging.info(f"{key} {value}")

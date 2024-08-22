@@ -1,6 +1,7 @@
 import os
 import time
 import pandas as pd
+import logging
 from findAlgo import m4aFinder
 
 
@@ -44,14 +45,17 @@ def CSV_Extraction(CSVdirLoc, pathToMusic, fileList, v):
     # print (dfCount)
     while j < dfCount:
         print("%2d" %(((j/dfCount)*100)) + "%", end="\r")
-        songName = (str(df.loc[j, fields[0]]) + ".m4a")
+        songName = (str(df.loc[j, fields[0]]))
         artistName = str(df.loc[j, fields[1]])
         albumName = str(df.loc[j, fields[2]])
         # print(m4aFinder(artistName, albumName, songName, pathToMusic))
-        playlist.append(m4aFinder(artistName, albumName, songName, pathToMusic, v))
+        toAppend = m4aFinder(artistName, albumName, songName, pathToMusic, v)
+        if toAppend is None and v == "y": logging.info("Missing music: " + artistName + "/" + albumName + "/" + songName)
+        playlist.append(toAppend)
         j += 1
-        # for i in playlist:
-        #     print(i)
-        # print("\n\n\n")
+        if v == "y":
+            for i in playlist:
+                logging.info(i)
+#            time.sleep(10)
     print("Conversion complete, now creating file.\n")
     return playlist
