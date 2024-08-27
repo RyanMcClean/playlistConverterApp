@@ -2,3 +2,4 @@
 /.idea/.gitignore
 /geckodriver.log
 /playlists
+/playlistConverterLog.txt
