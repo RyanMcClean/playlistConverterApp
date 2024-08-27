@@ -1,101 +1,141 @@
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.action_chains import ActionChains
+import spotipy
+import os
+from time import sleep, time
 import logging
-import time
-import os, traceback
-from dotenv import load_dotenv
 
+wd = "/home/ryan_urq/playlistCSVConverterApp/RyansPlaylists/"
+clientId = "9f4eff74a2b642bf9cd72e7d32703774"
+clientSecret = "162dba3c134e4919bc992241618ccf0a"
+redirectURI = "https://spotify.com"
+scope = "user-library-read playlist-read-private playlist-read-collaborative"
+cachePath = "/home/ryan_urq/playlistCSVConverterApp/.cache"
+sleepTime = 5
+    
+def main():
+    logging.debug("Starting download of playlists via Spotify API")
+    spOauth = spotipy.SpotifyOAuth(client_id=clientId, client_secret=clientSecret, scope=scope, cache_path=cachePath, redirect_uri=redirectURI)
+    accessToken = spOauth.get_access_token(as_dict=False)
+    global sp, currentTime
 
-# This is the function to download a zip file of all the spotify playlists in a given account.
-# It takes advantage of selenium to run exportify.
-def playlistdownloader(downloadsPath):
-    logging.info("starting playlist download")
-    try:
-        os.environ['MOZ_HEADLESS'] = '1'
-        logging.info("Accepted headless load")
-        load_dotenv()
-        USERNAME = os.getenv("SPOTIFY_USERNAME")
-        PASSWORD = os.getenv("SPOTIFY_PASSWORD")
-        # Open web browser and clear downloads folder of zipped file (important for checks later on)
-        driver = webdriver.Firefox()
-        action = ActionChains(driver)
-        logging.info("Loaded webdriver")
-        zippedFile = "spotify_playlists.zip"
+    sp = spotipy.Spotify(accessToken, requests_timeout=20)
+    currentTime = int(time())
+    logging.info(f"Logged into Spotify as: {sp.current_user()['display_name']}")
+    getLikedSongs()
+    sleep(sleepTime)
+    getAllPlaylists()
 
-        # Maximise window and navigate to exportify and click login
-        driver.get("https://watsonbox.github.io/exportify/")
-        logging.info("Loaded site")
-        driver.set_window_size(2000, 2000)
-        exportifyLogin = driver.find_element(By.ID, "loginButton")
-        logging.info("Found login button")
-        action.move_to_element(exportifyLogin).click(exportifyLogin).perform()
-        time.sleep(5)
-        logging.info("Pressed login")
-        # Login to spotify
-        spotifyUsername = driver.find_element(By.ID, "login-username")
-        spotifyPassword = driver.find_element(By.ID, "login-password")
-        logging.info("Found username and password area")
-        spotifyLoginButton = driver.find_element(By.ID, "login-button")
-        spotifyUsername.send_keys(USERNAME)
-        spotifyPassword.send_keys(PASSWORD)
-        logging.info("Filled in username and password")
-        action.move_to_element(spotifyLoginButton).click(spotifyLoginButton).perform()
-        time.sleep(5)
-        logging.info("Pressed login")
-        # TAB to appropriate button and press enter (this exports all of the users playlists)
-        i = 8
-        print("\n\nWaiting for extraction of playlists and subsequent zip file download")
-        exportAll = driver.find_element(By.XPATH, "/html/body/div[2]/div/div/table/thead/tr/th[7]/button")
-        action.move_to_element(exportAll).click(exportAll).perform()
+def getAllPlaylists():
+    logging.debug('Checking all users playlists')
+    playlists = sp.current_user_playlists()
+    playlistList = os.listdir(wd)
+    modifier = 0
+    while playlists:
+        for i, playlist in enumerate(playlists['items']):
+            logging.debug(f"{i + 1 + modifier} - {playlist['uri']} - {playlist['name']} - {playlist['snapshot_id']}")
+            playlistName = playlist['name'].replace("/"," ").replace(".", "").strip()
+            if playlistName + ".txt" in playlistList:
+                with open(wd + playlistName + ".txt") as fp:
+                    logging.debug(f"{playlist['name']} file opened")
+                    for line in fp:
+                        if line.startswith("snapshot-"):
+                            logging.debug(f"Found snapshot in file: {fp.name}")
+                            if not line[:-1] == f"snapshot-{playlist['snapshot_id']}":
+                                logging.debug(f"Snapshots did not match: Found {line[:-1]} compared to snapshot-{playlist['snapshot_id']}")
+                                fp.close()
+                                os.remove(fp.name)
+                                logging.debug(f"Deleting file: {fp.name}")
+                                getSongsOfPlaylist(playlist['uri'], playlistName, playlist['snapshot_id'])
+                                break 
+                            else:
+                                logging.debug("Snapshots matched")
+                            break
+                        elif line is None:
+                            logging.debug(f"File {fp.name} does not contain snapshot ID, deleting file")
+                            fp.close()
+                            os.remove(fp.name)  
+                            getSongsOfPlaylist(playlist['uri'], playlistName, playlist['snapshot_id'])
+                            break
+            else:
+                logging.debug(f"File for {playlist['name']} did not exist")
+                getSongsOfPlaylist(playlist['uri'], playlistName, playlist['snapshot_id'])
+        if playlists['next']:
+            playlists = sp.next(playlists)
+            modifier += 50
+        else:
+            playlists = None
 
-        # while i > 0:
-        #     action.send_keys(Keys.TAB).perform()
-        #     i -= 1
-        #     time.sleep(1)
-        # action.send_keys(Keys.ENTER).perform()
-        print("\nStarting download of playlists\n")
-        # Check to close browser only after the file exists and has had a few seconds to download.
-        # On a slow connection this may be an issue
-        try:
-            os.remove(downloadsPath + zippedFile)
-        except:
-            print("")
-        fileExists = False
-        counter = 0
-        while not fileExists:
-            fileExists = os.path.exists(downloadsPath + zippedFile)
-            time.sleep(1)
-            counter += 1
-            if counter > 1000:
-                fileExists = True
+def getLikedSongs():
+    logging.debug("Checking Liked Songs")
+    if not os.path.exists(wd + "Liked Songs" + ".txt") or (currentTime - int(os.path.getmtime(wd + "Liked Songs" + ".txt"))) > 3600 * 48:
+        likedSongs = sp.current_user_saved_tracks()    
+        count = 1
+        toFile = ['Liked Songs']
+        while likedSongs:
+            for track in likedSongs['items']:
+                toFile.append(str(count) + ",," + track['track']['name'] + ",," + track['track']['album']['artists'][0]['name'] + ",," + track['track']['album']['name'])
+                count += 1
+            if likedSongs['next']:
+                sleep(sleepTime)
+                likedSongs = sp.next(likedSongs)
+            else:
+                likedSongs = None
+        makeFile(toFile)    
+    
+def makeFile(fileContents):
+    logging.debug(f"Making file: {fileContents[0]}.txt")
+    fp = open(wd + fileContents[0] + ".txt", 'w')
+    for i in fileContents:
+        fp.write(i)
+        fp.write("\n")
+    fp.close()
+    sleep(sleepTime)
+    
 
+def getSongsOfPlaylist(playlistID, playlistName, playlistSnapshotId):
+    playlistSongs = sp.playlist_items(playlistID)
+    count = 1
+    toFile = [playlistName, f"snapshot-{playlistSnapshotId}"]
+    while playlistSongs:
+        for track in playlistSongs['items']:
+            try:
+                if track['track'] is None:
+                    continue
+                elif track['track']['type'] == 'episode':
+                    toAppend = str(count) + ",," + "Podcast" + ",,"
+                    if 'show' in track['track'].keys():
+                        toAppend += track['track']['show']['name'] + ",,"
+                    else:
+                        toAppend += track['track']['album']['name'] + ",,"
+                    toAppend +=  track['track']['name'] 
+                elif track['track']['type'] == "track":
+                    toAppend = str(count) + ",,"
+                    if len(track['track']['album']['artists']) > 0:
+                        toAppend += track['track']['album']['artists'][0]['name']
+                    else:
+                        toAppend += track['track']['artists'][0]['name']
+                    toAppend += ",," + track['track']['album']['name']
+                    toAppend += ",," + track['track']['name']
+                if toFile:
+                    toFile.append(toAppend)
+                    count += 1
+                # if "Various Artists" in toFile:
+                #     logging.error(track)
+                #     exit(1)
+            except Exception as e:
+                import traceback;
+                logging.error(e)
+                logging.error(traceback.format_exc())
+                logging.error("Error on adding this track to list")
+                logging.error(track)
+                exit(1)
 
-        # Check if zip file downlaoded after timeout
-        if os.path.exists(downloadsPath+zippedFile):
-            print("Playlists downloaded\n\n")
-        # If zip file not found, check for old downloaded playlist data, if not found exit
-        elif not (os.path.exists(downloadsPath + zippedFile)):
-            print("Checking for old playlist information\n\n")
-            for root, dirs, files in os.walk(downloadsPath):
-                # print(dirs)
-                try:
-                    if dirs[0] is not None:
-                        for directory in dirs:
-                            # print("Directory = " + directory)
-                            if directory.contains("playlists"):
-                                print("Playlist download timed out. Continuing on old playlist information")
-                except:
-                    if files is not None:
-                        print("Error downloading, using old information.")
+        if playlistSongs['next']:
+            sleep(sleepTime)
+            playlistSongs = sp.next(playlistSongs)
+        else:
+            playlistSongs = None
+    makeFile(toFile)    
+            
 
-        # Close window
-        driver.close()
-
-    except Exception:
-        print(traceback.format_exc())
-        print("Error downloading, moving on with script")
-        driver = webdriver.Firefox()
-        driver.close()
-
+if __name__ == "__main__":
+    main()

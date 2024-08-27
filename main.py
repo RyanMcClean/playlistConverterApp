@@ -1,84 +1,79 @@
-#!/usr/bin/python3
+#!/usr/local/bin/python
 
 import os
 import logging
-import threading
-from time import sleep
 from collections import OrderedDict
+import argparse
+from time import sleep
 
-from CSVtoArray import CSV_Extraction, selection
+from PlaylistParser import Playlist_Extraction, selection
 from fileCreator import playlistFileCreation
-from musicMover import musicCopy
-from playlistDownloader import playlistdownloader
-from unZipper import unzipper
+from playlistDownloader import main as downloadPlaylists
 
-downloadsPath = "/home/ryan_urq/Downloads/"
-namePlaylistsDir = "spotify_playlists/"
+downloadsPath = "/home/ryan_urq/playlistCSVConverterApp/playlists/"
 pathToMusic = "/export/NAS/Music/"
 pathToFinalPlaylist = "/export/NAS/Playlists/"
-pathToOriginalMusic = "/mnt/windows-share/Users/ryan1/Music/Soggfy"
 playlist = []
 
-
-
 if __name__ == "__main__":
+    
+    parser = argparse.ArgumentParser(description='Convert some playlists.')
+    parser.add_argument('-v', action='store_true', help='set application to verbose mode')
+    parser.add_argument('-a', action='store_true', help='Convert all playlists')
+    parser.add_argument('select', metavar='N', type=int, nargs='?', default=0, help='Number of playlist to be converted, will override "-a" option')
+    args = parser.parse_args()
+    
     # TODO Change logging levels so verbose mode changes logging level, would remove all the dumb if statements
-    logging.basicConfig(filename = "/home/ryan_urq/playlistCSVConverterApp/playlistConverterLog.txt", filemode = "w",
-                        format = "%(name)s - %(levelname)s - %(message)s", level = logging.DEBUG)
+    if args.v:
+        logging.basicConfig(filename = "/home/ryan_urq/playlistCSVConverterApp/playlistConverterLog.txt", filemode="w",
+                        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.DEBUG)
+        logging.debug("Logging set to debug\n\n")
+    else:
+        logging.basicConfig(filename = "/home/ryan_urq/playlistCSVConverterApp/playlistConverterLog.txt", filemode="w",
+                        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO)
+        logging.info("Logging set to info\n\n")
+
+        
     os.system('cls' if os.name == 'nt' else 'clear')
 
-    # move music from laptop to NAS
-    x = threading.Thread(target=musicCopy, args=(pathToOriginalMusic, pathToMusic))
-    x.start()
-    #musicCopy(pathToOriginalMusic, pathToMusic)
+    downloadPlaylists()
+    
+    # fileList = selection(downloadsPath, args)
+    # counter = 0
+    # loopCounter = 0
+    # filesMissingPerPlaylist = {}
+    
+    # if isinstance(fileList, str):
+    #     playlist = Playlist_Extraction(downloadsPath, pathToMusic, fileList, pathToFinalPlaylist)
+    #     if isinstance(playlist, int):
+    #         counter = playlist
+    #     else:
+    #         counter += playlistFileCreation(pathToFinalPlaylist, playlist)
+    #     filesMissingPerPlaylist.update({counter: "songs missing from:\t" + fileList})
 
-    sleep(0.5)
-    v = input("\nVerbose? y/n\n\n")
+    # else:
+    #     os.system('cls' if os.name == 'nt' else 'clear')
+    #     for i in fileList:
+    #         loopCounter += 1
+    #         print("%2d" % ((loopCounter/len(os.listdir(downloadsPath)))*100) + "%")
+    #         print("Converting " + i)
+    #         playlist = Playlist_Extraction(downloadsPath, pathToMusic, i, pathToFinalPlaylist)
+    #         if isinstance(playlist, int):
+    #             counterAdder = playlist
+    #         else:
+    #             counterAdder = playlistFileCreation(pathToFinalPlaylist, playlist)
+    #         if counterAdder > 0:
+    #             filesMissingPerPlaylist.update({counterAdder: "songs missing from:\t" + i})
+    #         counter += counterAdder
+    #         logging.info(f"Converted:\t\"%s\"\tMissing %s songs", i, counterAdder)
+    #         os.system('cls' if os.name == 'nt' else 'clear')
 
-    # # Download zipped file of spotify playlists
-    # y = threading.Thread(target=playlistdownloader, args=(downloadsPath,))
-    # y.start()
-    # playlistdownloader(downloadsPath)
+    # logging.info(f"%s total missing songs from library", str(counter))
 
-    # unzip playlists file
-    unzipper(downloadsPath, downloadsPath + namePlaylistsDir)
-
-
-    fileList = selection(downloadsPath + namePlaylistsDir)
-    counter = 0
-    loopCounter = 0
-    filesMissingPerPlaylist = {}
-
-    if isinstance(fileList, str):
-        playlist = CSV_Extraction(downloadsPath + namePlaylistsDir, pathToMusic, fileList, v)
-        counter += playlistFileCreation(pathToFinalPlaylist, playlist)
-        filesMissingPerPlaylistString = (fileList + "\t-\t" + str(counter))
-
-    else:
-        for i in fileList:
-            loopCounter += 1
-            print("%2d" % ((loopCounter/len(os.listdir(downloadsPath + namePlaylistsDir)))*100) + "%")
-            print("Converting " + i)
-            playlist = CSV_Extraction(downloadsPath + namePlaylistsDir, pathToMusic, i, v)
-            counterAdder = playlistFileCreation(pathToFinalPlaylist, playlist)
-            if counterAdder > 0:
-                filesMissingPerPlaylist.update({counterAdder: "songs missing from:\t" + i})
-            counter += counterAdder
-            os.system('cls' if os.name == 'nt' else 'clear')
-
-    print(str(counter) + " total missing songs from library")
-    logging.info(str(counter) + " total missing songs from library")
-
-    filesMissingPerPlaylist = OrderedDict(sorted(filesMissingPerPlaylist.items()))
-
-
-    if len(filesMissingPerPlaylist) > 0:
-
-        for key, value in filesMissingPerPlaylist.items():
-            print(f"{key} {value}")
-            logging.info(f"{key} {value}")
-
-    else:
-        for key, value in filesMissingPerPlaylist.items():
-            print(f"{key} {value}")
-            logging.info(f"{key} {value}")
+    # filesMissingPerPlaylist = OrderedDict(sorted(filesMissingPerPlaylist.items()))
+    # if len(filesMissingPerPlaylist) > 0:
+    #     for key, value in filesMissingPerPlaylist.items():
+    #         print(f"{key} {value}")
+    #         logging.info(f"{key} {value}")
+            
+    logging.info("Application finished")
