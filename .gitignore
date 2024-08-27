@@ -1,5 +1,5 @@
 /.env
 /.idea/.gitignore
 /geckodriver.log
-/playlists
-/playlistConverterLog.txt
+/playlist*
+/playlistConverterLog.*
