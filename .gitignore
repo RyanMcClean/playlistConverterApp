@@ -1,5 +1,9 @@
 /.env
-/.idea/.gitignore
-/geckodriver.log
-playlist*/
-*.log
+/.idea/
+.gitignore
+/playlists/
+/RyansPlaylists/
+/*.log
+/.cache
+.vscode/
+/__pycache__/
