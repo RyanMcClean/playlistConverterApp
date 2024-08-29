@@ -15,6 +15,8 @@ jobs:
     runs-on: [self-hosted, linux, x64]
     container: 
       image: python:latest
+      volumes: 
+        - /home/ryan_urq/converterConfigs/:/converterConfigs
 
     steps:
     - uses: actions/checkout@v4
@@ -22,8 +24,7 @@ jobs:
       run: |
         git config --global --add safe.directory '*'
         git status
-        cp /home/ryan_urq/playlistCSVConverterApp/appSettings.json ./
-        cp /home/ryan_urq/playlistCSVConverterApp/.cache ./
+        cp /converterConfigs/* ./
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
         ./main.py -av
