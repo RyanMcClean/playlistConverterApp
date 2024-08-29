@@ -2,6 +2,7 @@
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
 
 name: Python application
+run-name: Basic run test
 
 on:
   push
@@ -11,12 +12,11 @@ permissions:
 
 jobs:
   build:
-
     runs-on: [self-hosted, linux, x64]
-
     steps:
     - name: Install dependencies and run
       run: |
+        git status
         cp /home/ryan_urq/playlistCSVConverterApp/appSettings.json ./
         cp /home/ryan_urq/playlistCSVConverterApp/.cache ./
         python -m pip install --upgrade pip
