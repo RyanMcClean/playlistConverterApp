@@ -5,12 +5,13 @@ from time import sleep
 
 def selection(args):
     if os.path.exists(settings.pathToPlaylistDownloads):
-        fileList = os.listdir(settings.pathToPlaylistDownloads)
+        pass
     else:
         os.makedirs(settings.pathToPlaylistDownloads)
         print("Playlist dir didn't exist. Waiting for playlist downloads")
         while len(os.listdir(settings.pathToPlaylistDownloads)) < 100:
             sleep(30)
+    fileList = os.listdir(settings.pathToPlaylistDownloads)
     file = ""
     fileList.sort()
     while len(settings.fileList) < 1:

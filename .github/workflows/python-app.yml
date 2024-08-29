@@ -13,6 +13,7 @@ permissions:
 jobs:
   build:
     runs-on: [self-hosted, linux, x64]
+    container: 
     steps:
     - uses: actions/checkout@v4
     - name: Install dependencies and run
