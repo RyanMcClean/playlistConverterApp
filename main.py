@@ -1,5 +1,3 @@
-#!./bin/python
-
 import os
 from collections import OrderedDict
 import argparse
