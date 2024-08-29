@@ -18,6 +18,7 @@ jobs:
     - uses: actions/checkout@v4
     - name: Install dependencies and run
       run: |
+        git config --global --add safe.directory /__w/playlistConverterApp/
         git status
         cp /home/ryan_urq/playlistCSVConverterApp/appSettings.json ./
         cp /home/ryan_urq/playlistCSVConverterApp/.cache ./
