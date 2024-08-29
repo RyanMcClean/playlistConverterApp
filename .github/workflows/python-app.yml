@@ -17,8 +17,8 @@ jobs:
     steps:
     - name: Install dependencies and run
       run: |
-        cp /home/ryan_urq/appsettings.json ./
-        cp /home/ryan_urq/.cache ./
+        cp /home/ryan_urq/playlistCSVConverterApp/appSettings.json ./
+        cp /home/ryan_urq/playlistCSVConverterApp/.cache ./
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
         ./main.py
