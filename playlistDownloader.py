@@ -27,6 +27,10 @@ def getAllPlaylists():
         playlists = sp.current_user_playlists()
     except Exception as e:
         logger.error(e)
+    if os.path.exists(settings.pathToPlaylistDownloads):
+        pass
+    else:
+        os.makedirs(settings.pathToPlaylistDownloads)
     playlistList = os.listdir(settings.pathToPlaylistDownloads)
     modifier = 0
     if not playlists is None:

@@ -1,13 +1,16 @@
 import os
 from findAlgo import m4aFinder
 import settings
+from time import sleep
 
 def selection(args):
     if os.path.exists(settings.pathToPlaylistDownloads):
         fileList = os.listdir(settings.pathToPlaylistDownloads)
     else:
-        print("Error, no playlist files found, exiting\n")
-        exit(1)
+        os.makedirs(settings.pathToPlaylistDownloads)
+        print("PLaylist dir didn't exist. Waiting for playlist downloads")
+        while (os.listdir(settings.pathToPlaylistDownloads)) < 100:
+            sleep(30)
     file = ""
     fileList.sort()
     while len(settings.fileList) < 1:
