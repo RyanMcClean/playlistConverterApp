@@ -1,4 +1,4 @@
-#!/usr/local/bin/python
+#!./bin/python
 
 import os
 from collections import OrderedDict
