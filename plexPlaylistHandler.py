@@ -6,7 +6,6 @@ import settings
 def main():
     global plex
     logger = settings.mainLog
-    plex = PlexServer(settings.plexBaseURL, settings.plexToken)
     playlistList = os.listdir(settings.convertedPlaylists)
     playlistList.sort()
     currentPlaylists = plex.playlists(playlistType='audio', sectionId=3)
@@ -21,10 +20,7 @@ def main():
         Playlist.create(server=plex, title=i[:-4], section='Music',m3ufilepath=settings.convertedPlaylists + i)
 
 def updateMusic():
+    plex = PlexServer(settings.plexBaseURL, settings.plexToken)
     musicSection = plex.library.sectionByID(3)
     musicSection.update()
 
-
-if __name__ == "__main__":
-    main()
-    
