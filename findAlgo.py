@@ -79,7 +79,7 @@ def matchStrings(input, matchAgainst, type, logger):
     input2 = sanatiseInput(matchAgainst).lower()
     ans = False
     if len(input1) > 0 and len(input2) > 0 and not input1[0] == input2[0]:
-        if type is "album":
+        if type == "album":
             logger.debug(f"\"%s\" does not match: \"%s\"", input, matchAgainst)
             logger.debug(f"\"%s\" does not match: \"%s\"", input1, input2)
         pass
