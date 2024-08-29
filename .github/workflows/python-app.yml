@@ -16,7 +16,7 @@ jobs:
     container: 
       image: python:latest
       volumes: 
-        - /home/ryan_urq/converterConfigs/:/converterConfigs
+        - /home/ryan_urq/converterConfigs/:/converterConfigs/
         - /export/NAS/Music:/export/NAS/Music
         - /export/NAS/Playlists/:/export/NAS/Playlists/
 
