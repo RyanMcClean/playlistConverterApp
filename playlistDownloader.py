@@ -4,7 +4,7 @@ from time import sleep, time
 import settings
 
 
-def main(v):
+def main():
     global sp, spOauth, accessToken, currentTime, logger
     logger = settings.downloadLog
     logger.debug("Starting download of playlists via Spotify API")
