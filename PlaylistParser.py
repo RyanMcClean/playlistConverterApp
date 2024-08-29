@@ -9,7 +9,7 @@ def selection(args):
     else:
         os.makedirs(settings.pathToPlaylistDownloads)
         print("Playlist dir didn't exist. Waiting for playlist downloads")
-        while (os.listdir(settings.pathToPlaylistDownloads)) < 100:
+        while len(os.listdir(settings.pathToPlaylistDownloads)) < 100:
             sleep(30)
     file = ""
     fileList.sort()
