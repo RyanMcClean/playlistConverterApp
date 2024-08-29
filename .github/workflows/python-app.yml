@@ -13,7 +13,11 @@ permissions:
 jobs:
   build:
     runs-on: [self-hosted, linux, x64]
-    container: python:latest
+    container: 
+      image: python:latest
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.github_token }}
     steps:
     - uses: actions/checkout@v4
     - name: Install dependencies and run
