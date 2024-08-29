@@ -141,6 +141,10 @@ def getLikedSongs():
         logger.debug("Liked songs file is too young to update")
     
 def makeFile(fileContents):
+    if os.path.exists(settings.pathToPlaylistDownloads):
+        pass
+    else:
+        os.makdirs(settings.pathToPlaylistDownloads)
     if len(fileContents) > 2:
         logger.debug(f"Making file: {fileContents[0]}.txt")
         fp = open(settings.pathToPlaylistDownloads + fileContents[0] + ".txt", 'w')
