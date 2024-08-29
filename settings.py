@@ -52,12 +52,12 @@ def init(appArgs):
         filesMissingPerPlaylist = {}
         
         if appArgs:
-            mainLog = setup_logger("Main logger", "/home/ryan_urq/playlistCSVConverterApp/playlistConverterLog.log", logging.DEBUG)
+            mainLog = setup_logger("Main logger", "./playlistConverterLog.log", logging.DEBUG)
             mainLog.debug("Logging set to debug\n\n")
-            downloadLog = setup_logger("Downloader logger", "/home/ryan_urq/playlistCSVConverterApp/playlistDownloaderLog.log", logging.DEBUG)
+            downloadLog = setup_logger("Downloader logger", "./playlistDownloaderLog.log", logging.DEBUG)
             downloadLog.debug("Logging set to debug\n\n")
         else:
-            mainLog = setup_logger("Main logger", "/home/ryan_urq/playlistCSVConverterApp/playlistConverterLog.log", logging.INFO)
+            mainLog = setup_logger("Main logger", "./playlistConverterLog.log", logging.INFO)
             mainLog.info("Logging set to info\n\n")
-            downloadLog = setup_logger("Downloader logger", "/home/ryan_urq/playlistCSVConverterApp/playlistDownloaderLog.log", logging.INFO)
+            downloadLog = setup_logger("Downloader logger", "./playlistDownloaderLog.log", logging.INFO)
             downloadLog.debug("Logging set to debug\n\n")

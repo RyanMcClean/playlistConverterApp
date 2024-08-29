@@ -17,6 +17,8 @@ jobs:
       image: python:latest
       volumes: 
         - /home/ryan_urq/converterConfigs/:/converterConfigs
+        - /export/NAS/Music:/export/NAS/Music
+        - /export/NAS/Playlists/:/export/NAS/Playlists/
 
     steps:
     - uses: actions/checkout@v4
