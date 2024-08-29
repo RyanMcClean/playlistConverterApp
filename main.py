@@ -28,14 +28,17 @@ if __name__ == "__main__":
     
     os.system('cls' if os.name == 'nt' else 'clear')
     
-    x = threading.Thread(target=downloadPlaylists, args=(args.v,))
-    x.daemon = args.d
-    try:
-        x.start()
-        updateMusic()
-    except Exception as e:
-        logger.error("Playlist download has errored, chances are it's just a rate-limit")
-        logger.error(e)
+    # x = threading.Thread(target=downloadPlaylists)
+    # x.daemon = args.d
+    # try:
+    #     x.start()
+    #     updateMusic()
+    # except Exception as e:
+    #     logger.error("Playlist download has errored, chances are it's just a rate-limit")
+    #     logger.error(e)
+    
+    updateMusic()
+    downloadPlaylists()
         
     selection(args)
     counter = 0
