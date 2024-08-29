@@ -4,6 +4,7 @@
 /playlists/
 /RyansPlaylists/
 /*.log
-/.cache
+/.cache*
 .vscode/
 /__pycache__/
+appSettings.json

@@ -1,98 +1,156 @@
 import spotipy
 import os
 from time import sleep, time
-import logging
+import settings
 
-wd = "/home/ryan_urq/playlistCSVConverterApp/RyansPlaylists/"
-clientId = "9f4eff74a2b642bf9cd72e7d32703774"
-clientSecret = "162dba3c134e4919bc992241618ccf0a"
-redirectURI = "https://spotify.com"
-scope = "user-library-read playlist-read-private playlist-read-collaborative"
-cachePath = "/home/ryan_urq/playlistCSVConverterApp/.cache"
-sleepTime = 5
-    
-def main():
-    logging.debug("Starting download of playlists via Spotify API")
-    spOauth = spotipy.SpotifyOAuth(client_id=clientId, client_secret=clientSecret, scope=scope, cache_path=cachePath, redirect_uri=redirectURI)
+
+def main(v):
+    global sp, spOauth, accessToken, currentTime, logger
+    logger = settings.downloadLog
+    logger.debug("Starting download of playlists via Spotify API")
+    spOauth = spotipy.SpotifyOAuth(client_id=settings.clientId, client_secret=settings.clientSecret, scope=settings.scope, cache_path=settings.cachePath, redirect_uri=settings.redirectURI)
     accessToken = spOauth.get_access_token(as_dict=False)
-    global sp, currentTime
 
-    sp = spotipy.Spotify(accessToken, requests_timeout=20)
+    sp = spotipy.Spotify(accessToken, requests_timeout=10, retries=0)
     currentTime = int(time())
-    logging.info(f"Logged into Spotify as: {sp.current_user()['display_name']}")
+    logger.info(f"Logged into Spotify as: {sp.current_user()['display_name']}")
     getLikedSongs()
-    sleep(sleepTime)
+    sleep(settings.sleepTime)
     getAllPlaylists()
+    logger.info("Finished downloading playlists")
+    
 
 def getAllPlaylists():
-    logging.debug('Checking all users playlists')
-    playlists = sp.current_user_playlists()
-    playlistList = os.listdir(wd)
+    logger.debug('Checking all users playlists')
+    playlists = []
+    try:
+        playlists = sp.current_user_playlists()
+    except Exception as e:
+        logger.error(e)
+    playlistList = os.listdir(settings.pathToPlaylistDownloads)
     modifier = 0
-    while playlists:
-        for i, playlist in enumerate(playlists['items']):
-            logging.debug(f"{i + 1 + modifier} - {playlist['uri']} - {playlist['name']} - {playlist['snapshot_id']}")
-            playlistName = playlist['name'].replace("/"," ").replace(".", "").strip()
-            if playlistName + ".txt" in playlistList:
-                with open(wd + playlistName + ".txt") as fp:
-                    logging.debug(f"{playlist['name']} file opened")
-                    for line in fp:
-                        if line.startswith("snapshot-"):
-                            logging.debug(f"Found snapshot in file: {fp.name}")
-                            if not line[:-1] == f"snapshot-{playlist['snapshot_id']}":
-                                logging.debug(f"Snapshots did not match: Found {line[:-1]} compared to snapshot-{playlist['snapshot_id']}")
-                                fp.close()
-                                os.remove(fp.name)
-                                logging.debug(f"Deleting file: {fp.name}")
-                                getSongsOfPlaylist(playlist['uri'], playlistName, playlist['snapshot_id'])
-                                break 
-                            else:
-                                logging.debug("Snapshots matched")
-                            break
-                        elif line is None:
-                            logging.debug(f"File {fp.name} does not contain snapshot ID, deleting file")
-                            fp.close()
-                            os.remove(fp.name)  
-                            getSongsOfPlaylist(playlist['uri'], playlistName, playlist['snapshot_id'])
-                            break
+    if not playlists is None:
+        while playlists:
+            for i, playlist in enumerate(playlists['items']):
+                if playlist['tracks']['total'] > 0:
+                    logger.debug(f"{i + 1 + modifier} - {playlist['uri']} - {playlist['name']} - {playlist['snapshot_id']} - Total tracks: {playlist['tracks']['total']}")
+                    playlistName = playlist['name']
+                    for i in ["/", ".", "\\", "<", ">", "?", "_", ":", "|"]:
+                        playlistName = playlistName.replace(i, "")
+                    playlistName = playlistName.strip() if len(playlistName) + len(settings.pathToPlaylistDownloads) < 143 else playlistName[0:(143 - len(settings.pathToPlaylistDownloads))].strip()
+                    if playlistName + ".txt" in playlistList:
+                        with open(settings.pathToPlaylistDownloads + playlistName + ".txt") as fp:
+                            logger.debug(f"{playlist['name']} file opened")
+                            for line in fp:
+                                if line.startswith("snapshot-"):
+                                    logger.debug(f"Found snapshot in file: {fp.name}")
+                                    if not line[:-1] == f"snapshot-{playlist['snapshot_id']}":
+                                        logger.debug(f"Snapshots did not match: Found {line[:-1]} compared to snapshot-{playlist['snapshot_id']}")
+                                        fp.close()
+                                        os.remove(fp.name)
+                                        logger.debug(f"Deleting file: {fp.name}")
+                                        getSongsOfPlaylist(playlist['uri'], playlistName, playlist['snapshot_id'])
+                                        break 
+                                    else:
+                                        logger.debug("Snapshots matched")
+                                    break
+                                elif line is None:
+                                    logger.debug(f"File {fp.name} does not contain snapshot ID, deleting file")
+                                    fp.close()
+                                    os.remove(fp.name)  
+                                    getSongsOfPlaylist(playlist['uri'], playlistName, playlist['snapshot_id'])
+                                    break
+                    else:
+                        logger.debug(f"File for {playlist['name']} did not exist")
+                        getSongsOfPlaylist(playlist['uri'], playlistName, playlist['snapshot_id'])
+            if playlists['next']:
+                try:
+                    sleep(settings.sleepTime)
+                    playlists = sp.next(playlists)
+                except Exception as e:
+                    if spOauth.is_token_expired(spOauth.get_cached_token()):
+                        refreshSpotify(sp, spOauth, accessToken)
+                        playlists = sp.next(playlists)
+                    else:
+                        logger.error(e)
+                        print(e)
+                        exit(1)
+                modifier += 50
             else:
-                logging.debug(f"File for {playlist['name']} did not exist")
-                getSongsOfPlaylist(playlist['uri'], playlistName, playlist['snapshot_id'])
-        if playlists['next']:
-            playlists = sp.next(playlists)
-            modifier += 50
-        else:
-            playlists = None
+                playlists = None
 
 def getLikedSongs():
-    logging.debug("Checking Liked Songs")
-    if not os.path.exists(wd + "Liked Songs" + ".txt") or (currentTime - int(os.path.getmtime(wd + "Liked Songs" + ".txt"))) > 3600 * 48:
+    logger.debug("Checking Liked Songs")
+    if not os.path.exists(settings.pathToPlaylistDownloads + "Liked Songs" + ".txt") or (currentTime - int(os.path.getmtime(settings.pathToPlaylistDownloads + "Liked Songs" + ".txt"))) > 3600 * 48:
         likedSongs = sp.current_user_saved_tracks()    
         count = 1
         toFile = ['Liked Songs']
         while likedSongs:
             for track in likedSongs['items']:
-                toFile.append(str(count) + ",," + track['track']['name'] + ",," + track['track']['album']['artists'][0]['name'] + ",," + track['track']['album']['name'])
-                count += 1
+                try:
+                    if track['track'] is None:
+                        continue
+                    elif track['track']['type'] == 'episode':
+                        toAppend = str(count) + ",," + "Podcast" + ",,"
+                        if 'show' in track['track'].keys():
+                            toAppend += track['track']['show']['name'] + ",,"
+                        else:
+                            toAppend += track['track']['album']['name'] + ",,"
+                        toAppend +=  track['track']['name'] 
+                    elif track['track']['type'] == "track":
+                        toAppend = str(count) + ",,"
+                        for i in track['track']['artists']:
+                            if len(i['name']) > 0 and not "Various Artists" in i['name']:
+                                toAppend += f"{i['name']}"
+                                break
+                        toAppend += ",," + track['track']['album']['name']
+                        toAppend += ",," + track['track']['name']
+                    if toFile:
+                        toFile.append(toAppend)
+                        count += 1
+                    if "Various Artists" in toAppend:
+                        logger.error(track)
+                        exit(1)
+                except Exception as e:
+                    import traceback;
+                    logger.error(e)
+                    logger.error(traceback.format_exc())
+                    logger.error("Error on adding this track to list")
+                    logger.error(track)
+                    exit(1)
             if likedSongs['next']:
-                sleep(sleepTime)
-                likedSongs = sp.next(likedSongs)
+                try:
+                    sleep(settings.sleepTime)
+                    likedSongs = sp.next(likedSongs)
+                except Exception as e:
+                    if spOauth.is_token_expired(spOauth.get_cached_token()):
+                        refreshSpotify(sp, spOauth, accessToken)
+                        likedSongs = sp.next(likedSongs)
+                    else:
+                        logger.error(e)
+                        print(e)
+                        exit(1)
             else:
                 likedSongs = None
         makeFile(toFile)    
+    else:
+        logger.debug("Liked songs file is too young to update")
     
 def makeFile(fileContents):
-    logging.debug(f"Making file: {fileContents[0]}.txt")
-    fp = open(wd + fileContents[0] + ".txt", 'w')
-    for i in fileContents:
-        fp.write(i)
-        fp.write("\n")
-    fp.close()
-    sleep(sleepTime)
+    if len(fileContents) > 2:
+        logger.debug(f"Making file: {fileContents[0]}.txt")
+        fp = open(settings.pathToPlaylistDownloads + fileContents[0] + ".txt", 'w')
+        for i in fileContents:
+            fp.write(i)
+            fp.write("\n")
+        fp.close()
+        sleep(settings.sleepTime)
+    else:
+        logger.error(f"Not creating a null file of: {fileContents[0]}.txt")
     
 
 def getSongsOfPlaylist(playlistID, playlistName, playlistSnapshotId):
-    playlistSongs = sp.playlist_items(playlistID)
+    playlistSongs = sp.playlist_items(playlistID, market="IE")
     count = 1
     toFile = [playlistName, f"snapshot-{playlistSnapshotId}"]
     while playlistSongs:
@@ -109,33 +167,46 @@ def getSongsOfPlaylist(playlistID, playlistName, playlistSnapshotId):
                     toAppend +=  track['track']['name'] 
                 elif track['track']['type'] == "track":
                     toAppend = str(count) + ",,"
-                    if len(track['track']['album']['artists']) > 0:
-                        toAppend += track['track']['album']['artists'][0]['name']
-                    else:
-                        toAppend += track['track']['artists'][0]['name']
+                    for i in track['track']['artists']:
+                        if len(i['name']) > 0 and not "Various Artists" in i['name']:
+                            toAppend += f"{i['name']}"
+                            break
                     toAppend += ",," + track['track']['album']['name']
                     toAppend += ",," + track['track']['name']
                 if toFile:
                     toFile.append(toAppend)
                     count += 1
-                # if "Various Artists" in toFile:
-                #     logging.error(track)
-                #     exit(1)
+                if "Various Artists" in toAppend:
+                    logger.error(track)
+                    exit(1)
             except Exception as e:
                 import traceback;
-                logging.error(e)
-                logging.error(traceback.format_exc())
-                logging.error("Error on adding this track to list")
-                logging.error(track)
+                logger.error(e)
+                logger.error(traceback.format_exc())
+                logger.error("Error on adding this track to list")
+                logger.error(track)
                 exit(1)
 
         if playlistSongs['next']:
-            sleep(sleepTime)
-            playlistSongs = sp.next(playlistSongs)
+            try:
+                sleep(settings.sleepTime)
+                playlistSongs = sp.next(playlistSongs)
+            except Exception as e:
+                if spOauth.is_token_expired(spOauth.get_cached_token()):
+                    refreshSpotify(sp, spOauth, accessToken)
+                    playlistSongs = sp.next(playlistSongs)
+                else:
+                    logger.error(e)
+                    print(e)
+                    exit(1)
         else:
             playlistSongs = None
     makeFile(toFile)    
-            
+       
+def refreshSpotify():
+    spOauth = spotipy.SpotifyOAuth(client_id=settings.clientId, client_secret=settings.clientSecret, scope=settings.scope, cache_path=settings.cachePath, redirect_uri=settings.redirectURI)
+    accessToken = spOauth.get_access_token(as_dict=False)
+    sp = spotipy.Spotify(accessToken, requests_timeout=10)
 
 if __name__ == "__main__":
     main()
