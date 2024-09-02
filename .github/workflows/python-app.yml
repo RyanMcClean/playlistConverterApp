@@ -23,19 +23,22 @@ jobs:
         - /export/NAS/Playlists/:/export/NAS/Playlists/
     steps:
     - uses: actions/checkout@v4
+
     - name: Prepare container
       run: |
         git config --global --add safe.directory '*'
         cp -v /converterConfigs/appSettings.json ./
         cp -v /converterConfigs/.cache ./
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install git+https://github.com/plamere/spotipy.git@master
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
     - name: Run app
       run: |
         ls -a
-        if [[ -f ./main.py && -f ./.cache && -f ./appSettings.json ]]; then python ./main.py -av; else echo "App ended with error code $?"; fi
+        if [[ -e ./main.py && -e ./.cache && -e ./appSettings.json ]]; then python ./main.py -av; else echo "App ended with error code $?"; fi
 
 
