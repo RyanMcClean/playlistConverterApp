@@ -10,7 +10,7 @@ def m4aFinder(artist, album, name, artistDirs):
     logger.debug("Searching for artist")
     check = len(pathToMusic)
     for i in artistDirs:        
-        if matchStrings(i, artist, "artist", logger):
+        if matchStrings(i, artist, "artist"):
             logger.debug(f"Found artist \"%s\"", i)
             
             pathToMusic += i + "/"
@@ -24,7 +24,7 @@ def m4aFinder(artist, album, name, artistDirs):
         return None
     logger.debug("Searching for album")
     for j in os.listdir(pathToMusic):
-        if matchStrings(j, album, "album", logger):
+        if matchStrings(j, album, "album"):
             logger.debug(f"Found album \"%s\"", j)
                 
             pathToMusic += j + "/"
@@ -43,7 +43,7 @@ def m4aFinder(artist, album, name, artistDirs):
         if os.path.isfile(pathToMusic + "/" + k) and k.endswith(('.ogg','.m4a','.mp3')):
             logger.debug(f"Path to file: %s%s", pathToMusic, k)
             songCheck = k.split(".", 1)[1].rsplit('.', 1)[0]
-            if matchStrings(songCheck, name, "song", logger):
+            if matchStrings(songCheck, name, "song"):
                 logger.debug(f"Found song \"%s/%s/%s\"", i, j, k)
                 return prefix + k
                 
@@ -55,7 +55,7 @@ def m4aFinder(artist, album, name, artistDirs):
                 logger.debug(f"Checking {pathToMusic}/{k}/{l}")
                 songCheck = l.split(".", 1)[1].rsplit('.', 1)[0]
 
-                if matchStrings(songCheck, name, "song", logger):
+                if matchStrings(songCheck, name, "song"):
                     logger.debug(f"Found song \"%s/%s/%s/%s\"", i, j, k, l)
                     return prefix + k + "/" + l
 
@@ -74,7 +74,8 @@ def sanatiseInput(input):
     input = input.replace("＜", "<")
     return input
 
-def matchStrings(input, matchAgainst, type, logger):
+def matchStrings(input, matchAgainst, type):
+    logger = settings.mainLog
     input1 = sanatiseInput(input).lower()
     input2 = sanatiseInput(matchAgainst).lower()
     ans = False
@@ -86,9 +87,6 @@ def matchStrings(input, matchAgainst, type, logger):
     elif input2 == input1:
         logger.debug(f"\"%s\" matches \"%s\"\n\n", input, matchAgainst)
         ans = True
-    # elif input2 in input1:
-    #     logger.debug(f"\"%s\" matches \"%s\"\n\n", input, matchAgainst)
-    #     ans = True
     else:
         logger.debug(f"\"%s\" does not match: \"%s\"", input, matchAgainst)
         logger.debug(f"\"%s\" does not match: \"%s\"", input1, input2)

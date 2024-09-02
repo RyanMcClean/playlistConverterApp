@@ -33,11 +33,14 @@ def getAllPlaylists():
         os.makedirs(settings.pathToPlaylistDownloads)
     playlistList = os.listdir(settings.pathToPlaylistDownloads)
     modifier = 0
+    totalPlaylists = playlists['total']
+    print("Downloading playlists from Spotify")
     if not playlists is None:
         while playlists:
-            for i, playlist in enumerate(playlists['items']):
+            for i, playlist in enumerate(playlists['items'], start=1):
+                print(f"Playlists Downloading: {int(((i + modifier)/totalPlaylists)*100)}%", end="\r")
                 if playlist['tracks']['total'] > 0:
-                    logger.debug(f"{i + 1 + modifier} - {playlist['uri']} - {playlist['name']} - {playlist['snapshot_id']} - Total tracks: {playlist['tracks']['total']}")
+                    logger.debug(f"{i + modifier} - {playlist['uri']} - {playlist['name']} - {playlist['snapshot_id']} - Total tracks: {playlist['tracks']['total']}")
                     playlistName = playlist['name']
                     for i in ["/", ".", "\\", "<", ">", "?", "_", ":", "|"]:
                         playlistName = playlistName.replace(i, "")

@@ -20,6 +20,7 @@ def main():
         Playlist.create(server=plex, title=i[:-4], section='Music',m3ufilepath=settings.convertedPlaylists + i)
 
 def updateMusic():
+    global plex
     plex = PlexServer(settings.plexBaseURL, settings.plexToken)
     musicSection = plex.library.sectionByID(3)
     musicSection.update()

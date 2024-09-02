@@ -75,10 +75,10 @@ if __name__ == "__main__":
     uploadPLaylistsToPlex()    
     print("Playlists uploaded to plex\n")
     
-    if not x.daemon:
-        while x.is_alive():
-            print("Waiting on thread to finish")
-            sleep(1)
+    # if not x.daemon:
+    #     while x.is_alive():
+    #         print("Waiting on thread to finish")
+    #         sleep(1)
             
     logger.info("Application finished")
     print("Application finished")
