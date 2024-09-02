@@ -38,7 +38,4 @@ jobs:
 
     - name: Run app
       run: |
-        ls -a
-        if [[ -e ./main.py && -a ./.cache && -e ./appSettings.json ]]; then python ./main.py -av; else echo "App ended with error code $?"; fi
-
-
+        if [[ -f ./main.py && -a ./.cache && -f ./appSettings.json ]]; then python ./main.py -av; else echo "App ended with error code $?"; fi
