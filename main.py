@@ -15,6 +15,7 @@ playlist = []
 
 
 if __name__ == "__main__":
+    print("Starting playlist app...")
     
     parser = argparse.ArgumentParser(description='Convert some playlists.')
     parser.add_argument('-v', action='store_true', help='set application to verbose mode')
