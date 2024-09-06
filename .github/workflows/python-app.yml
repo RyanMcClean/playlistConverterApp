@@ -38,5 +38,5 @@ jobs:
 
     - name: Run app
       run: |
-        if [ -f ./main.py -a ./.cache -a -f ./appSettings.json ]; then python ./main.py -a; 
+        if [ -f ./main.py -a ./.cache -a -f ./appSettings.json ]; then python ./main.py -aq; 
         else echo "App ended with error code $?"; fi

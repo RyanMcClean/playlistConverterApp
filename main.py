@@ -1,4 +1,4 @@
-import os
+import os, sys
 from collections import OrderedDict
 import argparse
 from time import sleep
@@ -17,12 +17,17 @@ playlist = []
 if __name__ == "__main__":
     
     parser = argparse.ArgumentParser(description='Convert some playlists.')
-    parser.add_argument('-v', action='store_true', help='set application to verbose mode')
+    parser.add_argument('-v', action='store_true', help='Set application to verbose mode, does not affect print amount')
     parser.add_argument('-a', action='store_true', help='Convert all playlists')
     parser.add_argument('-d', action='store_false', help='Download all playlists')
     parser.add_argument('select', metavar='N', type=int, nargs='?', default=0, help='Number of playlist to be converted, will override "-a" option')
+    parser.add_argument('-q', action='store_true', help='Set application in quiet mode, does not affect log level')
     args = parser.parse_args()
     
+    if not os.name == 'nt':
+        sys.stdout = open("/dev/null", "a")
+        sys.stderr = open("/dev/null", "a")
+
     settings.init(args.v)
     logger = settings.mainLog
     
