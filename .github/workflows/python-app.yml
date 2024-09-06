@@ -29,7 +29,7 @@ jobs:
     - name: Prepare container
       run: |
         git config --global --add safe.directory '*'
-        mv /toMove/* ./
+        cp -r /toMove/* ./
 
     - name: Install dependencies
       run: |
