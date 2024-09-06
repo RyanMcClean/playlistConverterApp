@@ -19,7 +19,7 @@ jobs:
         TERM: xterm-256color
       volumes: 
         - /home/ryan_urq/playlistCSVConverterApp/.cache:/converterConfigs/.cache
-        - /home/ryan_urq/playlistCSVConverterApp/appSettings.json:/converterConfigs/.cache
+        - /home/ryan_urq/playlistCSVConverterApp/appSettings.json:/converterConfigs/appSettings.json
         - /export/NAS/Music:/export/NAS/Music
         - /export/NAS/Playlists/:/export/NAS/Playlists/
     steps:
