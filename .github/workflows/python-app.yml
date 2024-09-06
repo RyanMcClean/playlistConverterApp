@@ -18,17 +18,18 @@ jobs:
       env:
         TERM: xterm-256color
       volumes: 
-        - /home/ryan_urq/playlistCSVConverterApp/.cache:/__w/playlistConverterApp/playlistConverterApp/.cache
-        - /home/ryan_urq/playlistCSVConverterApp/appSettings.json:/__w/playlistConverterApp/playlistConverterApp/appSettings.json
+        - /home/ryan_urq/playlistCSVConverterApp/.cache:/toMove/.cache
+        - /home/ryan_urq/playlistCSVConverterApp/appSettings.json:/toMove/appSettings.json
         - /export/NAS/Music/:/export/NAS/Music/
         - /export/NAS/Playlists/:/export/NAS/Playlists/
-        - /home/ryan_urq/playlistCSVConverterApp/playlists/:/__w/playlistConverterApp/playlistConverterApp/playlists/
+        - /home/ryan_urq/playlistCSVConverterApp/playlists/:/toMove/playlists/
     steps:
     - uses: actions/checkout@v4
 
     - name: Prepare container
       run: |
         git config --global --add safe.directory '*'
+        mv /toMove/* ./
 
     - name: Install dependencies
       run: |
