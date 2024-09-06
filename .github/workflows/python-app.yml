@@ -18,7 +18,8 @@ jobs:
       env:
         TERM: xterm-256color
       volumes: 
-        - /home/ryan_urq/converterConfigs/:/converterConfigs/
+        - /home/ryan_urq/playlistCSVConverterApp/.cache:/converterConfigs/.cache
+        - /home/ryan_urq/playlistCSVConverterApp/appSettings.json:/converterConfigs/.cache
         - /export/NAS/Music:/export/NAS/Music
         - /export/NAS/Playlists/:/export/NAS/Playlists/
     steps:
@@ -38,4 +39,5 @@ jobs:
 
     - name: Run app
       run: |
-        if [ -f ./main.py -a ./.cache -a -f ./appSettings.json ]; then python ./main.py -a; else echo "App ended with error code $?"; fi
+        if [ -f ./main.py -a ./.cache -a -f ./appSettings.json ]; then python ./main.py -a; 
+        else echo "App ended with error code $?"; fi
