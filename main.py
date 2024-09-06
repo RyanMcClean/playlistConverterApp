@@ -15,7 +15,6 @@ playlist = []
 
 
 if __name__ == "__main__":
-    print("Starting playlist app...")
     
     parser = argparse.ArgumentParser(description='Convert some playlists.')
     parser.add_argument('-v', action='store_true', help='set application to verbose mode')
@@ -31,17 +30,17 @@ if __name__ == "__main__":
     
     print("Starting playlist app...")
     
-    # x = threading.Thread(target=downloadPlaylists)
-    # x.daemon = args.d
-    # try:
-    #     x.start()
-    #     updateMusic()
-    # except Exception as e:
-    #     logger.error("Playlist download has errored, chances are it's just a rate-limit")
-    #     logger.error(e)
+    x = threading.Thread(target=downloadPlaylists)
+    x.daemon = args.d
+    try:
+        x.start()
+        updateMusic()
+    except Exception as e:
+        logger.error("Playlist download has errored, chances are it's just a rate-limit")
+        logger.error(e)
     
-    updateMusic()
-    downloadPlaylists()
+    # updateMusic()
+    # downloadPlaylists()
         
     selection(args)
     counter = 0
