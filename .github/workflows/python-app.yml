@@ -30,6 +30,7 @@ jobs:
         git config --global --add safe.directory '*'
         cp -v /converterConfigs/appSettings.json ./
         cp -v /converterConfigs/.cache ./
+        ls -r /
 
     - name: Install dependencies
       run: |
