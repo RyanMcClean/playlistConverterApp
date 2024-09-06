@@ -44,13 +44,16 @@ def Playlist_Extraction(fileName):
     logger.debug(f"Playlist extracting with args: {settings.pathToPlaylistDownloads}, {settings.pathToMusic}, {fileName}")
     fileName = fileName.strip()
     try:
-        if os.path.getmtime(settings.pathToPlaylistDownloads + fileName) < os.path.getmtime(settings.convertedPlaylists + fileName.replace("txt", "m3u8")):
+        downloadTime = os.path.getmtime(settings.pathToPlaylistDownloads + fileName)
+        convertTime = os.path.getmtime(settings.convertedPlaylists + fileName.replace("txt", "m3u"))
+        if downloadTime < convertTime:
             with open(settings.pathToPlaylistDownloads + fileName) as thing1:
-                with open(settings.convertedPlaylists + fileName.replace("txt", "m3u8")) as thing2:
+                with open(settings.convertedPlaylists + fileName.replace("txt", "m3u")) as thing2:
                     count = sum(1 for _ in thing1) - 2
-                    count -= sum(1 for _ in thing2)
+                    count -= sum(0.5 for _ in thing2)
                     if count == 0:
-                        return count
+                        logger.info(f"Playlist {fileName} is already fully converted, skipping")
+                        return int(count), int(count)
     except:
         pass
     playlist = []
@@ -67,10 +70,17 @@ def Playlist_Extraction(fileName):
             else:
                 print(f"{int((num/count)*100)}%", end="\r")
                 splitLine = line.split(",,")
-                artistName = splitLine[1]
-                albumName = splitLine[2]
-                songName = splitLine[3].replace("\n","")
-                toAppend = m4aFinder(artistName, albumName, songName, artistDirs)
+                if splitLine[1] == 'restricted':
+                    artistName = splitLine[2]
+                    albumName = splitLine[3]
+                    songName = splitLine[4].replace("\n","")
+                    toAppend = m4aFinder(artistName, albumName, songName, artistDirs)
+                    toAppend = toAppend if (not toAppend is None) else 'restricted'
+                else:
+                    artistName = splitLine[1]
+                    albumName = splitLine[2]
+                    songName = splitLine[3].replace("\n","")
+                    toAppend = m4aFinder(artistName, albumName, songName, artistDirs)
                 if toAppend is None: 
                     logger.error(f"Missing music: %s / %s / %s\n\n", artistName, albumName, songName)
                     missing+=1

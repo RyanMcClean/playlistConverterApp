@@ -97,15 +97,20 @@ def getLikedSongs():
                 try:
                     if track['track'] is None:
                         continue
-                    elif track['track']['type'] == 'episode':
-                        toAppend = str(count) + ",," + "Podcast" + ",,"
+                    toAppend = str(count) + ",," 
+                    if track['track'] is None or 'is_local' in track.keys() and track['track']['is_local']:
+                        continue
+                    if 'restrictions' in track['track'].keys(): 
+                        logger.error(track)
+                        toAppend += 'restricted' + ",,"
+                    if track['track']['type'] == 'episode':
+                        toAppend += "Podcast" + ",,"
                         if 'show' in track['track'].keys():
                             toAppend += track['track']['show']['name'] + ",,"
                         else:
                             toAppend += track['track']['album']['name'] + ",,"
                         toAppend +=  track['track']['name'] 
                     elif track['track']['type'] == "track":
-                        toAppend = str(count) + ",,"
                         for i in track['track']['artists']:
                             if len(i['name']) > 0 and not "Various Artists" in i['name']:
                                 toAppend += f"{i['name']}"
@@ -167,17 +172,23 @@ def getSongsOfPlaylist(playlistID, playlistName, playlistSnapshotId):
     while playlistSongs:
         for track in playlistSongs['items']:
             try:
+                toAppend = str(count) + ",,"
                 if track['track'] is None:
-                    continue
-                elif track['track']['type'] == 'episode':
-                    toAppend = str(count) + ",," + "Podcast" + ",,"
+                        continue
+                if 'is_local' in track['track'].keys():
+                    if track['track']['is_local']:
+                        continue
+                if 'restrictions' in track['track'].keys(): 
+                    logger.error(track)
+                    toAppend += 'restricted' + ",,"
+                if track['track']['type'] == 'episode':
+                    toAppend += "Podcast" + ",," if (len(toAppend) > 0) else str(count) + ",," + "Podcast" + ",,"
                     if 'show' in track['track'].keys():
                         toAppend += track['track']['show']['name'] + ",,"
                     else:
                         toAppend += track['track']['album']['name'] + ",,"
                     toAppend +=  track['track']['name'] 
                 elif track['track']['type'] == "track":
-                    toAppend = str(count) + ",,"
                     for i in track['track']['artists']:
                         if len(i['name']) > 0 and not "Various Artists" in i['name']:
                             toAppend += f"{i['name']}"

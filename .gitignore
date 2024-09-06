@@ -14,3 +14,4 @@ appSettings.json
 pyvenv.cfg
 /lib/
 lib64
+.venv/

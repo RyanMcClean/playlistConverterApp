@@ -5,3 +5,4 @@ PlexAPI==4.15.16
 redis==5.0.8
 requests==2.32.3
 urllib3==2.2.2
+spotipy==2.24.0

@@ -1,14 +1,15 @@
 import os
 import settings
 
-def m4aFinder(artist, album, name, artistDirs):
+def m4aFinder(artist, album, name, staticArtistDirs):
     logger = settings.mainLog
     pathToMusic = settings.pathToMusic
     prefix = ""
     logger.debug("Searching for Artist: " + artist + " Album: " + album + " Song: " + name + "\n")
     
+    artistDirs = [item for item in staticArtistDirs if len(item) > 0 and len(artist) > 0 and artist[0].lower() == item[0].lower()]
+    
     logger.debug("Searching for artist")
-    check = len(pathToMusic)
     for i in artistDirs:        
         if matchStrings(i, artist, "artist"):
             logger.debug(f"Found artist \"%s\"", i)
@@ -16,48 +17,42 @@ def m4aFinder(artist, album, name, artistDirs):
             pathToMusic += i + "/"
             prefix += i + "/"
             logger.debug(pathToMusic)
-            break
         
-    if check < len(pathToMusic):
-        check = len(pathToMusic)
-    else:
-        return None
-    logger.debug("Searching for album")
-    for j in os.listdir(pathToMusic):
-        if matchStrings(j, album, "album"):
-            logger.debug(f"Found album \"%s\"", j)
-                
-            pathToMusic += j + "/"
-            prefix += j + "/"
-            logger.debug(pathToMusic)
-            break
-    
-    if check < len(pathToMusic):
-        check = len(pathToMusic)
-    else:
-        return None
-    logger.debug("Searching for song or CD")
-    songOrCDPath = sorted(os.listdir(pathToMusic), key=len, reverse=True)
-    for k in songOrCDPath:
-        logger.debug(f"Checking %s%s", pathToMusic, k)
-        if os.path.isfile(pathToMusic + "/" + k) and k.endswith(('.ogg','.m4a','.mp3')):
-            logger.debug(f"Path to file: %s%s", pathToMusic, k)
-            songCheck = k.split(".", 1)[1].rsplit('.', 1)[0]
-            if matchStrings(songCheck, name, "song"):
-                logger.debug(f"Found song \"%s/%s/%s\"", i, j, k)
-                return prefix + k
-                
-        elif os.path.isdir(pathToMusic + "/" + k):
-            logger.debug(f"Path to directory: %s%s", pathToMusic, k)
+            logger.debug("Searching for album")
+            for j in os.listdir(pathToMusic):
+                if matchStrings(j, album, "album"):
+                    logger.debug(f"Found album \"%s\"", j)
+                        
+                    pathToMusic += j + "/"
+                    prefix += j + "/"
+                    logger.debug(pathToMusic)
+            
+                    logger.debug("Searching for song or CD")
+                    songOrCDPath = sorted(os.listdir(pathToMusic), key=len, reverse=True)
+                    for k in songOrCDPath:
+                        logger.debug(f"Checking %s%s", pathToMusic, k)
+                        if os.path.isfile(pathToMusic + "/" + k) and k.endswith(('.ogg','.m4a','.mp3')):
+                            logger.debug(f"Path to file: %s%s", pathToMusic, k)
+                            songCheck = k.split(".", 1)[1].rsplit('.', 1)[0]
+                            if matchStrings(songCheck, name, "song"):
+                                logger.debug(f"Found song \"%s/%s/%s\"", i, j, k)
+                                return prefix + k
+                                
+                        elif os.path.isdir(pathToMusic + "/" + k):
+                            logger.debug(f"Path to directory: %s%s", pathToMusic, k)
 
-            logger.debug("Searching for song in CD")
-            for l in os.listdir(pathToMusic + "/" + k):
-                logger.debug(f"Checking {pathToMusic}/{k}/{l}")
-                songCheck = l.split(".", 1)[1].rsplit('.', 1)[0]
+                            logger.debug("Searching for song in CD")
+                            for l in os.listdir(pathToMusic + "/" + k):
+                                logger.debug(f"Checking {pathToMusic}/{k}/{l}")
+                                songCheck = l.split(".", 1)[1].rsplit('.', 1)[0]
 
-                if matchStrings(songCheck, name, "song"):
-                    logger.debug(f"Found song \"%s/%s/%s/%s\"", i, j, k, l)
-                    return prefix + k + "/" + l
+                                if matchStrings(songCheck, name, "song"):
+                                    logger.debug(f"Found song \"%s/%s/%s/%s\"", i, j, k, l)
+                                    return prefix + k + "/" + l
+                    prefix = prefix.replace(j + "/", "")
+                    pathToMusic = pathToMusic.replace(j + "/", "")
+        prefix = ""
+        pathToMusic = settings.pathToMusic
 
     return None    
 
