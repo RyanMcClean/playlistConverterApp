@@ -1,4 +1,4 @@
-name: Python application
+name: Python Build, Run, and Test
 run-name: Build - Run - Test
 
 on:
