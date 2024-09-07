@@ -19,7 +19,7 @@ def init(appArgs):
     global pathToMusic, pathToPlaylistDownloads, convertedPlaylists, nonLocalMusicPath
     global clientId, clientSecret, redirectURI, scope, cachePath, sleepTime
     global plexBaseURL, plexToken
-    global wd, globalArgs
+    global wd, globalArgs, threaded
     global mainLog, downloadLog
     global fileList, filesMissingPerPlaylist
     wd = os.getcwd()
@@ -50,6 +50,7 @@ def init(appArgs):
         # App variables
         fileList = []
         filesMissingPerPlaylist = {}
+        threaded = appArgs.t
         
         # App arguments
         globalArgs = appArgs

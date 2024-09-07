@@ -15,9 +15,10 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Convert some playlists.')
     parser.add_argument('-v', action='store_true', help='Set application to verbose mode, does not affect print amount')
     parser.add_argument('-a', action='store_true', help='Convert all playlists')
-    parser.add_argument('-d', action='store_false', help='Download all playlists')
+    parser.add_argument('-d', action='store_false', help='Download all playlists, must be run with -t, or will have no effect')
     parser.add_argument('select', metavar='N', type=int, nargs='?', default=0, help='Number of playlist to be converted, will override "-a" option')
     parser.add_argument('-q', action='store_true', help='Set application in quiet mode, does not affect log level')
+    parser.add_argument('-t', action='store_true', help='Set application to download playlists from Spotify as a seperate thread')
     args = parser.parse_args()
     
     settings.init(args)
@@ -38,17 +39,19 @@ if __name__ == "__main__":
     # Start main app
     message("Starting playlist app...")
     
-    x = threading.Thread(target=downloadPlaylists)
-    x.daemon = args.d
-    try:
-        x.start()
+    if settings.threaded:
+        x = threading.Thread(target=downloadPlaylists)
+        x.daemon = args.d
+        try:
+            x.start()
+            updateMusic()
+            settings.threaded = True
+        except Exception as e:
+            logger.error("Playlist download has errored, chances are it's just a rate-limit")
+            logger.error(e)
+    else:
         updateMusic()
-    except Exception as e:
-        logger.error("Playlist download has errored, chances are it's just a rate-limit")
-        logger.error(e)
-    
-    # updateMusic()
-    # downloadPlaylists()
+        downloadPlaylists()
         
     selection(args)
     counter = 0

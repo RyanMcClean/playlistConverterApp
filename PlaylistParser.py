@@ -8,6 +8,9 @@ if settings.globalArgs.q:
 else:
     from settings import messageLoud as message
 
+logger = settings.mainLog
+
+
 def selection(args):
     if os.path.exists(settings.pathToPlaylistDownloads):
         pass
@@ -45,7 +48,6 @@ def selection(args):
                 fileList = os.listdir(settings.pathToPlaylistDownloads)
 
 def Playlist_Extraction(fileName):
-    logger = settings.mainLog
     logger.debug(f"Playlist extracting with args: {settings.pathToPlaylistDownloads}, {settings.pathToMusic}, {fileName}")
     fileName = fileName.strip()
     try:
