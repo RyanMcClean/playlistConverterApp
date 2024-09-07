@@ -15,7 +15,7 @@ def setup_logger(name, log_file, level):
 
     return logger
 
-def init(appArgs):
+def init(appArgs=None):
     global pathToMusic, pathToPlaylistDownloads, convertedPlaylists, nonLocalMusicPath
     global clientId, clientSecret, redirectURI, scope, cachePath, sleepTime
     global plexBaseURL, plexToken
@@ -50,12 +50,13 @@ def init(appArgs):
         # App variables
         fileList = []
         filesMissingPerPlaylist = {}
-        threaded = appArgs.t
+        threaded = appArgs.t if not appArgs is None else False
         
         # App arguments
         globalArgs = appArgs
 
-        if globalArgs.v:
+
+        if globalArgs is not None and globalArgs.v:
             mainLog = setup_logger("Main logger", "./playlistConverterLog.log", logging.DEBUG)
             mainLog.debug("Logging set to debug\n\n")
             downloadLog = setup_logger("Downloader logger", "./playlistDownloaderLog.log", logging.DEBUG)
