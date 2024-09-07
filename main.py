@@ -45,7 +45,6 @@ if __name__ == "__main__":
         try:
             x.start()
             updateMusic()
-            settings.threaded = True
         except Exception as e:
             logger.error("Playlist download has errored, chances are it's just a rate-limit")
             logger.error(e)

@@ -3,7 +3,7 @@ import os
 from time import sleep, time
 import settings
 
-if settings.globalArgs.q and not settings.threaded:
+if settings.globalArgs.q or settings.threaded:
     from settings import messageQuiet as message
 else:
     from settings import messageLoud as message
