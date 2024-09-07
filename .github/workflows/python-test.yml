@@ -8,7 +8,7 @@ permissions:
   contents: read
 
 jobs:
-  setup:
+  setup_test:
     runs-on: [self-hosted, linux, x64]
     container: 
       image: python:latest
@@ -34,20 +34,6 @@ jobs:
         pip install pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-  test:
-    needs: setup
-    runs-on: [self-hosted, linux, x64]
-    container: 
-      image: python:latest
-      env:
-        TERM: xterm-256color
-      volumes: 
-        - /home/ryan_urq/playlistCSVConverterApp/.cache:/toMove/.cache
-        - /home/ryan_urq/playlistCSVConverterApp/appSettings.json:/toMove/appSettings.json
-        - /export/NAS/Music/:/export/NAS/Music/
-        - /export/NAS/Playlists/:/export/NAS/Playlists/
-        - /home/ryan_urq/playlistCSVConverterApp/playlists/:/toMove/playlists/
-    steps:
     - name: Test with pytest
       run: |
         pytest
