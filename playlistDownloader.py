@@ -3,6 +3,10 @@ import os
 from time import sleep, time
 import settings
 
+if settings.globalArgs.q:
+    from settings import messageQuiet as message
+else:
+    from settings import messageLoud as message
 
 def main():
     global sp, spOauth, accessToken, currentTime, logger
@@ -27,6 +31,7 @@ def getAllPlaylists():
         playlists = sp.current_user_playlists()
     except Exception as e:
         logger.error(e)
+        message(e, 'error')
     if os.path.exists(settings.pathToPlaylistDownloads):
         pass
     else:
@@ -217,7 +222,7 @@ def getSongsOfPlaylist(playlistID, playlistName, playlistSnapshotId):
                         playlistSongs = sp.next(playlistSongs)
                     else:
                         logger.error(e)
-                        #print(e)
+                        message(e, 'error')
             else:
                 playlistSongs = None
         makeFile(toFile) 

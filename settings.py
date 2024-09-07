@@ -19,7 +19,7 @@ def init(appArgs):
     global pathToMusic, pathToPlaylistDownloads, convertedPlaylists, nonLocalMusicPath
     global clientId, clientSecret, redirectURI, scope, cachePath, sleepTime
     global plexBaseURL, plexToken
-    global wd
+    global wd, globalArgs
     global mainLog, downloadLog
     global fileList, filesMissingPerPlaylist
     wd = os.getcwd()
@@ -51,7 +51,10 @@ def init(appArgs):
         fileList = []
         filesMissingPerPlaylist = {}
         
-        if appArgs:
+        # App arguments
+        globalArgs = appArgs
+
+        if globalArgs.v:
             mainLog = setup_logger("Main logger", "./playlistConverterLog.log", logging.DEBUG)
             mainLog.debug("Logging set to debug\n\n")
             downloadLog = setup_logger("Downloader logger", "./playlistDownloaderLog.log", logging.DEBUG)
@@ -61,3 +64,28 @@ def init(appArgs):
             mainLog.info("Logging set to info\n\n")
             downloadLog = setup_logger("Downloader logger", "./playlistDownloaderLog.log", logging.INFO)
             downloadLog.debug("Logging set to debug\n\n")
+
+class color:
+    PURPLE = '\033[1;35;48m'
+    CYAN = '\033[1;36;48m'
+    BOLD = '\033[1;37;48m'
+    BLUE = '\033[1;34;48m'
+    GREEN = '\033[1;32;48m'
+    YELLOW = '\033[1;33;48m'
+    RED = '\033[1;31;48m'
+    BLACK = '\033[1;30;48m'
+    UNDERLINE = '\033[4;37;48m'
+    END = '\033[1;37;0m'
+
+
+
+def messageLoud(text, type='text'):
+    if type == 'text':
+        print(text)
+    elif type == 'percentage':
+        print(text, end='\r')
+    elif type == 'error':
+        print(color.RED + text + color.END)
+
+def messageQuiet(text, type=None):
+    pass
