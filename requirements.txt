@@ -1,0 +1,8 @@
+certifi==2024.7.4
+charset-normalizer==3.3.2
+idna==3.8
+PlexAPI==4.15.16
+redis==5.0.8
+requests==2.32.3
+urllib3==2.2.2
+spotipy==2.24.0

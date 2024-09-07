@@ -1,138 +1,88 @@
 import os
-import logging
-from time import sleep
+import settings
 
-def m4aFinder(artist, album, name, pathToMusic, v):
+def m4aFinder(artist, album, name, staticArtistDirs):
+    logger = settings.mainLog
+    pathToMusic = settings.pathToMusic
+    prefix = ""
+    logger.debug("Searching for Artist: " + artist + " Album: " + album + " Song: " + name + "\n")
     
-    prefix = "\\\\Omv\\nas\\Music\\"
-
-    if v == "y":
-        logging.info("Searching for Artist: " + artist + " Album: " + album + " Song: " + name + "\n")
-
-    artistDirs = os.listdir(pathToMusic)
-    firstArtist = artist.split(",")
-    if not firstArtist[0].endswith("\\"):
-        artist = firstArtist[0].replace(" ", "")
-    else:
-        artist = artist.replace("\\", "")
-    artist = artist.replace(" ", "")
-    album = album.replace(" ", "")
-    name = name.replace(" ", "")
-
-    artistDirs.sort()
-    for num, i in enumerate(artistDirs):
-        if v == "y":    logging.info("Checking artist " + i)
-
-        artistCheck = i.replace(" ", "")
-        artistCheck = artistCheck.replace("．", ".")
-        artistCheck = artistCheck.replace("：", ":")
-        artistCheck = artistCheck.replace("／", "/")
-        artistCheck = artistCheck.replace("？", "?")
-        artistCheck = artistCheck.replace("Æ", "Æ")
-        artistCheck = artistCheck.replace("＂", "\"")
-        artistCheck = artistCheck.replace("￤", "|")
-        artistCheck = artistCheck.replace("＊", "*")
-        artistCheck = artistCheck.replace("＞", ">")
-        artistCheck = artistCheck.replace("＜", "<")
-        if not i.lower().startswith(artist[0:1].lower()):
-            if v == "y":    logging.info(i + " Not " + artist)
-            continue
-        if artistCheck.lower().startswith(artist.lower()):
-            if v == "y":    logging.debug("Found artist " + i)
-            albumDirs = os.listdir(pathToMusic + "/" + i)
-
-            for num, j in enumerate(albumDirs):
-                if v=="y":  logging.info("Looking for album " + album)
-                
-                albumCheck = j.replace(" ", "")
-                albumCheck = albumCheck.replace("：", ":")
-                albumCheck = albumCheck.replace("／", "/")
-                albumCheck = albumCheck.replace("．", ".")
-                albumCheck = albumCheck.replace("？", "?")
-                albumCheck = albumCheck.replace("＂", "\"")
-                albumCheck = albumCheck.replace("￤", "|")
-                albumCheck = albumCheck.replace("＊", "*")
-                albumCheck = albumCheck.replace("＞", ">")
-                albumCheck = albumCheck.replace("＜", "<")
-
-                if not albumCheck.lower().startswith(album[0:1].lower()):
-                    if v =="y":
-                        logging.info("Album not " + albumCheck)
-                        logging.info(albumCheck)
-                        logging.info(album)
-                    continue
-                elif albumCheck.lower().startswith(album[0:2].lower()):
-                    if v=="y":
-                        logging.info("Album starts with " + j)
-                        logging.info("\n\n\tFound album " + j)
-                    songDir = os.listdir(pathToMusic + "/" + i + "/" + j)
-
-                    for num, k in enumerate(songDir):
-                        if v == "y":    logging.info("Checking song " + k)
-                        if os.path.isfile(pathToMusic + "/" + i + "/" + j + "/" + k):
-                            songCheck = k.replace(" ", "")
-                            songCheck = songCheck.replace("：", ":")
-                            songCheck = songCheck.replace("／", "/")
-                            songCheck = songCheck.replace("．", ".")
-                            songCheck = songCheck.replace("？", "?")
-                            songCheck = songCheck.replace("＂", "\"")
-                            songCheck = songCheck.replace("￤", "|")
-                            songCheck = songCheck.replace("＊", "*")
-                            songCheck = songCheck.replace("＞", ">")
-                            songCheck = songCheck.replace("＜", "<")
-                            if v == "y":    logging.info("Checking against " + songCheck)
-
-                            if not songCheck.lower().endswith(('.m4a' , '.ogg')):
-                                if v == "y":
-                                    logging.info("Song is: " + songCheck)
-                                    logging.info("Not correct file type\n\n")
-                                continue
-                            elif name.lower() in songCheck.lower():
-                                if v == "y":
-                                    logging.info("Song contains " + k)
-                                    logging.info("Comparing " + songCheck.lower()[0:len(songCheck)-4] + " with " + name.lower() + "\n\n")
-                                if songCheck.lower().split('.', 1)[1].startswith(name.lower()):
-                                    if v == "y":    logging.info("Found song " + k + "\n\n")
-                                    return prefix + i + "\\" + j + "\\" + k
-                                elif v == "y":
-                                    logging.info("The two songs that didn't match")
-                                    logging.info(songCheck)
-                                    logging.info(name)
-                        elif os.path.isdir(pathToMusic + "/" + i + "/" + j + "/" + k):
-                            cdDir = os.listdir(pathToMusic + "/" + i + "/" + j + "/" + k)
-
-                            for num, l in enumerate(cdDir):
-                                if v == "y":    logging.info("Checking song " + l)
+    artistDirs = [item for item in staticArtistDirs if len(item) > 0 and len(artist) > 0 and artist[0].lower() == item[0].lower()]
+    
+    logger.debug("Searching for artist")
+    for i in artistDirs:        
+        if matchStrings(i, artist, "artist"):
+            logger.debug(f"Found artist \"%s\"", i)
+            
+            pathToMusic += i + "/"
+            prefix += i + "/"
+            logger.debug(pathToMusic)
+        
+            logger.debug("Searching for album")
+            for j in os.listdir(pathToMusic):
+                if matchStrings(j, album, "album"):
+                    logger.debug(f"Found album \"%s\"", j)
+                        
+                    pathToMusic += j + "/"
+                    prefix += j + "/"
+                    logger.debug(pathToMusic)
+            
+                    logger.debug("Searching for song or CD")
+                    songOrCDPath = sorted(os.listdir(pathToMusic), key=len, reverse=True)
+                    for k in songOrCDPath:
+                        logger.debug(f"Checking %s%s", pathToMusic, k)
+                        if os.path.isfile(pathToMusic + "/" + k) and k.endswith(('.ogg','.m4a','.mp3')):
+                            logger.debug(f"Path to file: %s%s", pathToMusic, k)
+                            songCheck = k.split(".", 1)[1].rsplit('.', 1)[0]
+                            if matchStrings(songCheck, name, "song"):
+                                logger.debug(f"Found song \"%s/%s/%s\"", i, j, k)
+                                return prefix + k
                                 
-                                songCheck = l.replace(" ", "")
-                                songCheck = songCheck.replace("：", ":")
-                                songCheck = songCheck.replace("／", "/")
-                                songCheck = songCheck.replace("．", ".")
-                                songCheck = songCheck.replace("？", "?")
-                                songCheck = songCheck.replace("＂", "\"")
-                                songCheck = songCheck.replace("￤", "|")
-                                songCheck = songCheck.replace("＊", "*")
-                                songCheck = songCheck.replace("＞", ">")
-                                songCheck = songCheck.replace("＜", "<")
+                        elif os.path.isdir(pathToMusic + "/" + k):
+                            logger.debug(f"Path to directory: %s%s", pathToMusic, k)
 
-                                if not songCheck.lower().endswith(('.m4a' , '.ogg')):
-                                    if v == "y":    logging.info("Not " + l)
-                                    continue
-                                elif name.lower() in songCheck.lower():
-                                    if v == "y":    logging.info("Song ends with " + l)
-                                    if songCheck.lower().split('.', 1)[1].startswith(name.lower()):
-                                        if v == "y":    logging.info("\n\nFound song " + k + "/" + l + "\n\n")
-                                        return prefix + i + "\\" + j + "\\" + k + "\\" + l
+                            logger.debug("Searching for song in CD")
+                            for l in os.listdir(pathToMusic + "/" + k):
+                                logger.debug(f"Checking {pathToMusic}/{k}/{l}")
+                                songCheck = l.split(".", 1)[1].rsplit('.', 1)[0]
 
-                elif v == "y":
-                    logging.info("The two that didn't match")
-                    logging.info(albumCheck)
-                    logging.info(album)
+                                if matchStrings(songCheck, name, "song"):
+                                    logger.debug(f"Found song \"%s/%s/%s/%s\"", i, j, k, l)
+                                    return prefix + k + "/" + l
+                    prefix = prefix.replace(j + "/", "")
+                    pathToMusic = pathToMusic.replace(j + "/", "")
+        prefix = ""
+        pathToMusic = settings.pathToMusic
 
-        elif v == "y":
-            logging.info("The two that didn't match")
-            logging.info(artistCheck)
-            logging.info(artist)
+    return None    
 
-    if v == "y": logging.info("\n\n\n None found \n\n\n")
-    return None
+def sanatiseInput(input):
+    input = input.replace(" ", "")
+    input = input.replace("：", ":")
+    input = input.replace("／", "/")
+    input = input.replace("．", ".")
+    input = input.replace("？", "?")
+    input = input.replace("＂", "\"")
+    input = input.replace("￤", "|")
+    input = input.replace("＊", "*")
+    input = input.replace("＞", ">")
+    input = input.replace("＜", "<")
+    return input
+
+def matchStrings(input, matchAgainst, type):
+    logger = settings.mainLog
+    input1 = sanatiseInput(input).lower()
+    input2 = sanatiseInput(matchAgainst).lower()
+    ans = False
+    if len(input1) > 0 and len(input2) > 0 and not input1[0] == input2[0]:
+        if type == "album":
+            logger.debug(f"\"%s\" does not match: \"%s\"", input, matchAgainst)
+            logger.debug(f"\"%s\" does not match: \"%s\"", input1, input2)
+        pass
+    elif input2 == input1:
+        logger.debug(f"\"%s\" matches \"%s\"\n\n", input, matchAgainst)
+        ans = True
+    else:
+        logger.debug(f"\"%s\" does not match: \"%s\"", input, matchAgainst)
+        logger.debug(f"\"%s\" does not match: \"%s\"", input1, input2)
+    return ans
