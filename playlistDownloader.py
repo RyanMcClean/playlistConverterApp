@@ -3,21 +3,31 @@ import os
 from time import sleep, time
 import settings
 
+if settings.globalArgs.q or settings.threaded:
+    from settings import messageQuiet as message
+else:
+    from settings import messageLoud as message
+
+logger = settings.downloadLog
 
 def main():
-    global sp, spOauth, accessToken, currentTime, logger
-    logger = settings.downloadLog
+    global sp, spOauth, accessToken, currentTime
     logger.debug("Starting download of playlists via Spotify API")
-    spOauth = spotipy.SpotifyOAuth(client_id=settings.clientId, client_secret=settings.clientSecret, scope=settings.scope, cache_path=settings.cachePath, redirect_uri=settings.redirectURI)
-    accessToken = spOauth.get_access_token(as_dict=False)
+    try:
+        spOauth = spotipy.SpotifyOAuth(client_id=settings.clientId, client_secret=settings.clientSecret, scope=settings.scope, cache_path=settings.cachePath, redirect_uri=settings.redirectURI)
+        accessToken = spOauth.get_access_token(as_dict=False)
 
-    sp = spotipy.Spotify(accessToken, requests_timeout=10, retries=0)
-    currentTime = int(time())
-    logger.info(f"Logged into Spotify as: {sp.current_user()['display_name']}")
-    getLikedSongs()
-    sleep(settings.sleepTime)
-    getAllPlaylists()
-    logger.info("Finished downloading playlists")
+        sp = spotipy.Spotify(accessToken, requests_timeout=10, retries=0)
+        currentTime = int(time())
+        logger.info(f"Logged into Spotify as: {sp.current_user()['display_name']}")
+        getLikedSongs()
+        sleep(settings.sleepTime)
+        getAllPlaylists()
+        logger.info("Finished downloading playlists")
+    except Exception as e:
+        logger.error(e)
+        message(e, 'error')
+
     
 
 def getAllPlaylists():
@@ -27,6 +37,7 @@ def getAllPlaylists():
         playlists = sp.current_user_playlists()
     except Exception as e:
         logger.error(e)
+        message(e, 'error')
     if os.path.exists(settings.pathToPlaylistDownloads):
         pass
     else:
@@ -34,11 +45,11 @@ def getAllPlaylists():
     playlistList = os.listdir(settings.pathToPlaylistDownloads)
     modifier = 0
     totalPlaylists = playlists['total']
-    #print("Downloading playlists from Spotify")
+    message("Downloading playlists from Spotify")
     if not playlists is None:
         while playlists:
             for i, playlist in enumerate(playlists['items'], start=1):
-                #print(f"Playlists Downloading: {int(((i + modifier)/totalPlaylists)*100)}%", end="\r")
+                message(f"Playlists Downloading: {int(((i + modifier)/totalPlaylists)*100)}%", 'percentage')
                 if playlist['tracks']['total'] > 0:
                     logger.debug(f"{i + modifier} - {playlist['uri']} - {playlist['name']} - {playlist['snapshot_id']} - Total tracks: {playlist['tracks']['total']}")
                     playlistName = playlist['name']
@@ -80,7 +91,7 @@ def getAllPlaylists():
                         playlists = sp.next(playlists)
                     else:
                         logger.error(e)
-                        #print(e)
+                        message(e, 'error')
                 modifier += 50
             else:
                 playlists = None
@@ -139,7 +150,7 @@ def getLikedSongs():
                         likedSongs = sp.next(likedSongs)
                     else:
                         logger.error(e)
-                        #print(e)
+                        message(e, 'error')
             else:
                 likedSongs = None
         makeFile(toFile)    
@@ -217,7 +228,7 @@ def getSongsOfPlaylist(playlistID, playlistName, playlistSnapshotId):
                         playlistSongs = sp.next(playlistSongs)
                     else:
                         logger.error(e)
-                        #print(e)
+                        message(e, 'error')
             else:
                 playlistSongs = None
         makeFile(toFile) 

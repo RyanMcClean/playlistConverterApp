@@ -3,11 +3,6 @@ from collections import OrderedDict
 import argparse
 from time import sleep
 import threading
-
-from PlaylistParser import Playlist_Extraction, selection
-from fileCreator import playlistFileCreation
-from playlistDownloader import main as downloadPlaylists
-from plexPlaylistHandler import updateMusic, main as uploadPLaylistsToPlex
 import settings
 
 
@@ -15,37 +10,47 @@ playlist = []
 
 
 if __name__ == "__main__":
-    
+
+    # Set up for app
     parser = argparse.ArgumentParser(description='Convert some playlists.')
     parser.add_argument('-v', action='store_true', help='Set application to verbose mode, does not affect print amount')
     parser.add_argument('-a', action='store_true', help='Convert all playlists')
-    parser.add_argument('-d', action='store_false', help='Download all playlists')
+    parser.add_argument('-d', action='store_false', help='Download all playlists, must be run with -t, or will have no effect')
     parser.add_argument('select', metavar='N', type=int, nargs='?', default=0, help='Number of playlist to be converted, will override "-a" option')
     parser.add_argument('-q', action='store_true', help='Set application in quiet mode, does not affect log level')
+    parser.add_argument('-t', action='store_true', help='Set application to download playlists from Spotify as a seperate thread')
     args = parser.parse_args()
     
-    if not os.name == 'nt':
-        sys.stdout = open("/dev/null", "a")
-        sys.stderr = open("/dev/null", "a")
+    settings.init(args)
+    from PlaylistParser import Playlist_Extraction, selection
+    from fileCreator import playlistFileCreation
+    from playlistDownloader import main as downloadPlaylists
+    from plexPlaylistHandler import updateMusic, main as uploadPLaylistsToPlex
+    
+    if args.q:
+        from settings import messageQuiet as message
+    else:
+        from settings import messageLoud as message
 
-    settings.init(args.v)
     logger = settings.mainLog
     
     os.system('cls' if os.name == 'nt' else 'clear')
     
-    print("Starting playlist app...")
+    # Start main app
+    message("Starting playlist app...")
     
-    x = threading.Thread(target=downloadPlaylists)
-    x.daemon = args.d
-    try:
-        x.start()
+    if settings.threaded:
+        x = threading.Thread(target=downloadPlaylists)
+        x.daemon = args.d
+        try:
+            x.start()
+            updateMusic()
+        except Exception as e:
+            logger.error("Playlist download has errored, chances are it's just a rate-limit")
+            logger.error(e)
+    else:
         updateMusic()
-    except Exception as e:
-        logger.error("Playlist download has errored, chances are it's just a rate-limit")
-        logger.error(e)
-    
-    # updateMusic()
-    # downloadPlaylists()
+        downloadPlaylists()
         
     selection(args)
     counter = 0
@@ -53,8 +58,8 @@ if __name__ == "__main__":
     os.system('cls' if os.name == 'nt' else 'clear')
     counterAdder = 0
     for num, i in enumerate(settings.fileList, start=0):
-        if len(settings.fileList) > 1: print("%2d" % (((num)/len(settings.fileList))*100) + "%")
-        print("Converting " + i[:-4])
+        if len(settings.fileList) > 1: message("%2d" % (((num)/len(settings.fileList))*100) + "%")
+        message("Converting " + i[:-4])
         playlist, counterAdder = Playlist_Extraction(i)
         if isinstance(playlist, int):
             counterAdder += playlist
@@ -70,22 +75,22 @@ if __name__ == "__main__":
 
     if len(settings.fileList) > 1:
         logger.info(f"%s total missing songs from library", str(counter))
-        print(f"{str(counter)} total missing songs from library")
+        message(f"{str(counter)} total missing songs from library")
 
     settings.filesMissingPerPlaylist = OrderedDict(sorted(settings.filesMissingPerPlaylist.items()))
     if len(settings.filesMissingPerPlaylist) > 0:
         for key, value in settings.filesMissingPerPlaylist.items():
-            print(f"{key} {value}")
+            message(f"{key} {value}")
             logger.info(f"{key} {value}")
 
-    print("\nUploading playlists to plex")
+    message("\nUploading playlists to plex")
     uploadPLaylistsToPlex()    
-    print("Playlists uploaded to plex\n")
+    message("Playlists uploaded to plex\n")
     
     # if not x.daemon:
     #     while x.is_alive():
-    #         print("Waiting on thread to finish")
+    #         message("Waiting on thread to finish")
     #         sleep(1)
             
     logger.info("Application finished")
-    print("Application finished")
+    message("Application finished")

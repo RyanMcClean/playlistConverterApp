@@ -3,12 +3,20 @@ from findAlgo import m4aFinder
 import settings
 from time import sleep
 
+if settings.globalArgs.q:
+    from settings import messageQuiet as message
+else:
+    from settings import messageLoud as message
+
+logger = settings.mainLog
+
+
 def selection(args):
     if os.path.exists(settings.pathToPlaylistDownloads):
         pass
     else:
         os.makedirs(settings.pathToPlaylistDownloads)
-        print("Playlist dir didn't exist. Waiting for playlist downloads")
+        message("Playlist dir didn't exist. Waiting for playlist downloads")
         while len(os.listdir(settings.pathToPlaylistDownloads)) < 100:
             sleep(30)
     fileList = os.listdir(settings.pathToPlaylistDownloads)
@@ -16,7 +24,7 @@ def selection(args):
     fileList.sort()
     while len(settings.fileList) < 1:
         for num, f in enumerate(fileList):
-            print(str(num + 1) + ". " + f)
+            message(str(num + 1) + ". " + f)
         if args.select == 0:
             selection = "all" if args.a else input("\nPlease input a playlist number to convert,"
                           "\n\tif you wish to convert all files,"
@@ -25,22 +33,21 @@ def selection(args):
             selection = args.select
         if isinstance(selection, str) and selection.lower() == "all":
             os.system('cls' if os.name == 'nt' else 'clear')
-            print("Converting " + str(len(fileList)) + " files")
+            message("Converting " + str(len(fileList)) + " files")
             settings.fileList = fileList
         elif isinstance(selection, str) and selection.isdigit() or isinstance(selection, int):
             for num, f in enumerate(fileList):
                 if (int(selection) - 1) == num:
                     os.system('cls' if os.name == 'nt' else 'clear')
-                    print("Converting only " + f[:-4])
+                    message("Converting only " + f[:-4])
                     file = [f]
                     settings.fileList = file
         else:
-            print("\nUser input did not match expected. \n\n\tError. \n\nPlease try again.")
+            message("\nUser input did not match expected. \n\n\tError. \n\nPlease try again.")
             if os.path.exists(settings.pathToPlaylistDownloads):
                 fileList = os.listdir(settings.pathToPlaylistDownloads)
 
 def Playlist_Extraction(fileName):
-    logger = settings.mainLog
     logger.debug(f"Playlist extracting with args: {settings.pathToPlaylistDownloads}, {settings.pathToMusic}, {fileName}")
     fileName = fileName.strip()
     try:
@@ -68,7 +75,7 @@ def Playlist_Extraction(fileName):
             if not ",," in line or "snapshot" in line:
                 pass
             else:
-                print(f"{int((num/count)*100)}%", end="\r")
+                message(f"{int((num/count)*100)}%", 'percentage')
                 splitLine = line.split(",,")
                 if splitLine[1] == 'restricted':
                     artistName = splitLine[2]
