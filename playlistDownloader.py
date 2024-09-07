@@ -13,16 +13,21 @@ logger = settings.downloadLog
 def main():
     global sp, spOauth, accessToken, currentTime
     logger.debug("Starting download of playlists via Spotify API")
-    spOauth = spotipy.SpotifyOAuth(client_id=settings.clientId, client_secret=settings.clientSecret, scope=settings.scope, cache_path=settings.cachePath, redirect_uri=settings.redirectURI)
-    accessToken = spOauth.get_access_token(as_dict=False)
+    try:
+        spOauth = spotipy.SpotifyOAuth(client_id=settings.clientId, client_secret=settings.clientSecret, scope=settings.scope, cache_path=settings.cachePath, redirect_uri=settings.redirectURI)
+        accessToken = spOauth.get_access_token(as_dict=False)
 
-    sp = spotipy.Spotify(accessToken, requests_timeout=10, retries=0)
-    currentTime = int(time())
-    logger.info(f"Logged into Spotify as: {sp.current_user()['display_name']}")
-    getLikedSongs()
-    sleep(settings.sleepTime)
-    getAllPlaylists()
-    logger.info("Finished downloading playlists")
+        sp = spotipy.Spotify(accessToken, requests_timeout=10, retries=0)
+        currentTime = int(time())
+        logger.info(f"Logged into Spotify as: {sp.current_user()['display_name']}")
+        getLikedSongs()
+        sleep(settings.sleepTime)
+        getAllPlaylists()
+        logger.info("Finished downloading playlists")
+    except Exception as e:
+        logger.error(e)
+        message(e, 'error')
+
     
 
 def getAllPlaylists():
