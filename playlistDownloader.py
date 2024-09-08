@@ -182,6 +182,7 @@ def getSongsOfPlaylist(playlistID, playlistName, playlistSnapshotId):
         while playlistSongs:
             for track in playlistSongs['items']:
                 try:
+                    logger.debug(track)
                     toAppend = str(count) + ",,"
                     if track['track'] is None:
                             continue
