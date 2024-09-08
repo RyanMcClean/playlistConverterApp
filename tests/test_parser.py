@@ -18,7 +18,8 @@ def test_selection(args):
     settings.init(args)
     import PlaylistParser
     PlaylistParser.selection(args)
-    shouldBe = os.listdir(settings.pathToPlaylistDownloads)
-    shouldBe.sort()
+    expectedList = os.listdir(settings.pathToPlaylistDownloads)
+    expectedList.sort()
     for num, i in enumerate(settings.fileList, start=0):
-        assert i == shouldBe[num]
+        assert i == expectedList[num]
+
