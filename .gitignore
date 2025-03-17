@@ -2,6 +2,7 @@
 /.idea/
 .gitignore
 /playlists/
+/Playlists/
 /RyansPlaylists/
 /*.log
 /.cache*
@@ -15,3 +16,4 @@ pyvenv.cfg
 /lib/
 lib64
 .venv/
+/env

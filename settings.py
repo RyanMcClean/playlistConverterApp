@@ -86,7 +86,7 @@ def messageLoud(text, type='text'):
     elif type == 'percentage':
         print(text, end='\r')
     elif type == 'error':
-        print(color.RED + text + color.END)
+        print(color.RED + str(text) + color.END)
 
 def messageQuiet(text, type=None):
     pass
