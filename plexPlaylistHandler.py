@@ -28,14 +28,18 @@ def main():
         message(f"{int((num/len(playlistList))*100)}%", 'percentage')
         try:
             Playlist.create(server=plex, title=i[:-4], section='Music', m3ufilepath=settings.convertedPlaylists + i)
-        except Exception:
-            pass
+        except Exception as e:
+            try:
+                Playlist.create(server=plex, title=i[:-4], section='Music', m3ufilepath=settings.nonLocalConvertedPlaylists + i)
+            except Exception as e:
+                pass
         sleep(5)
 
 def updateMusic():
     try:
         global plex
         plex = PlexServer(settings.plexBaseURL, settings.plexToken, timeout=60)
+        plexLibrary = plex.library.sections()
         musicSection = plex.library.sectionByID(3)
         musicSection.update()
     except Exception as e:

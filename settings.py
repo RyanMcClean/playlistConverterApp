@@ -16,7 +16,7 @@ def setup_logger(name, log_file, level):
     return logger
 
 def init(appArgs):
-    global pathToMusic, pathToPlaylistDownloads, convertedPlaylists, nonLocalMusicPath
+    global pathToMusic, pathToPlaylistDownloads, convertedPlaylists, nonLocalMusicPath, nonLocalConvertedPlaylists
     global clientId, clientSecret, redirectURI, scope, cachePath, sleepTime
     global plexBaseURL, plexToken
     global wd, globalArgs, threaded
@@ -32,6 +32,7 @@ def init(appArgs):
         pathToPlaylistDownloads = pathConfig['downloadPlaylists']
         convertedPlaylists = pathConfig['convertPlaylists']
         nonLocalMusicPath = pathConfig['nonLocalMusic']
+        nonLocalConvertedPlaylists = pathConfig['nonLocalConvertedPlaylists']
         
         # Spotify API Variables
         spotifyConfig = data['spotifyAPIConfig']

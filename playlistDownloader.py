@@ -98,10 +98,12 @@ def getAllPlaylists():
 
 def getLikedSongs():
     logger.debug("Checking Liked Songs")
-    if not os.path.exists(settings.pathToPlaylistDownloads + "Liked Songs" + ".txt") or (currentTime - int(os.path.getmtime(settings.pathToPlaylistDownloads + "Liked Songs" + ".txt"))) > 3600 * 48:
+    if not os.path.exists(settings.pathToPlaylistDownloads + sp.current_user()['display_name'] + 
+                          " Liked Songs" + ".txt") or (currentTime - int(os.path.getmtime(settings.pathToPlaylistDownloads + sp.current_user()['display_name'] + 
+                                                                                          " Liked Songs" + ".txt"))) > 3600 * 48:
         likedSongs = sp.current_user_saved_tracks()    
         count = 1
-        toFile = ['Liked Songs']
+        toFile = [sp.current_user()['display_name'] + ' Liked Songs']
         while likedSongs:
             for track in likedSongs['items']:
                 try:

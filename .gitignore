@@ -3,6 +3,7 @@
 .gitignore
 /playlists/
 /Playlists/
+/DownloadedPlaylists/
 /RyansPlaylists/
 /*.log
 /.cache*
