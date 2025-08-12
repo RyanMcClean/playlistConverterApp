@@ -23,49 +23,53 @@ def init(appArgs):
     global mainLog, downloadLog
     global fileList, filesMissingPerPlaylist
     wd = os.getcwd()
-    with open("./appSettings.json") as file:
-        data = json.load(file)
-        
-        # Path variables
-        pathConfig = data['pathConfig']
-        pathToMusic = pathConfig['music']
-        pathToPlaylistDownloads = pathConfig['downloadPlaylists']
-        convertedPlaylists = pathConfig['convertPlaylists']
-        nonLocalMusicPath = pathConfig['nonLocalMusic']
-        nonLocalConvertedPlaylists = pathConfig['nonLocalConvertedPlaylists']
-        
-        # Spotify API Variables
-        spotifyConfig = data['spotifyAPIConfig']
-        clientId = spotifyConfig['clientId']
-        clientSecret = spotifyConfig['clientSecret']
-        redirectURI = spotifyConfig['redirectURI']
-        scope = spotifyConfig['scope']
-        cachePath = spotifyConfig['cachePath']
-        sleepTime = spotifyConfig['sleepTime']
-        
-        # Plex variables
-        plexConfig = data['plexConfig']
-        plexBaseURL = plexConfig['baseURL']
-        plexToken = plexConfig['token']
-        
-        # App variables
-        fileList = []
-        filesMissingPerPlaylist = {}
-        threaded = appArgs.t
-        
-        # App arguments
-        globalArgs = appArgs
+    try:
+        with open("./appSettings.json") as file:
+            data = json.load(file)
+            
+            # Path variables
+            pathConfig = data['pathConfig']
+            pathToMusic = pathConfig['music']
+            pathToPlaylistDownloads = pathConfig['downloadPlaylists']
+            convertedPlaylists = pathConfig['convertPlaylists']
+            nonLocalMusicPath = pathConfig['nonLocalMusic']
+            nonLocalConvertedPlaylists = pathConfig['nonLocalConvertedPlaylists']
+            
+            # Spotify API Variables
+            spotifyConfig = data['spotifyAPIConfig']
+            clientId = spotifyConfig['clientId']
+            clientSecret = spotifyConfig['clientSecret']
+            redirectURI = spotifyConfig['redirectURI']
+            scope = spotifyConfig['scope']
+            cachePath = spotifyConfig['cachePath']
+            sleepTime = spotifyConfig['sleepTime']
+            
+            # Plex variables
+            plexConfig = data['plexConfig']
+            plexBaseURL = plexConfig['baseURL']
+            plexToken = plexConfig['token']
+            
+            # App variables
+            fileList = []
+            filesMissingPerPlaylist = {}
+            threaded = appArgs.t
+            
+            # App arguments
+            globalArgs = appArgs
 
-        if globalArgs.v:
-            mainLog = setup_logger("Main logger", "./playlistConverterLog.log", logging.DEBUG)
-            mainLog.debug("Logging set to debug\n\n")
-            downloadLog = setup_logger("Downloader logger", "./playlistDownloaderLog.log", logging.DEBUG)
-            downloadLog.debug("Logging set to debug\n\n")
-        else:
-            mainLog = setup_logger("Main logger", "./playlistConverterLog.log", logging.INFO)
-            mainLog.info("Logging set to info\n\n")
-            downloadLog = setup_logger("Downloader logger", "./playlistDownloaderLog.log", logging.INFO)
-            downloadLog.debug("Logging set to debug\n\n")
+            if globalArgs.v:
+                mainLog = setup_logger("Main logger", "./playlistConverterLog.log", logging.DEBUG)
+                mainLog.debug("Logging set to debug\n\n")
+                downloadLog = setup_logger("Downloader logger", "./playlistDownloaderLog.log", logging.DEBUG)
+                downloadLog.debug("Logging set to debug\n\n")
+            else:
+                mainLog = setup_logger("Main logger", "./playlistConverterLog.log", logging.INFO)
+                mainLog.info("Logging set to info\n\n")
+                downloadLog = setup_logger("Downloader logger", "./playlistDownloaderLog.log", logging.INFO)
+                downloadLog.debug("Logging set to debug\n\n")
+    except FileNotFoundError:
+        print("Error: appSettings.json not found. Please create the file with the required settings.")
+        exit(1)
 
 class color:
     PURPLE = '\033[1;35;48m'
