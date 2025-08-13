@@ -1,13 +1,13 @@
 from plexapi.server import PlexServer
 from plexapi.playlist import Playlist
 import os
-import settings
+import helpers.settings as settings
 from time import sleep
 
 if settings.globalArgs.q:
-    from settings import messageQuiet as message
+    from helpers.settings import message_quiet as message
 else:
-    from settings import messageLoud as message
+    from helpers.settings import message_loud as message
 
 logger = settings.mainLog
 

@@ -1,12 +1,12 @@
 import spotipy
 import os
 from time import sleep, time
-import settings
+import helpers.settings as settings
 
 if settings.globalArgs.q or settings.threaded:
-    from settings import messageQuiet as message
+    from helpers.settings import message_quiet as message
 else:
-    from settings import messageLoud as message
+    from helpers.settings import message_loud as message
 
 logger = settings.downloadLog
 
