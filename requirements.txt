@@ -1,2 +1,5 @@
 PlexAPI
 spotipy
+tidalapi
+pylint
+pytest

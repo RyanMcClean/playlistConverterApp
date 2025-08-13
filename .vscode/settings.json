@@ -1,0 +1,34 @@
+{
+    "python.languageServer": "Pylance",
+    "python.analysis.diagnosticSeverityOverrides": {
+        "reportMissingModuleSource": "none",
+        "reportShadowedImports": "none"
+    },
+    "cSpell.words": [
+        "abstractproperty",
+        "argparse",
+        "asdict",
+        "booleaness",
+        "classmethod",
+        "contextlib",
+        "contextmanager",
+        "docstrings",
+        "inlinevar",
+        "isort",
+        "ixin",
+        "metaclass",
+        "msvs",
+        "mymodule",
+        "mypackage",
+        "mypy",
+        "noqa",
+        "nosec",
+        "optparse",
+        "overgeneral",
+        "parseable",
+        "pygtk",
+        "rgxs",
+        "typealias",
+        "typevar"
+    ]
+}
