@@ -7,7 +7,6 @@
 /RyansPlaylists/
 /*.log
 /.cache*
-.vscode/
 /__pycache__/
 appSettings.json
 /bin/
