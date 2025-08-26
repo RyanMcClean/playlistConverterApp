@@ -6,6 +6,7 @@ import argparse
 import threading
 from helpers.settings import AppSettings
 from file_handlers.file_creator import PlaylistFileCreator
+from file_handlers.playlist_parser import PlaylistParser
 
 playlist = []
 
@@ -13,23 +14,29 @@ if __name__ == "__main__":
 
     # Set up for app
     parser = argparse.ArgumentParser(description='Convert some playlists.')
-    parser.add_argument('-v', action='store_true', help='Set application to verbose mode, ' \
-    'does not affect print amount')
+    parser.add_argument('-v', action='store_true', help='Set application to verbose mode, '
+                        'does not affect print amount')
     parser.add_argument('-a', action='store_true', help='Convert all playlists')
-    parser.add_argument('-d', action='store_false', help='Download all playlists, must be run ' \
-    'with -t, or will have no effect')
-    parser.add_argument('select', metavar='N', type=int, nargs='?', default=0, help='Number of ' \
-    'playlist to be converted, will override "-a" option')
-    parser.add_argument('-q', action='store_true', help='Set application in quiet mode, does ' \
-    'not affect log level')
-    parser.add_argument('-t', action='store_true', help='Set application to download ' \
-    'playlists from Spotify as a separate thread')
+    parser.add_argument('-d', action='store_false', help='Download all playlists, must be run '
+                        'with -t, or will have no effect')
+    parser.add_argument('select', metavar='N', type=int, nargs='?', default=0, help='Number of '
+                        'playlist to be converted, will override "-a" option')
+    parser.add_argument('-q', action='store_true', help='Set application in quiet mode, does '
+                        'not affect log level')
+    parser.add_argument('-t', action='store_true', help='Set application to download '
+                        'playlists from Spotify as a separate thread')
     args = parser.parse_args()
 
     settings = AppSettings(args)
     settings.setup_app_args()
     file_creator = PlaylistFileCreator(settings.converted_playlists)
-    from file_handlers.playlist_parser import playlist_extraction, selection
+    playlist_parser = PlaylistParser(
+        logger=settings.main_log,
+        playlist_downloads_path=settings.path_to_playlist_downloads,
+        message=settings.message,
+        path_to_music=settings.path_to_music,
+        converted_playlists_path=settings.converted_playlists
+    )
     from spotify.playlistDownloader import main as downloadPlaylists
     from plex.plexPlaylistHandler import updateMusic, main as uploadPLaylistsToPlex
 
@@ -53,16 +60,15 @@ if __name__ == "__main__":
         updateMusic()
         downloadPlaylists()
 
-    selection(args)
     COUNTER = 0
 
     os.system('cls' if os.name == 'nt' else 'clear')
     COUNTER_ADDER = 0
     for num, i in enumerate(settings.file_list, start=0):
         if len(settings.file_list) > 1:
-            settings.message(f"{(((num)/len(settings.file_list))*100)}%")
+            settings.message(f"{(((num) / len(settings.file_list)) * 100)}%")
         settings.message(f"Converting {i[:-4]}")
-        playlist, COUNTER_ADDER = playlist_extraction(i)
+        playlist, COUNTER_ADDER = playlist_parser.playlist_extraction(i, args)
         if isinstance(playlist, int):
             COUNTER_ADDER += playlist
         else:
@@ -73,7 +79,6 @@ if __name__ == "__main__":
         logger.info("Converted:\t\"%s\"\tMissing %s songs\n\n", i, COUNTER_ADDER)
         if len(settings.file_list) > 1:
             os.system('cls' if os.name == 'nt' else 'clear')
-
 
     if len(settings.file_list) > 1:
         logger.info("%s total missing songs from library", str(COUNTER))

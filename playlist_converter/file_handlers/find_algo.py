@@ -3,10 +3,11 @@
 import os
 from logging import Logger
 
+
 class SearchAlgorithm:
     """Class to handle searching for music files"""
 
-    def __init__(self, music_root_path: str="", logger: Logger=NotImplemented):
+    def __init__(self, music_root_path: str = "", logger: Logger = NotImplemented):
         """Constructor for the search algorithm
 
         Args:
@@ -29,15 +30,15 @@ class SearchAlgorithm:
         input_string = input_string.replace("＜", "<")
         return input_string
 
-    def match_strings(self, input_string: str, match_against: str, string_type:str):
-        """Match two strings, returns true if they match, 
+    def match_strings(self, input_string: str, match_against: str, string_type: str):
+        """Match two strings, returns true if they match,
         use differing rules based on the type of strings to match"""
         logger = self.logger
         input_string_1 = self.sanatise_input(input_string).lower()
         input_string_2 = self.sanatise_input(match_against).lower()
         ans = False
         if (len(input_string_1) > 0 and len(input_string_2) > 0
-        and not input_string_1[0] == input_string_2[0]):
+                and not input_string_1[0] == input_string_2[0]):
             if string_type == "album":
                 logger.debug("\"%s\" does not match: \"%s\"", input_string, match_against)
                 logger.debug("\"%s\" does not match: \"%s\"", input_string_1, input_string_2)
@@ -57,7 +58,7 @@ class SearchAlgorithm:
         logger.debug("Searching for Artist: %s Album: %s Song: %s\n", artist, album, name)
 
         artist_dirs = [item for item in static_artist_dirs if len(item) > 0
-                    and len(artist) > 0 and artist[0].lower() == item[0].lower()]
+                       and len(artist) > 0 and artist[0].lower() == item[0].lower()]
 
         logger.debug("Searching for artist")
         for i in artist_dirs:
@@ -82,7 +83,7 @@ class SearchAlgorithm:
                         for k in song_or_cd_path:
                             logger.debug("Checking %s%s", path_to_music, k)
                             if (os.path.isfile(path_to_music + "/" + k)
-                                and k.endswith(('.ogg','.m4a','.mp3'))):
+                                    and k.endswith(('.ogg', '.m4a', '.mp3'))):
                                 logger.debug("Path to file: %s%s", path_to_music, k)
                                 song_check = k.split(".", 1)[1].rsplit('.', 1)[0]
                                 if self.match_strings(song_check, name, "song"):

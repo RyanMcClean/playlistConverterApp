@@ -15,17 +15,17 @@ logger = settings.mainLog
 def main():
     global plex
     playlistList = os.listdir(settings.convertedPlaylists)
-    playlistList = [ playlist for playlist in playlistList if ".m3u" in playlist]
+    playlistList = [playlist for playlist in playlistList if ".m3u" in playlist]
     playlistList.sort()
     currentPlaylists = plex.playlists(playlistType='audio', sectionId=3)
 
     for num, i in enumerate(playlistList):
         for j in currentPlaylists:
-         if i == j.title:
-            toDelete = plex.playlist(title=j.title)
-            logger.info(f"Deleting playlist {j.title} off of Plex")
-            toDelete.delete()
-        message(f"{int((num/len(playlistList))*100)}%", 'percentage')
+            if i == j.title:
+                toDelete = plex.playlist(title=j.title)
+                logger.info(f"Deleting playlist {j.title} off of Plex")
+                toDelete.delete()
+        message(f"{int((num / len(playlistList)) * 100)}%", 'percentage')
         try:
             Playlist.create(server=plex, title=i[:-4], section='Music', m3ufilepath=settings.convertedPlaylists + i)
         except Exception as e:
@@ -34,6 +34,7 @@ def main():
             except Exception as e:
                 pass
         sleep(5)
+
 
 def updateMusic():
     try:

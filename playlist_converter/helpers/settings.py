@@ -20,6 +20,7 @@ def setup_logger(self, name, log_file, level):
 
     return self.logger
 
+
 class AppSettings:
     """_summary_
     """
@@ -110,8 +111,6 @@ class AppSettings:
         BLACK = '\033[1;30;48m'
         UNDERLINE = '\033[4;37;48m'
         END = '\033[1;37;0m'
-
-
 
     def message_loud(self, text, message_type='text'):
         """_summary_

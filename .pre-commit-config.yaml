@@ -6,4 +6,3 @@ repos:
     entry: ./env/bin/pylint
     language: system
     types: [python]
-    args: [--ignore-patterns=env]

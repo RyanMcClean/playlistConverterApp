@@ -8,6 +8,7 @@
         "abstractproperty",
         "argparse",
         "asdict",
+        "autopep",
         "booleaness",
         "classmethod",
         "contextlib",

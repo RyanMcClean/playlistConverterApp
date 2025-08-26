@@ -1,0 +1,7 @@
+[tool.autopep8]
+max_line_length = 180
+indent_size = 4
+#ignore = "E501,W6"    # or ["E501", "W6"]
+in-place = false
+recursive = false
+aggressive = 3

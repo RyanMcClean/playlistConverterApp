@@ -10,11 +10,17 @@ else:
 
 logger = settings.downloadLog
 
+
 def main():
     global sp, spOauth, accessToken, currentTime
     logger.debug("Starting download of playlists via Spotify API")
     try:
-        spOauth = spotipy.SpotifyOAuth(client_id=settings.clientId, client_secret=settings.clientSecret, scope=settings.scope, cache_path=settings.cachePath, redirect_uri=settings.redirectURI)
+        spOauth = spotipy.SpotifyOAuth(
+            client_id=settings.clientId,
+            client_secret=settings.clientSecret,
+            scope=settings.scope,
+            cache_path=settings.cachePath,
+            redirect_uri=settings.redirectURI)
         accessToken = spOauth.get_access_token(as_dict=False)
 
         sp = spotipy.Spotify(accessToken, requests_timeout=10, retries=0)
@@ -28,7 +34,6 @@ def main():
         logger.error(e)
         message(e, 'error')
 
-    
 
 def getAllPlaylists():
     logger.debug('Checking all users playlists')
@@ -46,16 +51,17 @@ def getAllPlaylists():
     modifier = 0
     totalPlaylists = playlists['total']
     message("Downloading playlists from Spotify")
-    if not playlists is None:
+    if playlists is not None:
         while playlists:
             for i, playlist in enumerate(playlists['items'], start=1):
-                message(f"Playlists Downloading: {int(((i + modifier)/totalPlaylists)*100)}%", 'percentage')
+                message(f"Playlists Downloading: {int(((i + modifier) / totalPlaylists) * 100)}%", 'percentage')
                 if playlist['tracks']['total'] > 0:
                     logger.debug(f"{i + modifier} - {playlist['uri']} - {playlist['name']} - {playlist['snapshot_id']} - Total tracks: {playlist['tracks']['total']}")
                     playlistName = playlist['name']
                     for i in ["/", ".", "\\", "<", ">", "?", "_", ":", "|"]:
                         playlistName = playlistName.replace(i, "")
-                    playlistName = playlistName.strip() if len(playlistName) + len(settings.pathToPlaylistDownloads) < 143 else playlistName[0:(143 - len(settings.pathToPlaylistDownloads))].strip()
+                    playlistName = playlistName.strip() if len(playlistName) + \
+                        len(settings.pathToPlaylistDownloads) < 143 else playlistName[0:(143 - len(settings.pathToPlaylistDownloads))].strip()
                     if playlistName + ".txt" in playlistList:
                         with open(settings.pathToPlaylistDownloads + playlistName + ".txt") as fp:
                             logger.debug(f"{playlist['name']} file opened")
@@ -68,14 +74,14 @@ def getAllPlaylists():
                                         os.remove(fp.name)
                                         logger.debug(f"Deleting file: {fp.name}")
                                         getSongsOfPlaylist(playlist['uri'], playlistName, playlist['snapshot_id'])
-                                        break 
+                                        break
                                     else:
                                         logger.debug("Snapshots matched")
                                     break
                                 elif line is None:
                                     logger.debug(f"File {fp.name} does not contain snapshot ID, deleting file")
                                     fp.close()
-                                    os.remove(fp.name)  
+                                    os.remove(fp.name)
                                     getSongsOfPlaylist(playlist['uri'], playlistName, playlist['snapshot_id'])
                                     break
                     else:
@@ -96,12 +102,13 @@ def getAllPlaylists():
             else:
                 playlists = None
 
+
 def getLikedSongs():
     logger.debug("Checking Liked Songs")
-    if not os.path.exists(settings.pathToPlaylistDownloads + sp.current_user()['display_name'] + 
-                          " Liked Songs" + ".txt") or (currentTime - int(os.path.getmtime(settings.pathToPlaylistDownloads + sp.current_user()['display_name'] + 
+    if not os.path.exists(settings.pathToPlaylistDownloads + sp.current_user()['display_name'] +
+                          " Liked Songs" + ".txt") or (currentTime - int(os.path.getmtime(settings.pathToPlaylistDownloads + sp.current_user()['display_name'] +
                                                                                           " Liked Songs" + ".txt"))) > 3600 * 48:
-        likedSongs = sp.current_user_saved_tracks()    
+        likedSongs = sp.current_user_saved_tracks()
         count = 1
         toFile = [sp.current_user()['display_name'] + ' Liked Songs']
         while likedSongs:
@@ -109,10 +116,10 @@ def getLikedSongs():
                 try:
                     if track['track'] is None:
                         continue
-                    toAppend = str(count) + ",," 
+                    toAppend = str(count) + ",,"
                     if track['track'] is None or 'is_local' in track.keys() and track['track']['is_local']:
                         continue
-                    if 'restrictions' in track['track'].keys(): 
+                    if 'restrictions' in track['track'].keys():
                         logger.error(track)
                         toAppend += 'restricted' + ",,"
                     if track['track']['type'] == 'episode':
@@ -121,10 +128,10 @@ def getLikedSongs():
                             toAppend += track['track']['show']['name'] + ",,"
                         else:
                             toAppend += track['track']['album']['name'] + ",,"
-                        toAppend +=  track['track']['name'] 
+                        toAppend += track['track']['name']
                     elif track['track']['type'] == "track":
                         for i in track['track']['artists']:
-                            if len(i['name']) > 0 and not "Various Artists" in i['name']:
+                            if len(i['name']) > 0 and "Various Artists" not in i['name']:
                                 toAppend += f"{i['name']}"
                                 break
                         toAppend += ",," + track['track']['album']['name']
@@ -136,7 +143,7 @@ def getLikedSongs():
                         logger.error(track)
                         exit(1)
                 except Exception as e:
-                    import traceback;
+                    import traceback
                     logger.error(e)
                     logger.error(traceback.format_exc())
                     logger.error("Error on adding this track to list")
@@ -155,10 +162,11 @@ def getLikedSongs():
                         message(e, 'error')
             else:
                 likedSongs = None
-        makeFile(toFile)    
+        makeFile(toFile)
     else:
         logger.debug("Liked songs file is too young to update")
-    
+
+
 def makeFile(fileContents):
     if os.path.exists(settings.pathToPlaylistDownloads):
         pass
@@ -174,7 +182,7 @@ def makeFile(fileContents):
         sleep(settings.sleepTime)
     else:
         logger.error(f"Not creating a null file of: {fileContents[0]}.txt")
-    
+
 
 def getSongsOfPlaylist(playlistID, playlistName, playlistSnapshotId):
     try:
@@ -186,11 +194,11 @@ def getSongsOfPlaylist(playlistID, playlistName, playlistSnapshotId):
                 try:
                     toAppend = str(count) + ",,"
                     if track['track'] is None:
-                            continue
+                        continue
                     if 'is_local' in track['track'].keys():
                         if track['track']['is_local']:
                             continue
-                    if 'restrictions' in track['track'].keys(): 
+                    if 'restrictions' in track['track'].keys():
                         logger.error(track)
                         toAppend += 'restricted' + ",,"
                     if track['track']['type'] == 'episode':
@@ -199,10 +207,10 @@ def getSongsOfPlaylist(playlistID, playlistName, playlistSnapshotId):
                             toAppend += track['track']['show']['name'] + ",,"
                         else:
                             toAppend += track['track']['album']['name'] + ",,"
-                        toAppend +=  track['track']['name'] 
+                        toAppend += track['track']['name']
                     elif track['track']['type'] == "track":
                         for i in track['track']['artists']:
-                            if len(i['name']) > 0 and not "Various Artists" in i['name']:
+                            if len(i['name']) > 0 and "Various Artists" not in i['name']:
                                 toAppend += f"{i['name']}"
                                 break
                         toAppend += ",," + track['track']['album']['name']
@@ -214,7 +222,7 @@ def getSongsOfPlaylist(playlistID, playlistName, playlistSnapshotId):
                         logger.error(track)
                         exit(1)
                 except Exception as e:
-                    import traceback;
+                    import traceback
                     logger.error(e)
                     logger.error(traceback.format_exc())
                     logger.error("Error on adding this track to list")
@@ -233,14 +241,21 @@ def getSongsOfPlaylist(playlistID, playlistName, playlistSnapshotId):
                         message(e, 'error')
             else:
                 playlistSongs = None
-        makeFile(toFile) 
+        makeFile(toFile)
     except Exception as e:
         logger.error(e)
-        
+
+
 def refreshSpotify():
-    spOauth = spotipy.SpotifyOAuth(client_id=settings.clientId, client_secret=settings.clientSecret, scope=settings.scope, cache_path=settings.cachePath, redirect_uri=settings.redirectURI)
+    spOauth = spotipy.SpotifyOAuth(
+        client_id=settings.clientId,
+        client_secret=settings.clientSecret,
+        scope=settings.scope,
+        cache_path=settings.cachePath,
+        redirect_uri=settings.redirectURI)
     accessToken = spOauth.get_access_token(as_dict=False)
     sp = spotipy.Spotify(accessToken, requests_timeout=10)
+
 
 if __name__ == "__main__":
     main()

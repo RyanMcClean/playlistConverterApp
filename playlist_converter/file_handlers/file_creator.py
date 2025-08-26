@@ -1,6 +1,7 @@
 """Creates converted playlist files
 """
 
+
 class PlaylistFileCreator:
     """Class to handle .m3u playlist file creation"""
 
@@ -12,7 +13,7 @@ class PlaylistFileCreator:
         """
         self.converted_playlists_path = converted_playlists_path
 
-    def create_playlist_file(self, playlist):
+    def create_playlist_file(self, playlist, ):
         """Creates a playlist file (.m3u) from the given playlist.
 
         Args:
